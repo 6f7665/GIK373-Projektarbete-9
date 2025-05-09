@@ -1,0 +1,10 @@
+root {
+	font: 10px Arial, sans-serif;
+	--link-color: rgb(0,100,255);
+	--active-color: rgb(255,200,0);
+	--black: rgb(30,30,30);
+	--background: rgb(30,30,30);
+}
+body {
+	font-size: 1.6rem;
+}
