@@ -1,10 +1,17 @@
-root {
+:root {
 	font: 10px Arial, sans-serif;
-	--link-color: rgb(0,100,255);
+	--link-color: rgb(0,0,255);
 	--active-color: rgb(255,200,0);
-	--black: rgb(30,30,30);
+	--foreground: rgb(255,255,255);
 	--background: rgb(30,30,30);
 }
 body {
+	height: 100%;
+	width: 100%;
 	font-size: 1.6rem;
+	background-color: var(--background);
+	color: var(--foreground);
+}
+a, a:visited {
+	color: var(--link-color);
 }
