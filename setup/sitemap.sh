@@ -1,6 +1,6 @@
 #!/bin/sh
 
-BASE_URL="http://${PWD##*/}.$(hostname)"
+BASE_URL="http://${PWD##*/}.$(cat /etc/hostname)"
 OUTPUT_FILE="sitemap.xml"
 
 echo '<?xml version="1.0" encoding="UTF-8"?>' > $OUTPUT_FILE
