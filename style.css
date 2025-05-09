@@ -1,0 +1,25 @@
+:root {
+	font: 10px Arial, sans-serif;
+	--link-color: rgb(0,100,255);
+	--active-color: rgb(255,200,0);
+	--black: rgb(30,30,30);
+	--background: rgb(30,30,30);
+}
+@font-face {
+}
+
+* {
+	text-decoration: none;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+a {
+	color: var(--link-color);
+}
+a:hover {
+	text-decoration: underline;
+}
+body {
+	font-size: 1.6rem;
+}
