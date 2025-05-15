@@ -1,4 +1,4 @@
-const deathRateCanvasNew = document.getElementById("nyDeathRate");
+const deathRateCanvas = document.getElementById("yearlyDeathRate");
 let yearlyData = [];
 
 const sdbURL =
@@ -14,7 +14,7 @@ function printSDBChart(dataSDB) {
   const labels = yearlyData.map((entry) => entry.year);
   const data = yearlyData.map((entry) => entry.deaths);
 
-  const NewDeathRateChart = new Chart(deathRateCanvasNew, {
+  const YearlyDeathRateChart = new Chart(deathRateCanvas, {
     type: "line",
     data: {
       labels: labels,
