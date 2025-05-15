@@ -7,7 +7,7 @@ fetch(euroStatURL)
   .then((response) => response.json())
   .then(BuildEuroStatGraph);
 
-// Build Everything together
+// Build everything together
 function BuildEuroStatGraph(dataEuroStat) {
   selectCountryOption(dataEuroStat);
   printEuroStatChart(dataEuroStat);
@@ -35,8 +35,7 @@ function printEuroStatChart(dataEuroStat) {
   // define label and which data to use.
   const datasets = [
     {
-      label:
-        "Premature deaths due to exposure to fine particulate matter (PM2.5) by selected country.",
+      label: "Premature deaths due to exposure to (PM2.5)",
       data: data,
     },
   ];
@@ -79,7 +78,7 @@ function selectCountryOption(dataEuroStat) {
     }
   }
 
-  // check for event on the selectino menu, If there is, run the chart function again.
+  // check for event on the selection menu, If there is, run the chart function again.
   newSelect.addEventListener("change", () => {
     printEuroStatChart(dataEuroStat);
   });
