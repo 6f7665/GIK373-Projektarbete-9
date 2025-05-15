@@ -1,4 +1,4 @@
-const deathRateCanvasNew = document.getElementById("nyDeathRate");
+const deathRateCanvas = document.getElementById("yearlyDeathRate");
 let yearlyData = [];
 
 const sdbURL =
@@ -14,7 +14,7 @@ function printSDBChart(dataSDB) {
   const labels = yearlyData.map((entry) => entry.year);
   const data = yearlyData.map((entry) => entry.deaths);
 
-  const NewDeathRateChart = new Chart(deathRateCanvasNew, {
+  const YearlyDeathRateChart = new Chart(deathRateCanvas, {
     type: "line",
     data: {
       labels: labels,
@@ -30,7 +30,7 @@ function printSDBChart(dataSDB) {
 
 function totalDeathsPerYear(dataSDB) {
   const data = dataSDB.data;
-  let yearCount = 0;
+  let indexCount = 0;
   let yearAndDeath = {
     deaths: 0,
     year: 0,
@@ -48,7 +48,7 @@ function totalDeathsPerYear(dataSDB) {
       deaths: totalDeathsPerYear,
       year: i,
     };
-    yearlyData[yearCount] = yearAndDeath;
-    yearCount = yearCount + 1;
+    yearlyData[indexCount] = yearAndDeath;
+    indexCount = indexCount + 1;
   }
 }
