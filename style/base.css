@@ -11,7 +11,7 @@ body {
 	height: 6000px;
 	width: 100%;
 	font-size: 1.6rem;
-	background: linear-gradient(180deg, rgba(249, 249, 249, 1) 0%, rgba(1, 12, 52, 1) 100%);
+	background: linear-gradient(180deg, var(--background) 0%, var(--foreground) 100%);
 	color: var(--foreground);
 }
 a, a:visited {
