@@ -22,8 +22,9 @@ async function fetchApiData() {
             if (!response.ok) {
                 throw new Error(`HTTP error! Status: ${response.status}`);
             }
-            const data = await response.json();
-            entry.dataString = JSON.stringify(data);
+			entry.dataString = await response.json();
+            //const data = await response.json();
+            //entry.dataString = JSON.stringify(data);
             entry.downloadStatus = 'Success';
         } catch (error) {
             entry.downloadStatus = 'Error';
@@ -34,13 +35,66 @@ async function fetchApiData() {
     await Promise.all(fetchPromises);
 }
 
-function printDataStrings() {
+let DeathRateDataSweden = {
+  Year: [],
+  YearDeathCount: [],
+  Month: [],
+  MonthDeathCount: [],
+};
+function prepareData() {
     apiData.forEach((entry, index) => {
         console.log(`DataString for URL ${index + 1}`);
         console.log(entry.dataString);
         console.log('--------------------');
+
     });
+	//prepare data from Socialstyrelsen
+	for (let i = 0; i < apiData[0].dataString.data.length; i++) {
+		const dataObj = apiData[0].dataString.data[i];
+		if ( DeathRateDataSweden['Year'].indexOf(dataObj.ar) == -1 ) {
+			DeathRateDataSweden['Year'].push(dataObj.ar);
+			DeathRateDataSweden['YearDeathCount'].push(parseInt(dataObj.varde));
+		}
+		else {
+			DeathRateDataSweden['YearDeathCount'][DeathRateDataSweden['Year'].indexOf(dataObj.ar)] += parseInt(dataObj.varde);
+		}
+		if ( DeathRateDataSweden['Month'].indexOf(dataObj.manadId) == -1 ) {
+			DeathRateDataSweden['Month'].push(dataObj.manadId);
+			DeathRateDataSweden['MonthDeathCount'].push(parseInt(dataObj.varde));
+		}
+		else {
+			DeathRateDataSweden['MonthDeathCount'][DeathRateDataSweden['Month'].indexOf(dataObj.manadId)] += parseInt(dataObj.varde);
+		}
+	}
 }
+
+function updateGraphs() {
+	//here we update all the graphs/canvases
+	const deathRateCanvas = document.getElementById('deathRateCanvasID');
+    let deathRateChart = new Chart(deathRateCanvas, {
+      type: 'line',
+      data: {
+        labels: DeathRateDataSweden['Year'],
+        datasets: [{
+          label: 'dödsfall per år på grund av andningsproblem',
+          data: DeathRateDataSweden['YearDeathCount'],
+        }]
+      }
+/*      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        scales: {
+          x: { beginAtZero: true },
+          y: { beginAtZero: true }
+        }
+      }*/
+    });
+    deathRateChart.update();
+	console.log(DeathRateDataSweden);
+}
+
 fetchApiData().then(() => {
-    printDataStrings();
+    prepareData();
+}).then(() => {
+	updateGraphs();
 });
