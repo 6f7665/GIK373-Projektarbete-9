@@ -9,6 +9,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style/reset.css">
   <link rel="stylesheet" href="style/base.css">
+  <!-- Metrophobic font-->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Metrophobic&family=Noto+Sans+Thai:wght@100..900&display=swap" rel="stylesheet">
 </head>
 <body>
   <nav class="menu__container">
@@ -17,13 +21,14 @@
     <span class="hero__text"></span>
   </header>
   <main>
-    <div>
-      <canvas id="yearlyDeathRate"></canvas>
-    </div>
-    <div>
+    <div class="card">
+      <h1>What is PM2.5</h1>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce a enim faucibus, elementum est at, tempor mauris. Integer maximus nibh non nisl iaculis molestie. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Maecenas nec auctor quam. Nulla tempus fringilla lacinia. Proin in fringilla felis, nec ultrices elit. In quis risus faucibus, ultrices metus a, ullamcorper orci. Mauris ac dolor libero.</p>
+      <h1>Why is it bad?</h1>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce a enim faucibus, elementum est at, tempor mauris. Integer maximus nibh non nisl iaculis molestie. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Maecenas nec auctor quam. Nulla tempus fringilla lacinia. Proin in fringilla felis, nec ultrices elit. In quis risus faucibus, ultrices metus a, ullamcorper orci. Mauris ac dolor libero.</p>
       <canvas id="deathRateCanvasID"></canvas>
     </div>
-    <div>
+    <div class="card">
       <canvas id="euroStat"></canvas>
     </div>
   </main>
@@ -33,7 +38,7 @@
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.9/dist/chart.umd.min.js"></script>
   <script src="scripts/charts.js"></script>
   <!--<script src="scripts/sdbYearly.js"></script>
-  <script src="scripts/sdbStats.js"></script>
-  <script src="scripts/euroStats.js"></script>-->
+  <script src="scripts/sdbStats.js"></script>-->
+  <script src="scripts/euroStats.js"></script>
 </body>
 </html>
