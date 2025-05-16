@@ -10,7 +10,7 @@ let apiData = [
 		dataString: ''
 	},
 	{
-		url: 'https://air-quality-api.open-meteo.com/v1/air-quality?latitude=62&longitude=15&hourly=european_aqi_pm2_5&timezone=auto&start_date=2013-01-01&end_date=2025-05-18',
+		url: 'https://air-quality-api.open-meteo.com/v1/air-quality?latitude=60&longitude=18&hourly=european_aqi_pm2_5&timezone=auto&start_date=2013-01-01&end_date=2025-05-18',
 		downloadStatus: '',
 		dataString: ''
 	},
@@ -40,14 +40,17 @@ let DeathRateDataSweden = {
   YearDeathCount: [],
   Month: [],
   MonthDeathCount: [],
+  MonthDeathAvg: [],
+  MonthlyCount: [0,0,0,0,0,0,0,0,0,0,0,0],
 };
 let PMValuesSweden = {
   Year: [],
   YearAvarage: [],
   Month: [],
   MonthAvarage: [],
-  Monthly: [],
-  MonthlyAvarage: [],
+  Monthly: ["01","02","03","04","05","06","07","08","09","10","11","12"],
+  MonthlyAvarage: [0,0,0,0,0,0,0,0,0,0,0,0],
+  MonthlyCount: [0,0,0,0,0,0,0,0,0,0,0,0],
 };
 
 function prepareData() {
@@ -74,8 +77,12 @@ function prepareData() {
 			}
 			else {
 				DeathRateDataSweden['MonthDeathCount'][DeathRateDataSweden['Month'].indexOf(dataObj.manadId)] += parseInt(dataObj.varde);
+				DeathRateDataSweden['MonthlyCount'][DeathRateDataSweden['Month'].indexOf(dataObj.manadId)]++;
 			}
 		}
+	}
+	for (let i = 0; i < 12; i++) {
+		DeathRateDataSweden['MonthDeathAvg'][i] = DeathRateDataSweden['MonthDeathCount'][i] / DeathRateDataSweden['MonthlyCount'][i];
 	}
 	//prepare data from openMeteo
 	//setup values to calculate avarages
@@ -95,6 +102,8 @@ function prepareData() {
 			if (Time[1] != CurrentTime[1]) {
 				PMValuesSweden['Month'].push(Time[1]);
 				PMValuesSweden['MonthAvarage'].push(AvarageMonthValue / ValueMonthCount);
+				PMValuesSweden['MonthlyAvarage'][PMValuesSweden.Monthly.indexOf(Time[1])] += (AvarageMonthValue / ValueMonthCount);//PMValuesSweden['MonthAvarage'][-1];
+				PMValuesSweden['MonthlyCount'][PMValuesSweden.Monthly.indexOf(Time[1])]++;
 				ValueMonthCount = 0;
 				AvarageMonthValue = 0;
 			}
@@ -115,6 +124,9 @@ function prepareData() {
 		//set the current time as time so that we can check if year or month switches over
 		Time = CurrentTime;
 	}
+	for (let i = 0; i < 12; i++) {
+		PMValuesSweden['MonthlyAvarage'][i] = PMValuesSweden['MonthlyAvarage'][i] / PMValuesSweden['MonthlyCount'][i];
+	}
 	console.log(PMValuesSweden);
 }
 const deathRateCanvas = document.getElementById('deathRateCanvasID');
@@ -132,18 +144,37 @@ function updateGraphs() {
 	//here we update all the graphs/canvases
 	//deathRateChart.destroy();
     let deathRateChart = new Chart(deathRateCanvas, {
-      type: 'line',
+      /*type: 'line',*/
       data: {
-        labels: DeathRateDataSweden['Year'],
+        labels: ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],
         datasets: [{
-          label: 'dödsfall per år på grund av andningsproblem',
-          data: DeathRateDataSweden['YearDeathCount'],
-        }]
+          type: 'line',
+          label: 'andningsrelaterade dödsfall per månad',
+          data: DeathRateDataSweden['MonthDeathAvg'],
+          yAxisID: 'Deaths',
+        }, {
+          type: 'bar',
+          label: 'PM2.5-halt i Sveg per månad',
+          data: PMValuesSweden['MonthlyAvarage'],
+          yAxisID: 'PM2_5',
+        },]
       },
       options: {
+        scales: {
+          PM2_5: {
+		    beginAtZero: true,
+            type: 'linear',
+		    position: 'right'
+		  },
+          Deaths: {
+		    beginAtZero: true,
+            type: 'linear',
+		    position: 'left'
+		  }
+		},
         plugins: {
           legend: {
-            display: false
+            display: true
           }
         }
       }
