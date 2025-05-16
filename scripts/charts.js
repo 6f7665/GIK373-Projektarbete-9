@@ -41,6 +41,14 @@ let DeathRateDataSweden = {
   Month: [],
   MonthDeathCount: [],
 };
+let PMValuesSweden = {
+  Year: [],
+  YearAvarage: [],
+  Month: [],
+  MonthAvarage: [],
+  Monthly: [],
+  MonthlyAvarage: [],
+};
 
 function prepareData() {
     apiData.forEach((entry, index) => {
@@ -70,7 +78,44 @@ function prepareData() {
 		}
 	}
 	//prepare data from openMeteo
-	//for (let i = 0; i < apiData[].datastring.data.length; i++) {}
+	//setup values to calculate avarages
+	var ValueYearCount = 0;
+	var AvarageYearValue = 0;
+	var ValueMonthCount = 0;
+	var AvarageMonthValue = 0;
+	//load current time and remove days and hours
+	let Time = apiData[2].dataString.hourly.time[0].split("-").splice(0,2);
+	//iterate the json from the api call
+	for (let i = 0; i < apiData[2].dataString.hourly.time.length; i++) {
+		const pm2_5 = apiData[2].dataString.hourly.european_aqi_pm2_5[i];
+		let CurrentTime = apiData[2].dataString.hourly.time[i].split("-").splice(0,2);
+		//ignore null values
+		if ( pm2_5 != null ) {
+			//if the month is switching over to a new month, calculate avarage and push to array
+			if (Time[1] != CurrentTime[1]) {
+				PMValuesSweden['Month'].push(Time[1]);
+				PMValuesSweden['MonthAvarage'].push(AvarageMonthValue / ValueMonthCount);
+				ValueMonthCount = 0;
+				AvarageMonthValue = 0;
+			}
+			//if the year switches over, calculate avarage and push to array
+			if (Time[0] != CurrentTime[0]) {
+				PMValuesSweden['Year'].push(Time[0]);
+				PMValuesSweden['YearAvarage'].push(AvarageYearValue / ValueYearCount);
+				ValueYearCount = 0;
+				AvarageYearValue = 0;
+			}
+			//up the value counter and add value to total for year and month
+			const pm2_5Int = parseInt(pm2_5);
+			ValueYearCount++;
+			ValueMonthCount++;
+			AvarageMonthValue += pm2_5Int;
+			AvarageYearValue += pm2_5Int;
+		}
+		//set the current time as time so that we can check if year or month switches over
+		Time = CurrentTime;
+	}
+	console.log(PMValuesSweden);
 }
 const deathRateCanvas = document.getElementById('deathRateCanvasID');
 /*let deathRateChart = new Chart(deathRateCanvas, {
