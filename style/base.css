@@ -18,33 +18,45 @@ a, a:visited {
 	color: var(--link-color);
 }
 
+
 main {
-	display: grid;
-	grid-template-columns: 10% 80% 10%;
+    display: grid;
+    grid-template-columns: 15% 70% 15%;
 }
 
 .card {
-	font-family: "Metrophobic", sans-serif;
-	background-color: white;
-	box-sizing: border-box;
-	border-radius: 0rem;
-	padding: 7rem;
-	grid-column: 1 / span 3;
-	margin-top: 10rem;
-	margin-bottom: 10rem;
+    font-family: "Metrophobic", sans-serif;
+    background-color: white;
+    box-sizing: border-box;
+    border-radius: 0rem;
+    padding: 3rem;
+    grid-column: 1 / span 3;
+    margin-top: 10rem;
+    margin-bottom: 10rem;
 }
+#liveMapPm25 {
+	height: 512px;
+    width: 100%;
+}
+@media only screen and (min-width: 900px){
+    .card {
+    font-family: "Metrophobic", sans-serif;
+    background-color: white;
+    box-sizing: border-box;
+    border-radius: 3rem;
+    padding: 7rem;
+    grid-column: 2;
+    }
 
-@media only screen and (min-width: 600px){
-	.card {
-	font-family: "Metrophobic", sans-serif;
-	background-color: white;
-	box-sizing: border-box;
-	border-radius: 3rem;
-	padding: 10rem;
-	grid-column: 2;
-	}
+    .card h1 {
+        font-size: 20pt;
+    }
 
-	#deathRateCanvasID {
-		margin: 2rem;
-	}
+    .card p {
+        font-size: 15pt;
+    }
+
+    #deathRateCanvasID {
+        margin: 2rem;
+    }
 }
