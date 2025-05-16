@@ -41,6 +41,7 @@ let DeathRateDataSweden = {
   Month: [],
   MonthDeathCount: [],
 };
+
 function prepareData() {
     apiData.forEach((entry, index) => {
         console.log(`DataString for URL ${index + 1}`);
@@ -51,26 +52,40 @@ function prepareData() {
 	//prepare data from Socialstyrelsen
 	for (let i = 0; i < apiData[0].dataString.data.length; i++) {
 		const dataObj = apiData[0].dataString.data[i];
-		if ( DeathRateDataSweden['Year'].indexOf(dataObj.ar) == -1 ) {
-			DeathRateDataSweden['Year'].push(dataObj.ar);
-			DeathRateDataSweden['YearDeathCount'].push(parseInt(dataObj.varde));
-		}
-		else {
-			DeathRateDataSweden['YearDeathCount'][DeathRateDataSweden['Year'].indexOf(dataObj.ar)] += parseInt(dataObj.varde);
-		}
-		if ( DeathRateDataSweden['Month'].indexOf(dataObj.manadId) == -1 ) {
-			DeathRateDataSweden['Month'].push(dataObj.manadId);
-			DeathRateDataSweden['MonthDeathCount'].push(parseInt(dataObj.varde));
-		}
-		else {
-			DeathRateDataSweden['MonthDeathCount'][DeathRateDataSweden['Month'].indexOf(dataObj.manadId)] += parseInt(dataObj.varde);
+		if (dataObj.konId == 3) {
+			if (DeathRateDataSweden['Year'].indexOf(dataObj.ar) == -1) {
+				DeathRateDataSweden['Year'].push(dataObj.ar);
+				DeathRateDataSweden['YearDeathCount'].push(parseInt(dataObj.varde));
+			}
+			else {
+				DeathRateDataSweden['YearDeathCount'][DeathRateDataSweden['Year'].indexOf(dataObj.ar)] += parseInt(dataObj.varde);
+			}
+			if ( DeathRateDataSweden['Month'].indexOf(dataObj.manadId) == -1 ) {
+				DeathRateDataSweden['Month'].push(dataObj.manadId);
+				DeathRateDataSweden['MonthDeathCount'].push(parseInt(dataObj.varde));
+			}
+			else {
+				DeathRateDataSweden['MonthDeathCount'][DeathRateDataSweden['Month'].indexOf(dataObj.manadId)] += parseInt(dataObj.varde);
+			}
 		}
 	}
+	//prepare data from openMeteo
+	//for (let i = 0; i < apiData[].datastring.data.length; i++) {}
 }
-
+const deathRateCanvas = document.getElementById('deathRateCanvasID');
+/*let deathRateChart = new Chart(deathRateCanvas, {
+  type: 'line',
+  data: {
+    labels: DeathRateDataSweden['Year'],
+    datasets: [{
+      label: 'dödsfall per år på grund av andningsproblem',
+      data: DeathRateDataSweden['YearDeathCount'],
+    }]
+  }
+});*/
 function updateGraphs() {
 	//here we update all the graphs/canvases
-	const deathRateCanvas = document.getElementById('deathRateCanvasID');
+	//deathRateChart.destroy();
     let deathRateChart = new Chart(deathRateCanvas, {
       type: 'line',
       data: {
@@ -79,15 +94,14 @@ function updateGraphs() {
           label: 'dödsfall per år på grund av andningsproblem',
           data: DeathRateDataSweden['YearDeathCount'],
         }]
-      }
-/*      options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        scales: {
-          x: { beginAtZero: true },
-          y: { beginAtZero: true }
+      },
+      options: {
+        plugins: {
+          legend: {
+            display: false
+          }
         }
-      }*/
+      }
     });
     deathRateChart.update();
 	console.log(DeathRateDataSweden);
@@ -98,3 +112,5 @@ fetchApiData().then(() => {
 }).then(() => {
 	updateGraphs();
 });
+
+//window.addEventListener('resize', updateGraphs);
