@@ -17,3 +17,34 @@ body {
 a, a:visited {
 	color: var(--link-color);
 }
+
+main {
+	display: grid;
+	grid-template-columns: 10% 80% 10%;
+}
+
+.card {
+	font-family: "Metrophobic", sans-serif;
+	background-color: white;
+	box-sizing: border-box;
+	border-radius: 0rem;
+	padding: 7rem;
+	grid-column: 1 / span 3;
+	margin-top: 10rem;
+	margin-bottom: 10rem;
+}
+
+@media only screen and (min-width: 600px){
+	.card {
+	font-family: "Metrophobic", sans-serif;
+	background-color: white;
+	box-sizing: border-box;
+	border-radius: 3rem;
+	padding: 10rem;
+	grid-column: 2;
+	}
+
+	#deathRateCanvasID {
+		margin: 2rem;
+	}
+}
