@@ -5,7 +5,8 @@ let apiData = [
     dataString: ''
   },
   {
-    url: 'https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/sdg_11_52/?format=JSON&lang=en&freq=A&airpol=PM2_5&indic_he=PMD&unit=NR&geo=BE&geo=BG&geo=CZ&geo=DK&geo=DE&geo=EE&geo=IE&geo=EL&geo=ES&geo=FR&geo=HR&geo=IT&geo=CY&geo=LV&geo=LT&geo=LU&geo=HU&geo=MT&geo=NL&geo=AT&geo=PL&geo=PT&geo=RO&geo=SI&geo=SK&geo=FI&geo=SE&geo=IS&geo=LI&geo=NO&geo=CH&geo=BA&geo=ME&geo=MK&geo=AL&geo=RS&geo=XK&time=2005&time=2007&time=2008&time=2009&time=2010&time=2011&time=2012&time=2013&time=2014&time=2015&time=2016&time=2017&time=2018&time=2019&time=2020&time=2021&time=2022',
+    //url: 'https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/sdg_11_52/?format=JSON&lang=en&freq=A&airpol=PM2_5&indic_he=PMD&unit=NR&geo=BE&geo=BG&geo=CZ&geo=DK&geo=DE&geo=EE&geo=IE&geo=EL&geo=ES&geo=FR&geo=HR&geo=IT&geo=CY&geo=LV&geo=LT&geo=LU&geo=HU&geo=MT&geo=NL&geo=AT&geo=PL&geo=PT&geo=RO&geo=SI&geo=SK&geo=FI&geo=SE&geo=IS&geo=LI&geo=NO&geo=CH&geo=BA&geo=ME&geo=MK&geo=AL&geo=RS&geo=XK&time=2005&time=2007&time=2008&time=2009&time=2010&time=2011&time=2012&time=2013&time=2014&time=2015&time=2016&time=2017&time=2018&time=2019&time=2020&time=2021&time=2022',
+    url: 'https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/sdg_11_52/?format=JSON&lang=en&freq=A',
     downloadStatus: '',
     dataString: ''
   },
@@ -52,6 +53,14 @@ let PMValuesSweden = {
   MonthlyAvarage: [0,0,0,0,0,0,0,0,0,0,0,0],
   MonthlyCount: [0,0,0,0,0,0,0,0,0,0,0,0],
 };
+let EurostatData = {
+  Year: [],
+  YearDeaths: [],
+}
+let PercentPrematureDeaths = {
+  Year: [],
+  Percentages: [],
+}
 
 function prepareData() {
   apiData.forEach((entry, index) => {
@@ -127,9 +136,27 @@ function prepareData() {
   for (let i = 0; i < 12; i++) {
     PMValuesSweden['MonthlyAvarage'][i] = PMValuesSweden['MonthlyAvarage'][i] / PMValuesSweden['MonthlyCount'][i];
   }
+  //Prepare eurostat data
+  let YearLabels = apiData[1].dataString['dimension']['time']['category']['index'];
+  const YearCount = apiData[1].dataString['size'][5];
+  for (const [Year, Index] of Object.entries(YearLabels)) {
+    EurostatData['Year'].push(parseInt(Year));
+    EurostatData['YearDeaths'].push(apiData[1].dataString['value'][(YearCount * 28) + parseInt(Index)]);
+  }
   console.log(PMValuesSweden);
+  console.log(EurostatData);
+  console.log(DeathRateDataSweden);
+  //Combine Socialstyrelsen and Eurostat
+  for (let i = 0; i < EurostatData.Year.length; i++) {
+  const Year = EurostatData.Year[i];
+    PercentPrematureDeaths.Year.push(Year);
+    const CurrentYearPercentage = 100 * EurostatData.YearDeaths[i] / DeathRateDataSweden.YearDeathCount[DeathRateDataSweden.Year.indexOf(Year)];
+    console.log(`current year percentage is: ${CurrentYearPercentage}`);
+    PercentPrematureDeaths.Percentages.push(`${Year}: ${CurrentYearPercentage.toFixed(1)}%`);
+  }
 }
 const deathRateCanvas = document.getElementById('deathRateCanvasID');
+const PercentageCanvas = document.getElementById('P2DeathPercentageID');
 
 //this function updates all graphs
 function updateGraphs() {
@@ -138,12 +165,12 @@ function updateGraphs() {
       labels: ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],
       datasets: [{
         type: 'line',
-        label: 'andningsrelaterade dödsfall per månad',
+        label: 'Respiratory Related Deaths',
         data: DeathRateDataSweden['MonthDeathAvg'],
         yAxisID: 'Deaths',
       }, {
         type: 'bar',
-        label: 'PM2.5-halt i Sveg per månad',
+        label: 'PM2.5-values in Stockholm',
         data: PMValuesSweden['MonthlyAvarage'],
         yAxisID: 'PM2_5',
       },]
@@ -169,7 +196,23 @@ function updateGraphs() {
     }
   });
   deathRateChart.update();
-  console.log(DeathRateDataSweden);
+  console.log(PercentPrematureDeaths.Percentages);
+
+  let PercentageChart = new Chart(PercentageCanvas, {
+    data: {
+      labels: PercentPrematureDeaths.Percentages,
+      datasets: [{
+        type: 'bar',
+        label: 'Respiratory Related Death',
+        data: DeathRateDataSweden['YearDeathCount'].splice(DeathRateDataSweden['Year'].indexOf(PercentPrematureDeaths.Year[0])), //splice the data so that both datasets begin at the same year
+      }, {
+        type: 'bar',
+        label: 'Deaths directly linked to PM2.5',
+        data: EurostatData.YearDeaths,
+      },]
+    },
+  });
+  PercentageChart.update();
 }
 
 fetchApiData().then(() => {
