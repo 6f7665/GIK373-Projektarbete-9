@@ -9,6 +9,7 @@ fetch(euroStatURL)
 
 // Build everything together
 function BuildEuroStatGraph(dataEuroStat) {
+  console.log(dataEuroStat)
   selectCountryOption(dataEuroStat);
   printEuroStatChart(dataEuroStat);
 }
@@ -17,7 +18,6 @@ function BuildEuroStatGraph(dataEuroStat) {
 function printEuroStatChart(dataEuroStat) {
   myChart.destroy(); // destroy the existing chart before creating a new one
 
-  const countryKeys = Object.keys(dataEuroStat.dimension.geo.category.index); // Countries but in order of their index number.
   const years = Object.values(dataEuroStat.dimension.time.category.label); // Values of every year, basically ["2005", "2006", "2007", ...]
 
   const countryNumber = getSelectedCountry(dataEuroStat); // get index of chosen country
@@ -50,7 +50,6 @@ function printEuroStatChart(dataEuroStat) {
 // Find the correct index number of the chosen country from the selection.
 function getSelectedCountry(dataEuroStat) {
   const countryKeys = Object.keys(dataEuroStat.dimension.geo.category.index); // Countries but in order of their index number.
-
   const selectedOption = document.querySelector("#countries");
   chosenCountry = selectedOption.value;
 
