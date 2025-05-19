@@ -164,9 +164,9 @@ main {
         background-color: white;
         box-sizing: border-box;
         min-height: 600px;
-        border-radius: 0rem;
+        border-radius: 2rem;
         padding: 3rem;
-        grid-column: 1 / span 3;
+        grid-column: 2;
         margin-top: 10rem;
         margin-bottom: 10rem;
     }
