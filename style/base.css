@@ -5,6 +5,10 @@
 	--link-color: hsl(var(--hue),var(--saturation),55%);
 	--background: hsl(var(--hue),var(--saturation),95%);
 	--foreground: hsl(var(--hue),var(--saturation),4%);
+    --button-color: hsl(199, 63%, 55%, 100%);
+    --grayish: hsl(225, 11%, 64%, 100%);
+    --button-hover: hsl(199, 52%, 42%);
+    --secondary-button-hover: hsl(var(--hue),var(--saturation),90%)
 }
 body {
 	min-height: 100%;
@@ -19,7 +23,7 @@ a, a:visited {
 
 /* ---hero--------------------------------------------------------------------*/
 header {
-    height: 900px;
+    height: 1100px;
     width: 100%;
     position: relative;
     overflow: hidden;
@@ -74,23 +78,72 @@ header .welcome__text p {
     font-size: 20pt;
 }
 
+header .hero__button {
+    position: absolute;
+    display: flex;
+    width: 100%;
+    top: 80%;
+}
+
+header .hero__button button {
+    flex-direction: row;
+    width: 40%;
+    padding: 30px;
+    margin: 5%;
+    border: none;
+    text-align: center;
+    z-index: 3;
+    color: var(--background);
+    background-color: var(--button-color);
+    font-size: 18pt;
+    font-family: "Metrophobic", sans-serif;
+}
+
+header .hero__button .hero__secondary__button {
+    color: var(--button-color);
+    background-color: var(--background);
+    border: 2px var(--button-color) solid;
+}
+
+header .hero__button button:hover {
+    background-color: var(--button-hover);
+}
+
+header .hero__button .hero__secondary__button:hover {
+    color: var(--button-color);
+    background-color: var(--secondary-button-hover);
+    border: 2px var(--button-color) solid;
+}
+
 /* ---main-------------------------------------------------------------------*/
 
 main {
     display: grid;
-    grid-template-columns: 15% 70% 15%;
-    background: linear-gradient(180deg, white , var(--foreground) 100%);
+    grid-template-columns: 100%;
 }
 
 .card {
     font-family: "Metrophobic", sans-serif;
     background-color: white;
     box-sizing: border-box;
+    min-height: 600px;
     border-radius: 0rem;
     padding: 3rem;
-    grid-column: 1 / span 3;
-    margin-top: 10rem;
-    margin-bottom: 10rem;
+    grid-column: 1;
+}
+
+.cardLight {
+    background-color: white;
+}
+.cardGrayish {
+    background-color: var(--grayish);
+}
+.cardDark {
+    background-color: var(--foreground);
+}
+
+#euroStat {
+    background-color: white;
 }
 
 #liveMapPm25 {
@@ -100,13 +153,22 @@ main {
 
 
 @media only screen and (min-width: 800px){
+    main {
+        display: grid;
+        grid-template-columns: 15% 70% 15%;
+        background: linear-gradient(180deg, white , var(--foreground) 100%);
+    }
+
     .card {
-    font-family: "Metrophobic", sans-serif;
-    background-color: white;
-    box-sizing: border-box;
-    border-radius: 3rem;
-    padding: 7rem;
-    grid-column: 2;
+        font-family: "Metrophobic", sans-serif;
+        background-color: white;
+        box-sizing: border-box;
+        min-height: 600px;
+        border-radius: 0rem;
+        padding: 3rem;
+        grid-column: 1 / span 3;
+        margin-top: 10rem;
+        margin-bottom: 10rem;
     }
 
     .card h1 {
@@ -164,6 +226,10 @@ main {
     }
 
     header .welcome__text {
+        display: none;
+    }
+
+    header .hero__button {
         display: none;
     }
 }
