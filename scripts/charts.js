@@ -67,8 +67,13 @@ function prepareData() {
     console.log(`DataString for URL ${index + 1}`);
     console.log(entry.dataString);
     console.log('--------------------');
-
   });
+  prepareSdbData();
+  prepareOpenMeteoData();
+  prepareEuroStatData();
+  combineData();
+}
+function prepareSdbData() {
   //prepare data from Socialstyrelsen
   for (let i = 0; i < apiData[0].dataString.data.length; i++) {
     const dataObj = apiData[0].dataString.data[i];
@@ -93,6 +98,8 @@ function prepareData() {
   for (let i = 0; i < 12; i++) {
     DeathRateDataSweden['MonthDeathAvg'][i] = DeathRateDataSweden['MonthDeathCount'][i] / DeathRateDataSweden['MonthlyCount'][i];
   }
+}
+function prepareOpenMeteoData() {
   //prepare data from openMeteo
   //setup values to calculate avarages
   var ValueYearCount = 0;
@@ -136,6 +143,8 @@ function prepareData() {
   for (let i = 0; i < 12; i++) {
     PMValuesSweden['MonthlyAvarage'][i] = PMValuesSweden['MonthlyAvarage'][i] / PMValuesSweden['MonthlyCount'][i];
   }
+}
+function prepareEuroStatData() {
   //Prepare eurostat data
   let YearLabels = apiData[1].dataString['dimension']['time']['category']['index'];
   const YearCount = apiData[1].dataString['size'][5];
@@ -143,9 +152,8 @@ function prepareData() {
     EurostatData['Year'].push(parseInt(Year));
     EurostatData['YearDeaths'].push(apiData[1].dataString['value'][(YearCount * 28) + parseInt(Index)]);
   }
-  console.log(PMValuesSweden);
-  console.log(EurostatData);
-  console.log(DeathRateDataSweden);
+}
+function combineData() {
   //Combine Socialstyrelsen and Eurostat
   for (let i = 0; i < EurostatData.Year.length; i++) {
   const Year = EurostatData.Year[i];
