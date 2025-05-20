@@ -8,7 +8,9 @@
     --button-color: hsl(199, 63%, 55%, 100%);
     --grayish: hsl(225, 11%, 64%, 100%);
     --button-hover: hsl(199, 52%, 42%);
-    --secondary-button-hover: hsl(var(--hue),var(--saturation),90%)
+    --secondary-button-hover: hsl(var(--hue),var(--saturation),90%);
+    --textBlack: hsl(0, 0%, 24%, 100%);
+    --deepBlue: hsl(227, 96%, 10%, 100%);
 }
 body {
 	min-height: 100%;
@@ -137,6 +139,21 @@ main {
     font-size: 14pt;
 }
 
+.headerText{
+    color: var(--textBlack);
+    padding-bottom: 0.2em;
+    line-height: 1.4em;
+    letter-spacing: 0.012rem;
+}
+
+.bodyText{
+    line-height: 1.35em;
+    letter-spacing: 0.015rem;
+    padding-bottom: 1em;
+    color: var(--textBlack);
+
+}
+
 .cardLight {
     background-color: white;
 }
@@ -161,7 +178,7 @@ main {
     main {
         display: grid;
         grid-template-columns: 15% 70% 15%;
-        background: linear-gradient(180deg, white , var(--foreground) 100%);
+        background: linear-gradient(180deg, white , var(--deepBlue) 100%);
     }
 
     .card {
