@@ -22,7 +22,7 @@
   <header>
     <span class="hero__text">Clean Air</span>
     <div class="hero__gradient"></div>
-    <img src="image/igor-karimov-Dn4NG1fICMs-unsplash.jpg" alt="sunny sky">
+    <img src="image/david-ballew-pH6-eomaijQ-unsplash.jpg" alt="sunny sky">
     <span class="welcome__text"><p>Welcome!</p><br>Air quality statistics this page visually presents the relationship between the air you breath and your health</span>
     <div class="hero__button">
       <button>Start</button>
@@ -35,22 +35,32 @@
     </ul>
   </nav>
   <main>
-    <article class="cardLight card">
-      <h2 class="headerText">Vad är PM2,5?</h2>
-      <p class="bodyText">PM2,5 är små partiklar i luften som skapas av transporter och industri och kan orsaka kronisk lungsjukdom och astma. PM2,5-värde mäts i µg/m³, och enligt David Pui m.fl. (2014) stiger risken för hälsoproblem med cirka 1,5% per 10 µg/m³. Anna Oudin och Bertil Forsberg menar även att en minskning på 1 µg/m³ skulle betyda att antalet fall av KOL och barnastma bland annat skulle minska med 2%, respektive 3%.</p>
-      <h2>PM2,5 i Sverige</h2>
-      <p>I Sverige är PM2,5 värden ganska låga året runt även om det ökar något under vintern. Ökningen under vintern kan tänkas bero på dubbdäck som ökar slitaget på vägarna. Dock menar transportstyrelsen (fixa källa) att dubbdäck bidrar till en säkrare trafik vilket uppväger nackdelarna av ökade PM2,5 värden.</p>
-      <canvas id="deathRateCanvasID" class="graph"></canvas>
-      <canvas id="P2DeathPercentageID" class="graph"></canvas>
-    </article>
-    <article class="cardGrayish card">
-      <canvas id="euroStat"></canvas>
-    </article>
-    <article class ="cardDark card">
-      <h1 class="headerText">Live map of Pm2.5 world wide</h1>
-      <p class="bodyText">This live interactive map shows current Pm 2.5 readings world wide using over 400 sources provided by Aqicn api. The readings update every 15 to 60 minutes depending on our providers traffic.</p>
-      <div id="liveMapPm25"></div>
-    </article>
+    <div class="card">
+      <article class="content">
+        <h2 class="headerText">Vad är PM2,5?</h2>
+        <p class="bodyText">PM2,5 är små partiklar i luften som skapas av transporter och industri och kan orsaka kronisk lungsjukdom och astma. PM2,5-värde mäts i µg/m³, och enligt David Pui m.fl. (2014) stiger risken för hälsoproblem med cirka 1,5% per 10 µg/m³. Anna Oudin och Bertil Forsberg menar även att en minskning på 1 µg/m³ skulle betyda att antalet fall av KOL och barnastma bland annat skulle minska med 2%, respektive 3%.</p>
+        <h2 class="headerText">PM2,5 i Sverige</h2>
+        <p class="bodyText">I Sverige är PM2,5 värden ganska låga året runt även om det ökar något under vintern. Ökningen under vintern kan tänkas bero på dubbdäck som ökar slitaget på vägarna. Dock menar transportstyrelsen (fixa källa) att dubbdäck bidrar till en säkrare trafik vilket uppväger nackdelarna av ökade PM2,5 värden.</p>
+        <canvas id="deathRateCanvasID" class="graph"></canvas>
+        <p class="bodyText">PM2,5 är små partiklar i luften som skapas av transporter och industri och kan orsaka kronisk lungsjukdom och astma. PM2,5-värde mäts i µg/m³, och enligt David Pui m.fl. (2014) stiger risken för hälsoproblem med cirka 1,5% per 10 µg/m³. Anna Oudin och Bertil Forsberg menar även att en minskning på 1 µg/m³ skulle betyda att antalet fall av KOL och barnastma bland annat skulle minska med 2%, respektive 3%.</p>
+        <canvas id="P2DeathPercentageID" class="graph"></canvas>
+      </article>
+    </div>
+    <div class="card background__gray">
+      <article class="content background__gray">
+        <h2 class="headerText">Hur ser det ut i andra EU länder?</h2>
+        <p class="bodyText">Nedan kan du se hur förtida dödsfall på grund av exponering för PM2,5 har sjunkit för EU länder. (2005 - 2022)</p>
+        <canvas id="euroStat" class="graph"></canvas>
+      </article>
+    </div>
+    <section class="card">
+      <article class ="content">
+        <h2 class="headerText">Live världskarta av PM2,5 </h1>
+        <p class="bodyText">Denna live interaktiva karta visar aktuella PM 2.5-mätvärden över hela världen med hjälp av över 400 källor från Aqicn:s API. Mätvärdena uppdateras var 15:e till 60:e minut beroende på trafiken hos våra leverantörer.</p>
+        <div id="liveMapPm25"></div>
+        <p class="bodyText"></p>
+      </article>
+    </section>
   </main>
   <footer>
   </footer>
@@ -59,7 +69,7 @@
   <script src="scripts/charts.js"></script>
   <!--<script src="scripts/sdbYearly.js"></script>
   <script src="scripts/sdbStats.js"></script>-->
-  <!--<script src="scripts/euroStats.js"></script>-->
+  <script src="scripts/euroStats.js"></script>
   <script src="scripts/qgiStats.js"></script>
 </body>   
 </html>

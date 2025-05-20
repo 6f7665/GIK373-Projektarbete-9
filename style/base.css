@@ -6,13 +6,13 @@
 	--background: hsl(var(--hue),var(--saturation),95%);
 	--foreground: hsl(var(--hue),var(--saturation),4%);
     --button-color: hsl(199, 63%, 55%, 100%);
-    --grayish: hsl(225, 11%, 64%, 100%);
+    --grayish: hsl(220, 16%, 93%);
     --button-hover: hsl(199, 52%, 42%);
     --secondary-button-hover: hsl(var(--hue),var(--saturation),90%);
     --textBlack: hsl(0, 0%, 24%, 100%);
     --headingBlack: hsl(0, 0%, 11%);
     --deepBlue: hsl(227, 96%, 10%, 100%);
-    --white: hsl(0, 0%, 98%, 0.9);
+    --white: hsl(0, 0%, 98%, 100%);
 }
 body {
 	min-height: 100%;
@@ -64,13 +64,13 @@ header {
         grid-column: 1 / span 2; 
         text-align: left;
         font-family: "Metrophobic", sans-serif;
-        color: whitesmoke;
+        color: var(--deepBlue);
         font-size: 80pt;
         z-index: 2;
         font-family: "Sansation", sans-serif;
         font-style: normal;
         margin-left: 15%;
-        filter: drop-shadow(0 0 1rem hsl(198, 100%, 50%, 75%));
+        /*filter: drop-shadow(0 0 1rem hsl(198, 100%, 50%, 75%));*/
     }
 
     .welcome__text {
@@ -78,13 +78,13 @@ header {
         grid-column: 1 / span 3;
         font-family: "Metrophobic", sans-serif;
         color: rgb(21, 21, 21);
-        font-size: 14pt;
+        font-size: 20pt;
         text-align: left;
         z-index: 2;
         margin-left: 10%;
 
         p {
-        font-size: 20pt;
+        font-size: 25pt;
         }   
     }
 
@@ -98,12 +98,12 @@ header {
 
         button {
             width: 40%;
-            height: 50%;
+            height: 30%;
             border: none;
             text-align: center;
             z-index: 3;
             color: var(--background);
-            background-color: var(--button-color);
+            background-color: var(--deepBlue);
             font-size: 18pt;
             font-family: "Metrophobic", sans-serif;
             border-radius: 10px;
@@ -114,14 +114,14 @@ header {
         }
 
         .hero__secondary__button {
-            color: var(--button-color);
+            color: var(--deepBlue);
             background-color: var(--background);
-            border: 2px var(--button-color) solid;
+            border: 2px var(--deepBlue) solid;
 
             &:hover {
-                color: var(--button-color);
+
                 background-color: var(--secondary-button-hover);
-                border: 2px var(--button-color) solid;
+                border: 2px var(--deepBlue) solid;
             }
         }
     }
@@ -143,6 +143,11 @@ main {
     padding: 3rem;
     grid-column: 1;
     font-size: 14pt;
+    margin-top: 10rem;
+}
+
+.background__gray {
+        background-color: var(--grayish);
 }
 
 .headerText{
@@ -150,6 +155,7 @@ main {
     padding-bottom: 0.2em;
     line-height: 1.4em;
     letter-spacing: 0.012rem;
+    font-size: 24pt;
 }
 
 .bodyText{
@@ -158,21 +164,8 @@ main {
     letter-spacing: 0.015rem;
     padding-bottom: 1em;
     color: var(--textBlack);
+    font-size: 18pt;
    
-}
-
-.cardLight {
-    background-color: whte;
-}
-.cardGrayish {
-    background-color: var(--grayish);
-}
-.cardDark {
-    background-color: var(--foreground);
-}
-
-#euroStat {
-    background-color: white;
 }
 
 #liveMapPm25 {
@@ -184,34 +177,28 @@ main {
 
 @media only screen and (min-width: 800px){
     main {
-        display: grid;
-        grid-template-columns: 15% 70% 15%;
-        /*background: linear-gradient(180deg, white , var(--deepBlue) 100%);*/
         background: var(--white);
+        z-index: 1;
     }
 
     .card {
+        display: grid;
+        grid-template-columns: auto auto auto;
+        justify-content: center;
+        min-height: 0;
+    }
+
+    .content {
         font-family: "Metrophobic", sans-serif;
-        background-color: var(--white);
-        box-sizing: border-box;
-        min-height: 600px;
-        border-radius: 2rem;
         padding: 3rem;
         grid-column: 2;
-        margin-top: 10rem;
-        margin-bottom: 10rem;
+        width: 105ch;
+        z-index: 1;
     }
 
-    .card h1 {
-        font-size: 20pt;
-    }
-
-    .card p {
-        font-size: 15pt;
-    }
 
     .graph {
-        margin: 10vh;
+        margin: 0vh;
     }
 
     /* ---hero--------------------------------------------------------------------*/
@@ -222,7 +209,7 @@ main {
         overflow: hidden;
 
         img {
-            height: 1000px;
+            height: 100%;
             width: 100%;
             position: absolute;
             object-fit: cover;
@@ -238,7 +225,6 @@ main {
             z-index: 1;
             width: 100%;
             height: 100%;
-            background: linear-gradient(180deg, transparent, var(--white));
         }
 
         .hero__text {
