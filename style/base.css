@@ -21,9 +21,13 @@ a, a:visited {
 	color: var(--link-color);
 }
 
+main p {
+    padding-bottom: 4rem;
+}
+
 /* ---hero--------------------------------------------------------------------*/
 header {
-    height: 1100px;
+    height: 100vh;
     width: 100%;
     position: relative;
     overflow: hidden;
@@ -65,7 +69,7 @@ header .hero__text {
 header .welcome__text {
     position: absolute;
     width: 70%;
-    top: 65%;
+    top: 60%;
     left: 5%;
     font-family: "Metrophobic", sans-serif;
     color: rgb(21, 21, 21);
@@ -126,10 +130,11 @@ main {
     font-family: "Metrophobic", sans-serif;
     background-color: white;
     box-sizing: border-box;
-    min-height: 600px;
+    min-height: 100vh;
     border-radius: 0rem;
     padding: 3rem;
     grid-column: 1;
+    font-size: 14pt;
 }
 
 .cardLight {
@@ -179,8 +184,8 @@ main {
         font-size: 15pt;
     }
 
-    #deathRateCanvasID {
-        margin: 2rem;
+    .graph {
+        margin: 10vh;
     }
 
     /* ---hero--------------------------------------------------------------------*/
