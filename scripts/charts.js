@@ -1,6 +1,6 @@
 let apiData = [
   {
-    url: 'https://sdb.socialstyrelsen.se/api/v1/sv/dodsorsaker_manad/resultat/diagnos/10',
+    url: 'https://sdb.socialstyrelsen.se/api/v1/sv/dodsorsaker_manad/resultat/kon/3/region/01/diagnos/0203,1005', //0203 = Maligna tumörer i andningsorgan och brösthålans organ, 1005 = Kroniska sjukdomar i nedre luftvägarna
     downloadStatus: '',
     dataString: ''
   },
@@ -132,8 +132,8 @@ function prepareOpenMeteoData() {
       }
       //up the value counter and add value to total for year and month
       const pm2_5Int = parseInt(pm2_5);
-      ValueYearCount++;
-      ValueMonthCount++;
+      ValueYearCount++; //this counts the number of values added together for the actual year
+      ValueMonthCount++; //this counts the number of values added together for the actual month
       AvarageMonthValue += pm2_5Int;
       AvarageYearValue += pm2_5Int;
     }
@@ -143,6 +143,7 @@ function prepareOpenMeteoData() {
   for (let i = 0; i < 12; i++) {
     PMValuesSweden['MonthlyAvarage'][i] = PMValuesSweden['MonthlyAvarage'][i] / PMValuesSweden['MonthlyCount'][i];
   }
+  console.log(PMValuesSweden);
 }
 function prepareEuroStatData() {
   //Prepare eurostat data
@@ -177,7 +178,7 @@ function updateGraphs() {
         data: DeathRateDataSweden['MonthDeathAvg'],
         yAxisID: 'Deaths',
       }, {
-        type: 'bar',
+        type: 'line',
         label: 'PM2.5-values in Stockholm',
         data: PMValuesSweden['MonthlyAvarage'],
         yAxisID: 'PM2_5',
@@ -186,16 +187,18 @@ function updateGraphs() {
     options: {
       scales: {
         PM2_5: {
-            beginAtZero: true,
+          title: { text: 'µg/m³', display: true },
+          beginAtZero: true,
           type: 'linear',
-            position: 'right'
-          },
-        Deaths: {
-            beginAtZero: true,
-          type: 'linear',
-            position: 'left'
-          }
+          position: 'right'
         },
+        Deaths: {
+          title: { text: 'antal dödsfall', display: true },
+          beginAtZero: true,
+          type: 'linear',
+          position: 'left'
+        }
+      },
       plugins: {
         legend: {
           display: true
