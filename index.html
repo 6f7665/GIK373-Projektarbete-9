@@ -19,8 +19,6 @@
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 </head>
 <body>
-  <nav class="menu__container">
-  </nav>
   <header>
     <span class="hero__text">Clean Air</span>
     <div class="hero__gradient"></div>
@@ -31,27 +29,32 @@
       <button class="hero__secondary__button">Sources</button>
     </div>
   </header>
+  <nav class="nav__container">
+    <ul>
+      <li><a href="#"></a></li>
+    </ul>
+  </nav>
   <main>
-    <div class="cardLight card">
-      <h1 class="headerText">What is PM2.5</h1>
-      <p class="bodyText">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce a enim faucibus, elementum est at, tempor mauris. Integer maximus nibh non nisl iaculis molestie. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Maecenas nec auctor quam. Nulla tempus fringilla lacinia. Proin in fringilla felis, nec ultrices elit. In quis risus faucibus, ultrices metus a, ullamcorper orci. Mauris ac dolor libero.</p>
-      <h1>Why is it bad?</h1>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce a enim faucibus, elementum est at, tempor mauris. Integer maximus nibh non nisl iaculis molestie. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Maecenas nec auctor quam. Nulla tempus fringilla lacinia. Proin in fringilla felis, nec ultrices elit. In quis risus faucibus, ultrices metus a, ullamcorper orci. Mauris ac dolor libero.</p>
+    <article class="cardLight card">
+      <h2 class="headerText">Vad är PM2,5?</h2>
+      <p class="bodyText">PM2,5 är små partiklar i luften som skapas av transporter och industri och kan orsaka kronisk lungsjukdom och astma. PM2,5-värde mäts i µg/m³, och enligt David Pui m.fl. (2014) stiger risken för hälsoproblem med cirka 1,5% per 10 µg/m³. Anna Oudin och Bertil Forsberg menar även att en minskning på 1 µg/m³ skulle betyda att antalet fall av KOL och barnastma bland annat skulle minska med 2%, respektive 3%.</p>
+      <h2>PM2,5 i Sverige</h2>
+      <p>I Sverige är PM2,5 värden ganska låga året runt även om det ökar något under vintern. Ökningen under vintern kan tänkas bero på dubbdäck som ökar slitaget på vägarna. Dock menar transportstyrelsen (fixa källa) att dubbdäck bidrar till en säkrare trafik vilket uppväger nackdelarna av ökade PM2,5 värden.</p>
       <canvas id="deathRateCanvasID" class="graph"></canvas>
       <canvas id="P2DeathPercentageID" class="graph"></canvas>
-    </div>
-    <div class="cardGrayish card">
+    </article>
+    <article class="cardGrayish card">
       <canvas id="euroStat"></canvas>
-    </div>
-    <div class ="cardDark card">
+    </article>
+    <article class ="cardDark card">
       <h1 class="headerText">Live map of Pm2.5 world wide</h1>
       <p class="bodyText">This live interactive map shows current Pm 2.5 readings world wide using over 400 sources provided by Aqicn api. The readings update every 15 to 60 minutes depending on our providers traffic.</p>
       <div id="liveMapPm25"></div>
-    </div>
+    </article>
   </main>
   <footer>
   </footer>
-  <script src="scripts/navbar.js"></script>
+  <!--<script src="scripts/navbar.js"></script>-->
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.9/dist/chart.umd.min.js"></script>
   <script src="scripts/charts.js"></script>
   <!--<script src="scripts/sdbYearly.js"></script>
