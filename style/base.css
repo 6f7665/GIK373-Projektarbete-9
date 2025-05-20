@@ -140,18 +140,19 @@ main {
 }
 
 .headerText{
-    color: var(--textBlack);
+    color: var(--deepBlue);
     padding-bottom: 0.2em;
     line-height: 1.4em;
     letter-spacing: 0.012rem;
 }
 
 .bodyText{
+    font-family: "Metrophobic", sans-serif;
     line-height: 1.35em;
     letter-spacing: 0.015rem;
     padding-bottom: 1em;
     color: var(--textBlack);
-
+   
 }
 
 .cardLight {
