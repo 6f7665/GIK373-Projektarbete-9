@@ -199,6 +199,9 @@ footer {
 
 
 @media only screen and (min-width: 800px){
+    p {
+        max-width: 75ch;
+    }
 
     .body__text{
         font-size: 18pt;
