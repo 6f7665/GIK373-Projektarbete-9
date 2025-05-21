@@ -125,7 +125,7 @@ function prepareOpenMeteoData() {
       }
       //if the year switches over, calculate avarage and push to array
       if (Time[0] != CurrentTime[0]) {
-        PMValuesSweden['Year'].push(Time[0]);
+        PMValuesSweden['Year'].push(parseInt(Time[0]));
         PMValuesSweden['YearAvarage'].push(AvarageYearValue / ValueYearCount);
         ValueYearCount = 0;
         AvarageYearValue = 0;
@@ -174,14 +174,18 @@ function updateGraphs() {
       labels: ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],
       datasets: [{
         type: 'line',
-        label: 'Respiratory Related Deaths',
+        label: 'Dödsfall av lungcancer och KOL',
         data: DeathRateDataSweden['MonthDeathAvg'],
         yAxisID: 'Deaths',
+        borderColor: '#ffbe0a',
+        backgroundColor: '#ffbe0a',
       }, {
         type: 'line',
-        label: 'PM2.5-values in Stockholm',
+        label: 'PM2.5 i Stockholm',
         data: PMValuesSweden['MonthlyAvarage'],
         yAxisID: 'PM2_5',
+        borderColor: '#0a3fff',
+        backgroundColor: '#0a3fff',
       },]
     },
     options: {
@@ -190,13 +194,19 @@ function updateGraphs() {
           title: { text: 'µg/m³', display: true },
           beginAtZero: true,
           type: 'linear',
-          position: 'right'
+          position: 'right',
+          min: 6,
+          max: 11,
+          ticks: { stepSize: 1}
         },
         Deaths: {
           title: { text: 'antal dödsfall', display: true },
           beginAtZero: true,
           type: 'linear',
-          position: 'left'
+          position: 'left',
+          min: 200,
+          max: 325,
+          ticks: { stepSize: 25}
         }
       },
       plugins: {
@@ -211,17 +221,51 @@ function updateGraphs() {
 
   let PercentageChart = new Chart(PercentageCanvas, {
     data: {
-      labels: PercentPrematureDeaths.Percentages,
+      labels: PercentPrematureDeaths.Percentages.splice(PercentPrematureDeaths['Year'].indexOf(PMValuesSweden.Year[0])),
       datasets: [{
+        type: 'line',
+        label: 'PM2.5 i Stockholm',
+        data: PMValuesSweden['YearAvarage'],
+        yAxisID: 'PM2_5',
+        borderColor: '#0a3fff',
+        backgroundColor: '#0a3fff',
+      },{
         type: 'bar',
-        label: 'Respiratory Related Death',
-        data: DeathRateDataSweden['YearDeathCount'].splice(DeathRateDataSweden['Year'].indexOf(PercentPrematureDeaths.Year[0])), //splice the data so that both datasets begin at the same year
-      }, {
+        label: 'Dödsfall direktrelaterade till PM2.5',
+        data: EurostatData.YearDeaths.splice(EurostatData.Year.indexOf(PMValuesSweden.Year[0])), //splice the data so that it begins at same year as the PM-values
+        borderColor: '#ff0a46',
+        backgroundColor: '#ff0a46',
+        yAxisID: 'Deaths',
+      },{
         type: 'bar',
-        label: 'Deaths directly linked to PM2.5',
-        data: EurostatData.YearDeaths,
+        label: 'Dödsfall av lungcancer och KOL',
+        data: DeathRateDataSweden['YearDeathCount'].splice(DeathRateDataSweden['Year'].indexOf(PMValuesSweden.Year[0])), //splice the data so that both datasets begin at the same year
+        borderColor: '#ffbe0a',
+        backgroundColor: '#ffbe0a',
+        yAxisID: 'Deaths',
       },]
     },
+    options: {
+      scales: {
+        PM2_5: {
+          title: { text: 'µg/m³', display: true },
+          beginAtZero: true,
+          type: 'linear',
+          position: 'right',
+          min: 0,
+          max: 15,
+          ticks: { stepSize: 1}
+        },
+        Deaths: {
+          title: { text: 'antal dödsfall', display: true },
+          beginAtZero: true,
+          type: 'linear',
+          position: 'left',
+          max: 7500,
+          ticks: { stepSize: 500}
+        }
+      }
+    }
   });
   PercentageChart.update();
 }
