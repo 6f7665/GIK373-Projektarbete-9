@@ -9,7 +9,6 @@ fetch(euroStatURL)
 
 // Build everything together
 function BuildEuroStatGraph(dataEuroStat) {
-  console.log(dataEuroStat)
   selectCountryOption(dataEuroStat);
   printEuroStatChart(dataEuroStat);
 }
@@ -42,8 +41,15 @@ function printEuroStatChart(dataEuroStat) {
 
   // Create a line chart
   myChart = new Chart(document.getElementById("euroStat"), {
-    type: "line",
+    type: "bar",
     data: { labels: years, datasets: datasets },
+    options: {
+      plugins: {
+        legend: {
+          display: false,
+        },
+      },
+    },
   });
 }
 
@@ -62,7 +68,7 @@ function getSelectedCountry(dataEuroStat) {
 function selectCountryOption(dataEuroStat) {
   const countryNames = dataEuroStat.dimension.geo.category.label;
 
-  const labelSelect = document.createElement("label");
+  const labelSelect = document.createElement("label"); // create a label
   labelSelect.textContent = "Choose a country: ";
   const newSelect = document.createElement("select"); // create a select bar
   newSelect.title = "countries";
