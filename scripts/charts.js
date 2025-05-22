@@ -11,7 +11,7 @@ let apiData = [
     dataString: ''
   },
   {
-    url: 'https://air-quality-api.open-meteo.com/v1/air-quality?latitude=60&longitude=18&hourly=european_aqi_pm2_5&timezone=auto&start_date=2013-01-01&end_date=2025-05-18',
+    url: 'open_meteo_data.json',
     downloadStatus: '',
     dataString: ''
   },
