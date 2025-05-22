@@ -56,7 +56,7 @@ function printEuroStatChart(dataEuroStat) {
 // Find the correct index number of the chosen country from the selection.
 function getSelectedCountry(dataEuroStat) {
   const countryKeys = Object.keys(dataEuroStat.dimension.geo.category.index); // Countries but in order of their index number.
-  const selectedOption = document.querySelector("#countries");
+  const selectedOption = document.querySelector("#selected__country");
   chosenCountry = selectedOption.value;
 
   if (countryKeys.includes(chosenCountry) == true) {
@@ -71,8 +71,8 @@ function selectCountryOption(dataEuroStat) {
   const labelSelect = document.createElement("label"); // create a label
   labelSelect.textContent = "Choose a country: ";
   const newSelect = document.createElement("select"); // create a select bar
-  newSelect.title = "countries";
-  newSelect.id = "countries";
+  newSelect.title = "selected__country";
+  newSelect.id = "selected__country";
 
   for (const country in countryNames) {
     if (countryNames.hasOwnProperty(country)) {

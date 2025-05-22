@@ -8,7 +8,10 @@
   <meta name="author" content="Oscar Vestlund, Porsche Thichan, Joel Sandbäck">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style/reset.css">
-  <link rel="stylesheet" href="style/base.css">
+  <link rel="stylesheet" href="style/colors.css">
+  <link rel="stylesheet" href="style/header.css">
+  <link rel="stylesheet" href="style/main.css">
+  <link rel="stylesheet" href="style/hero.css">
 
   <!--fonts-->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -20,6 +23,24 @@
 </head>
 <body>
   <header>
+    <nav class="nav__container">
+      <ul class="sidebar">
+        <li class="hide-on-desktop"><a href="#">Start</a></li>
+        <li class="hide-on-desktop"><a href="#">Data</a></li>
+        <li class="hide-on-desktop"><a href="#">Map</a></li>
+        <li class="hide-on-desktop"><a href="#">Sources</a></li>
+      </ul>
+      <ul>
+        <li><a href="#">Clean Air</a></li>
+        <li class="hide-on-mobile"><a href="#">Start</a></li>
+        <li class="hide-on-mobile"><a href="#">Data</a></li>
+        <li class="hide-on-mobile"><a href="#">Map</a></li>
+        <li class="hide-on-mobile"><a href="#">Sources</a></li>
+        <li onclick=showSidebar() class="hide-on-desktop"><a class="hamburger__menu"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z"/></svg></a></li>
+      </ul>
+    </nav>
+  </header>
+  <div class="hero">
     <span class="hero__text">Clean Air</span>
     <div class="hero__gradient"></div>
     <img src="image/david-ballew-pH6-eomaijQ-unsplash.jpg" alt="sunny sky">
@@ -28,12 +49,7 @@
       <button>Start</button>
       <button class="hero__secondary__button">Sources</button>
     </div>
-  </header>
-  <nav class="nav__container">
-    <ul>
-      <li><a href="#"></a></li>
-    </ul>
-  </nav>
+  </div>
   <main>
     <div class="card">
       <article class="content">
@@ -86,5 +102,6 @@
   <script src="scripts/sdbStats.js"></script>-->
   <script src="scripts/euroStats.js"></script>
   <script src="scripts/qgiStats.js"></script>
+  <script src="scripts/hamburgerMenu.js"></script>
 </body>   
 </html>

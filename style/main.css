@@ -1,0 +1,130 @@
+:root {
+	font: 10px Arial, sans-serif;
+}
+
+body {
+	min-height: 100%;
+	height: auto;
+	width: 100%;
+	font-size: 1.6rem;
+	color: var(--foreground);
+}
+a, a:visited {
+	color: var(--link-color);
+}
+
+/* ---main-------------------------------------------------------------------*/
+
+main {
+    display: grid;
+    grid-template-columns: 100%;
+    background-color: var(--white);
+}
+
+.card {
+    font-family: "Metrophobic", sans-serif;
+    background-color: var(--white);
+    box-sizing: border-box;
+    border-radius: 0rem;
+    padding: 3rem;
+    grid-column: 1;
+    font-size: 14pt;
+    margin-top: 10rem;
+}
+
+.background__gray {
+        background-color: var(--grayish);
+}
+
+.header__text{
+    color: var(--deepBlue);
+    padding-bottom: 0.2em;
+    line-height: 1.4em;
+    letter-spacing: 0.012rem;
+    font-size: 24pt;
+}
+
+.body__text{
+    font-family: "Metrophobic", sans-serif;
+    line-height: 1.35em;
+    letter-spacing: 0.015rem;
+    padding-bottom: 1em;
+    color: var(--textBlack);
+    font-size: 15pt;
+}
+
+#selected__country {
+    font-family: inherit;
+    text-align: center;
+    
+    option:nth-of-type(odd) {
+        background-color: var(--grayish);
+    }
+
+    option:nth-of-type(even) {
+        background-color: var(--white);
+    }
+}
+
+#liveMapPm25 {
+	height: 70vh;
+    width: 100%;
+    z-index: 2;
+}
+
+/*---footer--------------------------------------------------------------*/
+
+footer {
+    background-color: var(--deepBlue);
+    height: 30vh;
+    padding: 4vw;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+
+
+    .footer__heading {
+        height: fit-content;
+        width: 100%;
+        font-family: "Sansation", sans-serif;
+        color: var(--white);
+        border-bottom: 1px var(--white) solid;
+        margin-bottom: 2vh;
+    }
+
+    .footer__text {
+        font-family: "Sansation", sans-serif;
+        color: var(--white);
+        font-size: 10pt;
+        margin-bottom: 3vh;
+    }
+}
+
+
+@media only screen and (min-width: 800px){
+    p {
+        max-width: 65ch;
+    }
+
+    .body__text{
+        font-size: 18pt;
+    }
+
+    .card {
+        display: grid;
+        grid-template-columns: 20% 60% 20%;
+        justify-content: center;
+    }
+
+    .content {
+        font-family: "Metrophobic", sans-serif;
+        padding: 3rem;
+        grid-column: 2;
+        width: 100%;
+    }
+
+    .graph {
+        margin-top: 4vh;
+        margin-bottom: 4vh;
+    }
+}

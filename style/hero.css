@@ -1,32 +1,5 @@
-:root {
-	font: 10px Arial, sans-serif;
-	--hue: 200;
-	--saturation: 63%;
-	--link-color: hsl(var(--hue),var(--saturation),55%);
-	--background: hsl(var(--hue),var(--saturation),95%);
-	--foreground: hsl(var(--hue),var(--saturation),4%);
-    --button-color: hsl(199, 63%, 55%, 100%);
-    --grayish: hsl(220, 16%, 93%);
-    --button-hover: hsl(199, 52%, 42%);
-    --secondary-button-hover: hsl(var(--hue),var(--saturation),90%);
-    --textBlack: hsl(0, 0%, 24%, 100%);
-    --headingBlack: hsl(0, 0%, 11%);
-    --deepBlue: hsl(227, 96%, 10%, 100%);
-    --white: hsl(0, 0%, 98%, 100%);
-}
-body {
-	min-height: 100%;
-	height: auto;
-	width: 100%;
-	font-size: 1.6rem;
-	color: var(--foreground);
-}
-a, a:visited {
-	color: var(--link-color);
-}
 
-/* ---hero--------------------------------------------------------------------*/
-header {
+.hero {
     height: 100vh;
     width: 100%;
     position: relative;
@@ -97,8 +70,8 @@ header {
             height: 30%;
             border: none;
             text-align: center;
-            z-index: 3;
-            color: var(--background);
+            z-index: 2;
+            color: var(--white);
             background-color: var(--deepBlue);
             font-size: 18pt;
             font-family: "Metrophobic", sans-serif;
@@ -123,114 +96,8 @@ header {
     }
 }
 
-/* ---main-------------------------------------------------------------------*/
-
-main {
-    display: grid;
-    grid-template-columns: 100%;
-    background-color: var(--white);
-}
-
-.card {
-    font-family: "Metrophobic", sans-serif;
-    background-color: var(--white);
-    box-sizing: border-box;
-    border-radius: 0rem;
-    padding: 3rem;
-    grid-column: 1;
-    font-size: 14pt;
-    margin-top: 10rem;
-}
-
-.background__gray {
-        background-color: var(--grayish);
-}
-
-.header__text{
-    color: var(--deepBlue);
-    padding-bottom: 0.2em;
-    line-height: 1.4em;
-    letter-spacing: 0.012rem;
-    font-size: 24pt;
-}
-
-.body__text{
-    font-family: "Metrophobic", sans-serif;
-    line-height: 1.35em;
-    letter-spacing: 0.015rem;
-    padding-bottom: 1em;
-    color: var(--textBlack);
-    font-size: 15pt;
-}
-
-#liveMapPm25 {
-	height: 70vh;
-    width: 100%;
-  
-}
-
-/*---footer--------------------------------------------------------------*/
-
-footer {
-    background-color: var(--deepBlue);
-    height: 30vh;
-    padding: 4vw;
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: row;
-
-
-    .footer__heading {
-        height: fit-content;
-        width: 100%;
-        font-family: "Sansation", sans-serif;
-        color: var(--white);
-        border-bottom: 1px var(--white) solid;
-        margin-bottom: 2vh;
-    }
-
-    .footer__text {
-        font-family: "Sansation", sans-serif;
-        color: var(--white);
-        font-size: 10pt;
-        margin-bottom: 3vh;
-    }
-}
-
-
 @media only screen and (min-width: 800px){
-    p {
-        max-width: 75ch;
-    }
-
-    .body__text{
-        font-size: 18pt;
-    }
-
-    main {
-        background: var(--white);
-    }
-
-    .card {
-        display: grid;
-        grid-template-columns: 20% 60% 20%;
-        justify-content: center;
-    }
-
-    .content {
-        font-family: "Metrophobic", sans-serif;
-        padding: 3rem;
-        grid-column: 2;
-        width: 100%;
-    }
-
-    .graph {
-        margin-top: 4vh;
-        margin-bottom: 4vh;
-    }
-
-    /* ---hero--------------------------------------------------------------------*/
-    header {
+    .hero {
         height: 700px;
         width: 100%;
         position: relative;

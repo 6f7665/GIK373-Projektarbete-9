@@ -1,0 +1,131 @@
+header {
+    height: auto;
+    width: 100%;
+    background-color: var(--deepBlue);
+    position: sticky;
+    top: 0;
+    left: 0;
+    z-index: 3;
+    font-family: "Sansation", sans-serif;
+}
+
+nav ul {
+    width: 100%;
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    position: relative;
+    z-index: 3;
+    /*background-color: var(--deepBlue);*/
+
+    li {
+        height: 60px;
+    }
+
+    li:first-child {
+        margin-right: auto;
+        font-size: 20pt;
+    }
+
+    li:first-child a:hover {
+        background-color: var(--deepBlue);
+    }
+
+    li:last-child a:hover {
+        background-color: var(--deepBlue);
+        cursor: pointer;
+    }
+
+    a {
+        height: 100%;
+        padding: 0 30px;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        color: var(--white);
+    }
+
+    a:hover {
+        background-color: var(--button-hover);
+        text-decoration: none;
+    }
+
+    a:visited {
+        color: var(--white);
+    }
+}
+
+.sidebar {
+    height: auto;
+    width: 100%;
+    position: absolute;
+    top: 60px;
+    z-index: 4;
+    display: none;
+    flex-direction: column;
+    background-color: var(--background);
+    border-radius: 0 0 10px 10px;
+    box-shadow: inset 0 10px 9px -10px black, 0px 2px 5px rgb(54, 54, 54);
+
+    
+    li:first-child {
+        font-size: inherit;
+        border-top: 0;
+
+        a:hover {
+            background-color: var(--secondary-button-hover);
+        }
+    }
+
+    li:last-child {
+        a {
+            border-radius: 0 0 10px 10px;
+        }
+
+        a:hover {
+            background-color: var(--secondary-button-hover);
+        }
+
+    }
+
+    li {
+        width: 100%;
+        border-top: 2px var(--button-hover) solid ;
+    }
+    a {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        color: var(--deepBlue);
+    }
+    a:hover {
+        background-color: var(--secondary-button-hover);
+    }
+    a:visited {
+        color: var(--deepBlue);
+    }
+}
+
+.hide-on-mobile {
+        display: none;
+    }
+
+@media only screen and (min-width: 500px){
+    .sidebar {
+        width: 88%;
+        margin-left: 6%;
+        margin-right: 6%;
+    }
+}
+
+@media only screen and (min-width: 800px){
+    .hide-on-mobile {
+        display: flex;
+    }
+
+    .hide-on-desktop {
+        display: none;
+    }
+}
