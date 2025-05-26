@@ -61,17 +61,35 @@ let PercentPrematureDeaths = {
   Percentages: [],
 }
 
-function prepareData() {
-  apiData.forEach((entry, index) => {
-    console.log(`DataString for URL ${index + 1}`);
-    console.log(entry.dataString);
-    console.log('--------------------');
-  });
-  prepareSdbData();
-  prepareOpenMeteoData();
-  prepareEuroStatData();
-  combineData();
+function calculateSumOfArray(arr) {
+  let sum = 0;
+  for (let i = 0; i < arr.length; i++) {
+    sum += parseInt(arr[i]);
+  }
+  return sum;
 }
+
+function calculateLinearRegression(xa, ya) {
+  //this uses the Least Squares Method to calculate and return B-one and B-zero
+  const xsum = calculateSumOfArray(xa);
+  const ysum = calculateSumOfArray(ya);
+  let xya = [];
+  let x2a = [];
+  for (let i = 0; i < xa.length; i++) {
+    xya.push(parseInt(xa[i]) * parseInt(ya[i]));
+    x2a.push(parseInt(xa[i]) * parseInt(xa[i]));
+  }
+  const xysum = calculateSumOfArray(xya);
+  const x2sum = calculateSumOfArray(x2a);
+  //b-zero = constant
+  //b-one = m/coefficient
+  // y = b-one * x + b-zero
+  const b_one = (((xa.length * xysum) - (xsum * ysum)) / ((xa.length * x2sum) - (xsum * xsum)));
+  const b_zero = ((ysum - (b_one * xsum)) / xa.length);
+  let b = [b_zero, b_one];
+  return b; //this gives you b[0] and b[1] for b-zero and b-one if you const b = calculateLinearRegression :)
+}
+
 function prepareSdbData() {
   //prepare data from Socialstyrelsen
   for (let i = 0; i < apiData[0].dataString.data.length; i++) {
@@ -118,9 +136,19 @@ function combineData() {
   const Year = EurostatData.Year[i];
     PercentPrematureDeaths.Year.push(Year);
     const CurrentYearPercentage = 100 * EurostatData.YearDeaths[i] / DeathRateDataSweden.YearDeathCount[DeathRateDataSweden.Year.indexOf(Year)];
-    console.log(`current year percentage is: ${CurrentYearPercentage}`);
     PercentPrematureDeaths.Percentages.push(`${Year}: ${CurrentYearPercentage.toFixed(1)}%`);
   }
+}
+function prepareData() {
+  apiData.forEach((entry, index) => {
+    console.log(`DataString for URL ${index + 1}`);
+    console.log(entry.dataString);
+    console.log('--------------------');
+  });
+  prepareSdbData();
+  prepareOpenMeteoData();
+  prepareEuroStatData();
+  combineData();
 }
 const deathRateCanvas = document.getElementById('deathRateCanvasID');
 const PercentageCanvas = document.getElementById('P2DeathPercentageID');
@@ -132,7 +160,6 @@ function printEurostatChart() {
   //print eurostat here
   const CountryCode = document.getElementById("EurostatCountrySelector").value;
   const CountryIndex = apiData[1].dataString.dimension.geo.category.index[CountryCode]; //Countrycodes and their index pos
-  //console.log(CountryCode + ':' + CountryIndex);
   let YearPM25 = [];
   let YearDeaths = [];
   let Years = Object.keys(apiData[1].dataString.dimension.time.category.index);
@@ -143,14 +170,20 @@ function printEurostatChart() {
   const YearArr = apiData[2].dataString.PMValues[CountryCodeIndex][0];
   for (let i = 1; i < apiData[1].dataString.size[5]; i++) {//loop through each year, but omit first, number of year comes from size[5]
     YearDeaths.push(apiData[1].dataString.value[StartPos + i]);
-    console.log(Years[i - 1]);
     let PM25 = null;
     YearArrIndex = YearArr.indexOf(Years[i - 1]);
     if ( YearArrIndex != -1 ) {
       PM25 = PM25Arr[YearArrIndex];
     }
+    //console.log(PM25);
     YearPM25.push(PM25);
-  }
+  }/*
+  const b = calculateLinearRegression(Years, YearDeaths);
+  console.log(b);
+  let Trend = [];
+  for (let i = 0; i < Years.length; i++) {
+    Trend.push(b[0] + (b[1] * parseInt(Years[i])));
+  }*/
   EurostatChart.destroy(); //remove old chart
   EurostatChart = new Chart(document.getElementById("EurostatCanvas"), {
     data: {
@@ -178,6 +211,7 @@ function printEurostatChart() {
           beginAtZero: true,
           type: 'linear',
           position: 'right',
+	  min: 0,
           ticks: { stepSize: 1}
         },
         Deaths: {
@@ -185,6 +219,7 @@ function printEurostatChart() {
           beginAtZero: true,
           type: 'linear',
           position: 'left',
+	  min: 0,
           ticks: { stepSize: 100}
         }
       },
@@ -219,7 +254,7 @@ function prepareCharts() {
   for (const [key, value] of Object.entries(CountryNames)) {
     if ( key.length < 3 ) {
       const NewOption = document.createElement("option");
-      console.log(`${key}:${value}`);
+      //console.log(`${key}:${value}`);
       NewOption.value = key;
       NewOption.textContent = value; //apiData[1].dataString.dimension.geo.category.label[key];
       SelectionInput.appendChild(NewOption);
