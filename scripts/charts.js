@@ -40,27 +40,6 @@ async function fetchApiData() {
   await Promise.all(fetchPromises);
 }
 
-let DeathRateDataSweden = {
-  Year: [],
-  YearDeathCount: [],
-  Month: [],
-  MonthDeathCount: [],
-  MonthDeathAvg: [],
-  MonthlyCount: [0,0,0,0,0,0,0,0,0,0,0,0],
-};
-let PMValuesSweden = {
-	Year: [],
-	AvarageValue: [],
-};
-let EurostatData = {
-  Year: [],
-  YearDeaths: [],
-}
-let PercentPrematureDeaths = {
-  Year: [],
-  Percentages: [],
-}
-
 function calculateSumOfArray(arr) {
   let sum = 0;
   for (let i = 0; i < arr.length; i++) {
@@ -90,6 +69,14 @@ function calculateLinearRegression(xa, ya) {
   return b; //this gives you b[0] and b[1] for b-zero and b-one if you const b = calculateLinearRegression :)
 }
 
+let DeathRateDataSweden = {
+  Year: [],
+  YearDeathCount: [],
+  Month: [],
+  MonthDeathCount: [],
+  MonthDeathAvg: [],
+  MonthlyCount: [0,0,0,0,0,0,0,0,0,0,0,0],
+};
 function prepareSdbData() {
   //prepare data from Socialstyrelsen
   for (let i = 0; i < apiData[0].dataString.data.length; i++) {
@@ -116,28 +103,41 @@ function prepareSdbData() {
     DeathRateDataSweden['MonthDeathAvg'][i] = DeathRateDataSweden['MonthDeathCount'][i] / DeathRateDataSweden['MonthlyCount'][i];
   }
 }
+let OpenmeteoData = [];
 function prepareOpenMeteoData() {
-  i = apiData[2].dataString.CountryCode.indexOf("SE");
-  PMValuesSweden.Year = apiData[2].dataString.PMValues[i][0];
-  PMValuesSweden.AvarageValue = apiData[2].dataString.PMValues[i][1];
+  for (let i = 0; i < apiData[2].dataString.CountryCode.length; i++) {
+    Country = {
+      Code: apiData[2].dataString.CountryCode[i],
+      Year: apiData[2].dataString.PMValues[i][0],
+      PMValues: apiData[2].dataString.PMValues[i][1],
+      b: [0,0],
+    }
+    Country.b = calculateLinearRegression(Country.Year, Country.PMValues);
+    OpenmeteoData.push(Country);
+  }
+  console.log(OpenmeteoData);
 }
+let EurostatData = [];
 function prepareEuroStatData() {
-  //Prepare eurostat data
-  let YearLabels = apiData[1].dataString['dimension']['time']['category']['index'];
-  const YearCount = apiData[1].dataString['size'][5];
-  for (const [Year, Index] of Object.entries(YearLabels)) {
-    EurostatData['Year'].push(parseInt(Year));
-    EurostatData['YearDeaths'].push(apiData[1].dataString['value'][(YearCount * 28) + parseInt(Index)]);
+  let CountryCodes = apiData[1].dataString['dimension']['geo']['category']['index'];
+  for (const [CountryCode, CountryIndex] of Object.entries(CountryCodes)) {
+    //Prepare eurostat data
+    let Country = {
+      Code: CountryCode,
+      Year: [],
+      YearDeaths: [],
+      b: [0, 0],
+    };
+    let YearLabels = apiData[1].dataString['dimension']['time']['category']['index'];
+    const YearCount = apiData[1].dataString['size'][5];
+    for (const [Year, Index] of Object.entries(YearLabels)) {
+      Country.Year.push(parseInt(Year));
+      Country.YearDeaths.push(apiData[1].dataString['value'][(YearCount * CountryIndex) + parseInt(Index)]);
+    }
+    Country.b = calculateLinearRegression(Country.Year, Country.YearDeaths);
+    EurostatData.push(Country);
   }
-}
-function combineData() {
-  //Combine Socialstyrelsen and Eurostat
-  for (let i = 0; i < EurostatData.Year.length; i++) {
-  const Year = EurostatData.Year[i];
-    PercentPrematureDeaths.Year.push(Year);
-    const CurrentYearPercentage = 100 * EurostatData.YearDeaths[i] / DeathRateDataSweden.YearDeathCount[DeathRateDataSweden.Year.indexOf(Year)];
-    PercentPrematureDeaths.Percentages.push(`${Year}: ${CurrentYearPercentage.toFixed(1)}%`);
-  }
+  console.log(EurostatData);
 }
 function prepareData() {
   apiData.forEach((entry, index) => {
@@ -148,7 +148,6 @@ function prepareData() {
   prepareSdbData();
   prepareOpenMeteoData();
   prepareEuroStatData();
-  combineData();
 }
 const deathRateCanvas = document.getElementById('deathRateCanvasID');
 const PercentageCanvas = document.getElementById('P2DeathPercentageID');
