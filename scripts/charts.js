@@ -133,12 +133,23 @@ function printEurostatChart() {
   const CountryCode = document.getElementById("EurostatCountrySelector").value;
   const CountryIndex = apiData[1].dataString.dimension.geo.category.index[CountryCode]; //Countrycodes and their index pos
   //console.log(CountryCode + ':' + CountryIndex);
+  let YearPM25 = [];
   let YearDeaths = [];
   let Years = Object.keys(apiData[1].dataString.dimension.time.category.index);
   Years.shift(); //Remove first year, start is 2005, 2007, 2008
   let StartPos = (apiData[1].dataString.size[5] * CountryIndex);
+  const CountryCodeIndex = apiData[2].dataString.CountryCode.indexOf(CountryCode);
+  const PM25Arr = apiData[2].dataString.PMValues[CountryCodeIndex][1];
+  const YearArr = apiData[2].dataString.PMValues[CountryCodeIndex][0];
   for (let i = 1; i < apiData[1].dataString.size[5]; i++) {//loop through each year, but omit first, number of year comes from size[5]
     YearDeaths.push(apiData[1].dataString.value[StartPos + i]);
+    console.log(Years[i - 1]);
+    let PM25 = null;
+    YearArrIndex = YearArr.indexOf(Years[i - 1]);
+    if ( YearArrIndex != -1 ) {
+      PM25 = PM25Arr[YearArrIndex];
+    }
+    YearPM25.push(PM25);
   }
   EurostatChart.destroy(); //remove old chart
   EurostatChart = new Chart(document.getElementById("EurostatCanvas"), {
@@ -151,6 +162,13 @@ function printEurostatChart() {
         yAxisID: 'Deaths',
         borderColor: '#ffbe0a',
         backgroundColor: '#ffbe0a',
+      }, {
+        type: 'line',
+        label: 'PM2.5 i huvudstaden',
+        data: YearPM25,
+        yAxisID: 'PM2_5',
+        borderColor: '#0a3fff',
+        backgroundColor: '#0a3fff',
       },]
     },
     options: {
@@ -160,8 +178,6 @@ function printEurostatChart() {
           beginAtZero: true,
           type: 'linear',
           position: 'right',
-          min: 6,
-          max: 11,
           ticks: { stepSize: 1}
         },
         Deaths: {
