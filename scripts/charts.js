@@ -1,17 +1,21 @@
 let apiData = [
   {
     url: 'https://sdb.socialstyrelsen.se/api/v1/sv/dodsorsaker_manad/resultat/kon/3/region/01/diagnos/0203,1005', //0203 = Maligna tumörer i andningsorgan och brösthålans organ, 1005 = Kroniska sjukdomar i nedre luftvägarna
+    options: {method: 'GET'},
     downloadStatus: '',
     dataString: ''
   },
   {
     //url: 'https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/sdg_11_52/?format=JSON&lang=en&freq=A&airpol=PM2_5&indic_he=PMD&unit=NR&geo=BE&geo=BG&geo=CZ&geo=DK&geo=DE&geo=EE&geo=IE&geo=EL&geo=ES&geo=FR&geo=HR&geo=IT&geo=CY&geo=LV&geo=LT&geo=LU&geo=HU&geo=MT&geo=NL&geo=AT&geo=PL&geo=PT&geo=RO&geo=SI&geo=SK&geo=FI&geo=SE&geo=IS&geo=LI&geo=NO&geo=CH&geo=BA&geo=ME&geo=MK&geo=AL&geo=RS&geo=XK&time=2005&time=2007&time=2008&time=2009&time=2010&time=2011&time=2012&time=2013&time=2014&time=2015&time=2016&time=2017&time=2018&time=2019&time=2020&time=2021&time=2022',
-    url: 'https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/sdg_11_52/?format=JSON&lang=en&freq=A',
+    //url: 'https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/sdg_11_52/?format=JSON&lang=en&freq=A',
+    url: 'https://ec.europa.eu/eurostat/api/dissemination/sdmx/3.0/data/dataflow/ESTAT/sdg_11_52/1.0/*.*.*.*.*?c[freq]=A&c[airpol]=PM2_5&c[indic_he]=PMD&c[unit]=RT&c[geo]=BE,BG,CZ,DK,DE,EE,IE,EL,ES,FR,HR,IT,CY,LV,LT,LU,HU,MT,NL,AT,PL,PT,RO,SI,SK,FI,SE,IS,LI,NO,CH,UK,BA,ME,MK,AL,RS,XK&c[TIME_PERIOD]=2005,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018,2019,2020,2021,2022&compress=false&format=json&lang=en',
+    options: {method: 'GET'},
     downloadStatus: '',
     dataString: ''
   },
   {
     url: 'open_meteo_data.json',
+    options: {method: 'GET'},
     downloadStatus: '',
     dataString: ''
   },
@@ -20,7 +24,7 @@ let apiData = [
 async function fetchApiData() {
   const fetchPromises = apiData.map(async (entry) => { //async data fetch for entries
     try {
-      const response = await fetch(entry.url);
+      const response = await fetch(entry.url, entry.options);
       //throw error if response is not ok
       if (!response.ok) {
         throw new Error(`HTTP error! Status: ${response.status}`);
@@ -45,13 +49,8 @@ let DeathRateDataSweden = {
   MonthlyCount: [0,0,0,0,0,0,0,0,0,0,0,0],
 };
 let PMValuesSweden = {
-  Year: [],
-  YearAvarage: [],
-  Month: [],
-  MonthAvarage: [],
-  Monthly: ["01","02","03","04","05","06","07","08","09","10","11","12"],
-  MonthlyAvarage: [0,0,0,0,0,0,0,0,0,0,0,0],
-  MonthlyCount: [0,0,0,0,0,0,0,0,0,0,0,0],
+	Year: [],
+	AvarageValue: [],
 };
 let EurostatData = {
   Year: [],
@@ -100,50 +99,9 @@ function prepareSdbData() {
   }
 }
 function prepareOpenMeteoData() {
-  //prepare data from openMeteo
-  //setup values to calculate avarages
-  var ValueYearCount = 0;
-  var AvarageYearValue = 0;
-  var ValueMonthCount = 0;
-  var AvarageMonthValue = 0;
-  //load current time and remove days and hours
-  let Time = apiData[2].dataString.hourly.time[0].split("-").splice(0,2);
-  //iterate the json from the api call
-  for (let i = 0; i < apiData[2].dataString.hourly.time.length; i++) {
-    const pm2_5 = apiData[2].dataString.hourly.european_aqi_pm2_5[i];
-    let CurrentTime = apiData[2].dataString.hourly.time[i].split("-").splice(0,2);
-    //ignore null values
-    if ( pm2_5 != null ) {
-      //if the month is switching over to a new month, calculate avarage and push to array
-      if (Time[1] != CurrentTime[1]) {
-        PMValuesSweden['Month'].push(Time[1]);
-        PMValuesSweden['MonthAvarage'].push(AvarageMonthValue / ValueMonthCount);
-        PMValuesSweden['MonthlyAvarage'][PMValuesSweden.Monthly.indexOf(Time[1])] += (AvarageMonthValue / ValueMonthCount);
-        PMValuesSweden['MonthlyCount'][PMValuesSweden.Monthly.indexOf(Time[1])]++;
-        ValueMonthCount = 0;
-        AvarageMonthValue = 0;
-      }
-      //if the year switches over, calculate avarage and push to array
-      if (Time[0] != CurrentTime[0]) {
-        PMValuesSweden['Year'].push(parseInt(Time[0]));
-        PMValuesSweden['YearAvarage'].push(AvarageYearValue / ValueYearCount);
-        ValueYearCount = 0;
-        AvarageYearValue = 0;
-      }
-      //up the value counter and add value to total for year and month
-      const pm2_5Int = parseInt(pm2_5);
-      ValueYearCount++; //this counts the number of values added together for the actual year
-      ValueMonthCount++; //this counts the number of values added together for the actual month
-      AvarageMonthValue += pm2_5Int;
-      AvarageYearValue += pm2_5Int;
-    }
-    //set the current time as time so that we can check if year or month switches over
-    Time = CurrentTime;
-  }
-  for (let i = 0; i < 12; i++) {
-    PMValuesSweden['MonthlyAvarage'][i] = PMValuesSweden['MonthlyAvarage'][i] / PMValuesSweden['MonthlyCount'][i];
-  }
-  console.log(PMValuesSweden);
+  i = apiData[2].dataString.CountryCode.indexOf("SE");
+  PMValuesSweden.Year = apiData[2].dataString.PMValues[i][0];
+  PMValuesSweden.AvarageValue = apiData[2].dataString.PMValues[i][1];
 }
 function prepareEuroStatData() {
   //Prepare eurostat data
@@ -167,9 +125,98 @@ function combineData() {
 const deathRateCanvas = document.getElementById('deathRateCanvasID');
 const PercentageCanvas = document.getElementById('P2DeathPercentageID');
 
-//this function updates all graphs
-function updateGraphs() {
-  let deathRateChart = new Chart(deathRateCanvas, {
+//Initialize charts
+let EurostatChart = new Chart(document.getElementById("EurostatCanvas"));
+
+function printEurostatChart() {
+  //print eurostat here
+  const CountryCode = document.getElementById("EurostatCountrySelector").value;
+  const CountryIndex = apiData[1].dataString.dimension.geo.category.index[CountryCode]; //Countrycodes and their index pos
+  //console.log(CountryCode + ':' + CountryIndex);
+  let YearDeaths = [];
+  let Years = Object.keys(apiData[1].dataString.dimension.time.category.index);
+  Years.shift(); //Remove first year, start is 2005, 2007, 2008
+  let StartPos = (apiData[1].dataString.size[5] * CountryIndex);
+  for (let i = 1; i < apiData[1].dataString.size[5]; i++) {//loop through each year, but omit first, number of year comes from size[5]
+    YearDeaths.push(apiData[1].dataString.value[StartPos + i]);
+  }
+  EurostatChart.destroy(); //remove old chart
+  EurostatChart = new Chart(document.getElementById("EurostatCanvas"), {
+    data: {
+      labels: Years,
+      datasets: [{
+        type: 'line',
+        label: 'Dödsfall direktrelaterade till PM2.5 per 100 000 invånare',
+        data: YearDeaths,
+        yAxisID: 'Deaths',
+        borderColor: '#ffbe0a',
+        backgroundColor: '#ffbe0a',
+      },]
+    },
+    options: {
+      scales: {
+        PM2_5: {
+          title: { text: 'µg/m³', display: true },
+          beginAtZero: true,
+          type: 'linear',
+          position: 'right',
+          min: 6,
+          max: 11,
+          ticks: { stepSize: 1}
+        },
+        Deaths: {
+          title: { text: 'antal', display: true },
+          beginAtZero: true,
+          type: 'linear',
+          position: 'left',
+          ticks: { stepSize: 100}
+        }
+      },
+      plugins: {
+        legend: {
+          display: true
+        }
+      }
+    }
+  });
+  EurostatChart.update();
+}
+
+function updateEurostatChart() {
+  printEurostatChart();
+}
+
+function printCharts() {
+  printEurostatChart();
+  console.log("printing charts...");
+}
+
+function prepareCharts() {
+  let SelectionInput = document.createElement("select"); //create selectioninput
+  SelectionInput.title = "Länder";
+  SelectionInput.id = "EurostatCountrySelector";
+  let SelectionLabel = document.createElement("label");
+  SelectionLabel.htmlFor = "EurostatCountrySelector"; //add label to selectioninput
+  SelectionLabel.textContent = "Välj ett land:";
+
+  const CountryNames = apiData[1].dataString.dimension.geo.category.label; //re-instance to solve problems with directly acccessing JSON object as map.
+  for (const [key, value] of Object.entries(CountryNames)) {
+    if ( key.length < 3 ) {
+      const NewOption = document.createElement("option");
+      console.log(`${key}:${value}`);
+      NewOption.value = key;
+      NewOption.textContent = value; //apiData[1].dataString.dimension.geo.category.label[key];
+      SelectionInput.appendChild(NewOption);
+    }
+  }
+
+  SelectionInput.addEventListener("change", updateEurostatChart); //add a listener so that graph updates when county is changed
+  const EurostatCanvas = document.getElementById("EurostatCanvas"); //this is the canvas the chart is printed on
+  EurostatCanvas.insertAdjacentElement("beforebegin", SelectionLabel); //insert the label for the selectioninput
+  EurostatCanvas.insertAdjacentElement("beforebegin", SelectionInput); //insert the selectioninput
+}
+ 
+  /*let deathRateChart = new Chart(deathRateCanvas, {
     data: {
       labels: ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],
       datasets: [{
@@ -217,15 +264,15 @@ function updateGraphs() {
     }
   });
   deathRateChart.update();
-  console.log(PercentPrematureDeaths.Percentages);
-
+  console.log(PercentPrematureDeaths.Percentages);/**/
+/*
   let PercentageChart = new Chart(PercentageCanvas, {
     data: {
       labels: PercentPrematureDeaths.Percentages.splice(PercentPrematureDeaths['Year'].indexOf(PMValuesSweden.Year[0])),
       datasets: [{
         type: 'line',
         label: 'PM2.5 i Stockholm',
-        data: PMValuesSweden['YearAvarage'],
+        data: PMValuesSweden['AvarageValue'],
         yAxisID: 'PM2_5',
         borderColor: '#0a3fff',
         backgroundColor: '#0a3fff',
@@ -267,11 +314,11 @@ function updateGraphs() {
       }
     }
   });
-  PercentageChart.update();
-}
+  PercentageChart.update();*/
 
 fetchApiData().then(() => {
   prepareData();
 }).then(() => {
-  updateGraphs();
+  prepareCharts();
+  printCharts();
 });
