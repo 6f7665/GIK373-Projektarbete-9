@@ -169,7 +169,7 @@ const server = http.createServer(function (request, response) {
 //initialize data
 try {
 	prepareOpenMeteoData(JSON.parse(readData('data/open_meteo.json')));
-	OpenMeteoFetchTime = Date.now();
+	OpenMeteoFetchTime = 0;
 } catch (err) {
 	try { 
 		filesystem.mkdirSync('data');
