@@ -19,6 +19,12 @@ let apiData = [
     downloadStatus: '',
     dataString: ''
   },
+  {
+    url: 'https://sdmx.oecd.org/public/rest/data/OECD.ENV.EPI,DSD_AIR_POL@DF_AIR_POLL,/AUT+BEL+CZE+DNK+EST+FIN+FRA+DEU+HUN+ISL+IRL+ITA+LVA+LTU+LUX+NLD+NOR+POL+PRT+SVK+SVN+ESP+SWE+CHE.A.MEAN_POP....?startPeriod=2013&endPeriod=2020&format=jsondata',
+    options: {method: 'GET'},
+    downloadStatus: '',
+    dataString: ''
+  },
 ]
 // this function downloads all data from provided urls in apiData
 async function fetchApiData() {
@@ -47,7 +53,6 @@ function calculateSumOfArray(arr) {
   }
   return sum;
 }
-
 function calculateLinearRegression(xa, ya) {
   //this uses the Least Squares Method to calculate and return B-one and B-zero
   const xsum = calculateSumOfArray(xa);
@@ -67,6 +72,21 @@ function calculateLinearRegression(xa, ya) {
   const b_zero = ((ysum - (b_one * xsum)) / xa.length);
   let b = [b_zero, b_one];
   return b; //this gives you b[0] and b[1] for b-zero and b-one if you const b = calculateLinearRegression :)
+}
+function calculateDeterminationCoefficient(b, xa, ya) {
+  let ssr_arr = []; //store square of regression in this array
+  let sst_arr = []; //store sum of squares in this array
+  const ymean = (calculateSumOfArray(ya) / ya.length);
+  for (let i = 0; i < ya.length; i++) {
+    const diff_ssr = (b[0] + b[1]*parseInt(xa[i]) - parseInt(ya[i]));
+    const diff_sst = (ymean - parseInt(ya[i]));
+    ssr_arr.push(diff_ssr * diff_ssr);
+    sst_arr.push(diff_sst * diff_sst);
+  }
+  const sst = calculateSumOfArray(sst_arr);
+  const ssr = calculateSumOfArray(ssr_arr);
+  const r2 = ((sst - ssr) / sst);
+  return r2;
 }
 
 let DeathRateDataSweden = {
@@ -111,8 +131,10 @@ function prepareOpenMeteoData() {
       Year: apiData[2].dataString.PMValues[i][0],
       PMValues: apiData[2].dataString.PMValues[i][1],
       b: [0,0],
+      r2: 0,
     }
     Country.b = calculateLinearRegression(Country.Year, Country.PMValues);
+    Country.r2 = calculateDeterminationCoefficient(Country.b, Country.Year, Country.PMValues);
     OpenmeteoData.push(Country);
   }
   console.log(OpenmeteoData);
@@ -126,7 +148,8 @@ function prepareEuroStatData() {
       Code: CountryCode,
       Year: [],
       YearDeaths: [],
-      b: [0, 0],
+      b: [0,0],
+      r2: 0,
     };
     let YearLabels = apiData[1].dataString['dimension']['time']['category']['index'];
     const YearCount = apiData[1].dataString['size'][5];
@@ -135,6 +158,7 @@ function prepareEuroStatData() {
       Country.YearDeaths.push(apiData[1].dataString['value'][(YearCount * CountryIndex) + parseInt(Index)]);
     }
     Country.b = calculateLinearRegression(Country.Year, Country.YearDeaths);
+    Country.r2 = calculateDeterminationCoefficient(Country.b, Country.Year, Country.YearDeaths);
     EurostatData.push(Country);
   }
   console.log(EurostatData);
