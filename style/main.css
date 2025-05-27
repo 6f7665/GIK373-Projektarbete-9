@@ -71,6 +71,12 @@ main {
     z-index: 2;
 }
 
+#europeMapContainer {
+    svg {
+        width: 100%
+    }
+}
+
 /*---footer--------------------------------------------------------------*/
 
 footer {
