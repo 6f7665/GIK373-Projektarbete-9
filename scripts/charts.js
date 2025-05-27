@@ -272,17 +272,34 @@ function updateEurostatChart() {
   printEurostatChart();
 }
 
-function printMap(svgEntry) {
+function printMap() {
   const container = document.getElementById("europeMapContainer");
-  container.innerHTML = svgEntry;
+  container.innerHTML = apiData[4].dataString;
 
-  document.getElementById("SE").style.fill = "blue";
-}
+let barr = [];
+  for (let i = 0; i < EurostatData.length; i++) {
+    barr.push(EurostatData[i].YearDeaths.at(-1));
+  }
+  console.log(barr);
+  const bmin = Math.max(Object.value(barr));
+  console.log(bmin);
+  for (let i = 0; i < EurostatData.length; i++) {
+      const value = (1 * EurostatData[i].YearDeaths.at(-1) / bmin);
+       console.log(value);
+       let id = EurostatData[i].Code;
 
+     color = `hsla(0, 100%, 50%, ${value})`;
+
+      try{document.getElementById(id).style.fill = color;}
+      catch (error){
+      console.log(error);
+    }
+  }
+};
 
 function printCharts() {
   printEurostatChart();
-  printMap(apiData[4].dataString)
+  printMap();
   console.log("printing charts...");
 }
 
