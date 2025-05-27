@@ -276,23 +276,25 @@ function printMap() {
   const container = document.getElementById("europeMapContainer");
   container.innerHTML = apiData[4].dataString;
 
-let barr = [];
+  let barr = [];
+
   for (let i = 0; i < EurostatData.length; i++) {
-    barr.push(EurostatData[i].YearDeaths.at(-1));
+    if (EurostatData[i].YearDeaths.at(-1) !== undefined) {
+      barr.push(EurostatData[i].YearDeaths.at(-1));
+    }
   }
   console.log(barr);
-  const bmin = Math.max(Object.value(barr));
-  console.log(bmin);
+  const bmin = Math.max.apply(Math, barr);
   for (let i = 0; i < EurostatData.length; i++) {
-      const value = (1 * EurostatData[i].YearDeaths.at(-1) / bmin);
-       console.log(value);
-       let id = EurostatData[i].Code;
+    const value = (1 * EurostatData[i].YearDeaths.at(-1) / bmin);
+    console.log(value);
+    let id = EurostatData[i].Code;
 
-     color = `hsla(0, 100%, 50%, ${value})`;
+    color = `hsla(0, 100%, 50%, ${value})`;
 
-      try{document.getElementById(id).style.fill = color;}
-      catch (error){
-      console.log(error);
+    try{document.getElementById(id).style.fill = color;}
+    catch (error){
+    console.log(error);
     }
   }
 };
