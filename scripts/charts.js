@@ -25,6 +25,12 @@ let apiData = [
     downloadStatus: '',
     dataString: ''
   },
+  {
+    url: "/image/europe.svg",
+    options: { method: "GET" },
+    downloadStatus: "",
+    dataString: "",
+  },
 ]
 // this function downloads all data from provided urls in apiData
 async function fetchApiData() {
@@ -35,7 +41,13 @@ async function fetchApiData() {
       if (!response.ok) {
         throw new Error(`HTTP error! Status: ${response.status}`);
       }
-      entry.dataString = await response.json();
+
+      if (entry.url.endsWith('.svg')) {
+        entry.dataString = await response.text();
+      } else {
+        entry.dataString = await response.json();
+      }
+
       entry.downloadStatus = 'Success';
     } catch (error) {
       entry.downloadStatus = 'Error';
@@ -260,8 +272,17 @@ function updateEurostatChart() {
   printEurostatChart();
 }
 
+function printMap(svgEntry) {
+  const container = document.getElementById("europeMapContainer");
+  container.innerHTML = svgEntry;
+
+  document.getElementById("SE").style.fill = "blue";
+}
+
+
 function printCharts() {
   printEurostatChart();
+  printMap(apiData[4].dataString)
   console.log("printing charts...");
 }
 
