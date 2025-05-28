@@ -77,7 +77,7 @@ nav ul {
 
     
     li:first-child {
-        font-size: inherit;
+        font-size: 12pt;
         border-top: 0;
 
         a:hover {
