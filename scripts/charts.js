@@ -67,7 +67,7 @@ async function fetchApiData() {
 function calculateSumOfArray(arr) {
   let sum = 0;
   for (let i = 0; i < arr.length; i++) {
-    sum += parseInt(arr[i]);
+    sum += parseFloat(arr[i]);
   }
   return sum;
 }
@@ -78,8 +78,8 @@ function calculateLinearRegression(xa, ya) {
   let xya = [];
   let x2a = [];
   for (let i = 0; i < xa.length; i++) {
-    xya.push(parseInt(xa[i]) * parseInt(ya[i]));
-    x2a.push(parseInt(xa[i]) * parseInt(xa[i]));
+    xya.push(parseFloat(xa[i]) * parseFloat(ya[i]));
+    x2a.push(parseFloat(xa[i]) * parseFloat(xa[i]));
   }
   const xysum = calculateSumOfArray(xya);
   const x2sum = calculateSumOfArray(x2a);
@@ -96,8 +96,8 @@ function calculateDeterminationCoefficient(b, xa, ya) {
   let sst_arr = []; //store sum of squares in this array
   const ymean = (calculateSumOfArray(ya) / ya.length);
   for (let i = 0; i < ya.length; i++) {
-    const diff_ssr = (b[0] + b[1]*parseInt(xa[i]) - parseInt(ya[i]));
-    const diff_sst = (ymean - parseInt(ya[i]));
+    const diff_ssr = (b[0] + b[1]*parseFloat(xa[i]) - parseFloat(ya[i]));
+    const diff_sst = (ymean - parseFloat(ya[i]));
     ssr_arr.push(diff_ssr * diff_ssr);
     sst_arr.push(diff_sst * diff_sst);
   }
@@ -155,7 +155,6 @@ function prepareOpenMeteoData() {
     Country.r2 = calculateDeterminationCoefficient(Country.b, Country.Year, Country.PMValues);
     OpenmeteoData.push(Country);
   }
-  console.log(OpenmeteoData);
 }
 let EurostatData = [];
 function prepareEuroStatData() {
@@ -179,7 +178,6 @@ function prepareEuroStatData() {
     Country.r2 = calculateDeterminationCoefficient(Country.b, Country.Year, Country.YearDeaths);
     EurostatData.push(Country);
   }
-  console.log(EurostatData);
 }
 let OECDData = [];
 function prepareOECDData() {
@@ -190,22 +188,17 @@ function prepareOECDData() {
     DataYears.push(parseInt(item.id));
   }
   const PM25Array = Object.values(Data.dataSets[0].series);
-  //console.log(CountryArray);
-  console.log(PM25Array);
-  //console.log(DataYears);
-  //loop through countries in data
-  for (let i = 0; i < CountryArray.length; i++){
+  for (let i = 0; i < CountryArray.length; i++){ //loop through countries and add countrycode, years and values to array
     Country = {
       Code: apiData[5].dataString[apiData[5].dataString.indexOf(CountryArray[i].id) - 1], //magic
       Year: DataYears,
-      PM25Exp: [],
+      PM25Exp: [], 
     };
-    for (const item of Object.values(PM25Array[i].observations)) {
+    for (const item of Object.values(PM25Array[i].observations)) { //loop through years for actual country and store values
       Country.PM25Exp.push(item[0]);
     }
     OECDData.push(Country);
   }
-  console.log(OECDData);
 }
 function prepareData() {
   apiData.forEach((entry, index) => {
@@ -243,10 +236,9 @@ function printEurostatChart() {
     if ( YearArrIndex != -1 ) {
       PM25 = PM25Arr[YearArrIndex];
     }
-    //console.log(PM25);
     YearPM25.push(PM25);
-  }/*
-  const b = calculateLinearRegression(Years, YearDeaths);
+  }
+  /*const b = calculateLinearRegression(Years, YearDeaths);
   console.log(b);
   let Trend = [];
   for (let i = 0; i < Years.length; i++) {
@@ -300,7 +292,6 @@ function printEurostatChart() {
   });
   EurostatChart.update();
 }
-
 function updateEurostatChart() {
   printEurostatChart();
 }
@@ -316,24 +307,89 @@ function printMap() {
       barr.push(EurostatData[i].YearDeaths.at(-1));
     }
   }
-  console.log(barr);
+  //console.log(barr);
   const bmin = Math.max.apply(Math, barr);
   for (let i = 0; i < EurostatData.length; i++) {
     const value = (1 * EurostatData[i].YearDeaths.at(-1) / bmin);
-    console.log(value);
+    //console.log(value);
     let id = EurostatData[i].Code;
-
-    color = `hsla(0, 100%, 50%, ${value})`;
-
-    try{document.getElementById(id).style.fill = color;}
-    catch (error){
-    console.log(error);
+    let color = `hsla(0, 100%, 50%, ${value})`;
+    try{
+      document.getElementById(id).style.fill = color;
+	} catch (error){
+      console.log(id,error);
     }
   }
 };
+function printScatterPlot() {
+  let PointArray = [];
+  let CountryCodeArray = [];
+  let xa = [];
+  let ya = [];
+  for (let i = 0; i < OECDData.length; i++) {
+	const Point = {
+      x: OECDData[i].PM25Exp.at(-1),
+      y: -1,
+	};
+    //xa.push(Point.x);
+    CountryCodeArray.push(OECDData[i].Code); //push cc here
+    PointArray.push(Point);
+  }
+  console.log(EurostatData);
+  for (let i = 0; i < EurostatData.length; i++) {
+    const y = EurostatData[i].YearDeaths.at(-1);
+	const cc = EurostatData[i].Code;
+	console.log(cc);
+    const index = CountryCodeArray.indexOf(cc);
+	console.log(index);
+    if (index != -1) {
+	  PointArray[index].y = y;
+	}
+  }
+  for (let i = PointArray.length - 1; i >= 0; i--) {
+    if (PointArray[i].y === -1) {
+      PointArray.splice(i, 1);
+	} else {
+      ya.push(PointArray[i].y);
+      xa.push(PointArray[i].x);
+	}
+  }
+  const b = calculateLinearRegression(xa, ya);
+  const Prediction = [
+    {x: 6,y: (b[0] + b[1] * 6)},
+    {x: 18,y: (b[0] + b[1] * 18)}
+  ];
+  const R2 = calculateDeterminationCoefficient(b, xa, ya);
+  ScatterPlot = new Chart(document.getElementById("ScatterPlotCanvas"), {
+    data: {
+      datasets: [{
+        type: 'scatter',
+        label: 'Europeiska länder',
+        data: PointArray,
+	  },{
+        type: 'scatter',
+        label: `trend: ${b[1].toFixed(2)} dödsfall per 100k / 1µg/m³, R² = ${R2.toFixed(3)}`,
+        data: Prediction,
+        showLine: true,
+        lineTension: 0,
+        borderDash: [5,5],
+      }]
+    },
+    options: {
+      scales: {
+        x: {
+          type: 'linear',
+          position: 'bottom',
+        }
+      }
+    }
+  });
+  ScatterPlot.update();
+}
 
 function printCharts() {
   printEurostatChart();
+  printScatterPlot();
   printMap();
   console.log("printing charts...");
 }
