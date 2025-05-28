@@ -19,6 +19,7 @@ nav ul {
     position: relative;
     z-index: 3;
     background-color: var(--deepBlue);
+    font-size: 12pt;
 
     li {
         height: 60px;
@@ -59,14 +60,15 @@ nav ul {
 
 .sidebar {
     height: auto;
-    width: 100%;
+    width: 50vw;
     position: absolute;
     top: 60px;
+    right: 0vw;
     z-index: 2;
     display: none;
     flex-direction: column;
     background-color: var(--background);
-    border-radius: 0 0 10px 10px;
+    border-radius: 0 0 0px 10px;
     box-shadow: inset 0px 10px 7px -10px black;
     filter: drop-shadow(0px 0px 3px black);
     animation-name: move-down;
@@ -86,7 +88,7 @@ nav ul {
 
     li:last-child {
         a {
-            border-radius: 0 0 10px 10px;
+            border-radius: 0px 0px 0px 10px;
         }
 
         a:hover {
@@ -119,19 +121,16 @@ nav ul {
 
 @keyframes move-down {
     from {
-        top: -90px;
+        right: -52vw;
     }
 
     to {
-        top: 60px;
+        right: 0vw;
     }
 }
 
 @media only screen and (min-width: 500px){
     .sidebar {
-        width: 90%;
-        margin-left: 5%;
-        margin-right: 5%;
     }
 }
 

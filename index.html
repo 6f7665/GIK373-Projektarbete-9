@@ -26,17 +26,19 @@
   <header>
     <nav class="nav__container">
       <ul class="sidebar">
-        <li class="hide-on-desktop"><a href="#">Start</a></li>
-        <li class="hide-on-desktop"><a href="#">Data</a></li>
-        <li class="hide-on-desktop"><a href="#">Map</a></li>
-        <li class="hide-on-desktop"><a href="#">Sources</a></li>
+        <li class="hide-on-desktop"><a href="#">Sverige</a></li>
+        <li class="hide-on-desktop"><a href="#">Europa</a></li>
+        <li class="hide-on-desktop"><a href="#">Världen</a></li>
+        <li class="hide-on-desktop"><a href="#">Framtiden</a></li>
+        <li class="hide-on-desktop"><a href="#">Källor</a></li>
       </ul>
       <ul>
         <li><a href="#">Clean Air</a></li>
-        <li class="hide-on-mobile"><a href="#">Start</a></li>
-        <li class="hide-on-mobile"><a href="#">Data</a></li>
-        <li class="hide-on-mobile"><a href="#">Map</a></li>
-        <li class="hide-on-mobile"><a href="#">Sources</a></li>
+        <li class="hide-on-mobile"><a href="#">Sverige</a></li>
+        <li class="hide-on-mobile"><a href="#">Europa</a></li>
+        <li class="hide-on-mobile"><a href="#">Världen</a></li>
+        <li class="hide-on-mobile"><a href="#">Framtiden</a></li>
+        <li class="hide-on-mobile"><a href="#">Källor</a></li>
         <li onclick=showSidebar() class="hide-on-desktop"><a class="hamburger__menu"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z"/></svg></a></li>
       </ul>
     </nav>
@@ -46,10 +48,10 @@
     <span class="hero__text hide-on-mobile">Desktop Clean Air</span>
     <div class="hero__gradient"></div>
     <img src="image/david-ballew-pH6-eomaijQ-unsplash.jpg" alt="sunny sky">
-    <span class="welcome__text"><p>Welcome!</p><br>This page visually presents the relationship between the air you breath and your health</span>
+    <span class="welcome__text"><h2>Welcome!</h2>This page visually presents the relationship between the air you breath and your health</span>
     <div class="hero__button">
-      <button>Start</button>
-      <button class="hero__secondary__button">Sources</button>
+      <button>Sverige</button>
+      <button class="hero__secondary__button">Europa</button>
     </div>
   </div>
   <main>
@@ -66,14 +68,13 @@
     <div class="card background__gray">
       <article class="content background__gray">
         <h2 class="header__text">Hur ser det ut i andra EU länder?</h2>
-        <p class="body__text">Nedan kan du se antalet förtida dödsfall på grund av PM2.5 exponering (2007 - 2022)</p>
 	<canvas id="EurostatCanvas" class="graph"></canvas>
 	<!--<canvas id="euroStat" class="graph"></canvas>-->
       </article> 
     </div>
     <section class="card">
       <article class ="content">
-        <h2 class="header__text">Live karat över europa av PM2,5 </h1>
+        <h2 class="header__text">Live karta över europa av PM2,5 </h1>
         <p class="body__text">Denna karta visar</p>
         <div id="europeMapContainer"></div>
         <p class="body__text"></p>

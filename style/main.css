@@ -6,7 +6,6 @@ body {
 	min-height: 100%;
 	height: auto;
 	width: 100%;
-	font-size: 1.6rem;
 	color: var(--foreground);
 }
 a, a:visited {
@@ -27,35 +26,38 @@ main {
     box-sizing: border-box;
     padding: 3rem;
     grid-column: 1;
-    font-size: 14pt;
-    margin-top: 10rem;
+    padding-top: 5rem;
 }
 
 .background__gray {
         background-color: var(--grayish);
 }
 
-.header__text{
+.header__text {
     color: var(--deepBlue);
-    padding-bottom: 0.2em;
-    line-height: 1.4em;
-    letter-spacing: 0.012rem;
     font-size: 24pt;
+    line-height: 24pt;
 }
 
-.body__text{
+p {
+    margin-bottom: 2em;
+    margin-top: 0.6em;
+}
+
+.body__text {
     font-family: "Metrophobic", sans-serif;
-    line-height: 1.35em;
-    letter-spacing: 0.015rem;
-    padding-bottom: 1em;
     color: var(--textBlack);
     font-size: 15pt;
 }
 
-#selected__country {
+#EurostatCountrySelector {
     font-family: inherit;
-    text-align: center;
-    
+    margin-bottom: 1em;
+    margin-top: 0.6em;
+    font-family: "Metrophobic", sans-serif;
+    color: var(--textBlack);
+    font-size: 15pt;
+
     option:nth-of-type(odd) {
         background-color: var(--grayish);
     }
@@ -63,6 +65,12 @@ main {
     option:nth-of-type(even) {
         background-color: var(--white);
     }
+}
+
+label {
+    font-family: "Metrophobic", sans-serif;
+    color: var(--textBlack);
+    font-size: 15pt;
 }
 
 #liveMapPm25 {
@@ -130,7 +138,6 @@ footer {
     }
 
     .graph {
-        margin-top: 4vh;
         margin-bottom: 4vh;
     }
 }
