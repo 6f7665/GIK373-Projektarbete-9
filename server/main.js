@@ -137,9 +137,13 @@ function serveJSON(request, response) {
 			sendResponse(JSON.stringify(OpenMeteoData), 'application/json', response); //since it's not 8 hours or older, send 
 		}
 		return 0;
+	} else if (request.url.split('/').pop() == 'country_codes.json') { // check if it's actually asking for the right json
+		serveFile(request, response, 'application/json', 'data/');
+		return 0;
+	} else {
+		sendForbidden(response);
+		return 0;
 	}
-	sendForbidden();
-	return 0;
 }
 function serveFile(request, response, type, folder) {
 	const filename = './' + folder + request.url.split('/').pop();
@@ -169,7 +173,7 @@ const server = http.createServer(function (request, response) {
 //initialize data
 try {
 	prepareOpenMeteoData(JSON.parse(readData('data/open_meteo.json')));
-	OpenMeteoFetchTime = 0;
+	OpenMeteoFetchTime = Date.now();
 } catch (err) {
 	try { 
 		filesystem.mkdirSync('data');

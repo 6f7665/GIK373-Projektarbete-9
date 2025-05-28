@@ -26,10 +26,16 @@ let apiData = [
     dataString: ''
   },
   {
-    url: "/image/europe.svg",
-    options: { method: "GET" },
-    downloadStatus: "",
-    dataString: "",
+    url: '/image/europe.svg',
+    options: { method: 'GET' },
+    downloadStatus: '',
+    dataString: '',
+  },
+  {
+    url: '/country_codes.json',
+    options: { method: 'GET' },
+    downloadStatus: '',
+    dataString: '',
   },
 ]
 // this function downloads all data from provided urls in apiData
@@ -175,6 +181,32 @@ function prepareEuroStatData() {
   }
   console.log(EurostatData);
 }
+let OECDData = [];
+function prepareOECDData() {
+  const Data = apiData[3].dataString.data;
+  const CountryArray = Data.structures[0].dimensions.series[0].values;
+  const DataYears = [];
+  for (const item of Object.values(Data.structures[0].dimensions.observation[0].values)){
+    DataYears.push(parseInt(item.id));
+  }
+  const PM25Array = Object.values(Data.dataSets[0].series);
+  //console.log(CountryArray);
+  console.log(PM25Array);
+  //console.log(DataYears);
+  //loop through countries in data
+  for (let i = 0; i < CountryArray.length; i++){
+    Country = {
+      Code: apiData[5].dataString[apiData[5].dataString.indexOf(CountryArray[i].id) - 1], //magic
+      Year: DataYears,
+      PM25Exp: [],
+    };
+    for (const item of Object.values(PM25Array[i].observations)) {
+      Country.PM25Exp.push(item[0]);
+    }
+    OECDData.push(Country);
+  }
+  console.log(OECDData);
+}
 function prepareData() {
   apiData.forEach((entry, index) => {
     console.log(`DataString for URL ${index + 1}`);
@@ -184,6 +216,7 @@ function prepareData() {
   prepareSdbData();
   prepareOpenMeteoData();
   prepareEuroStatData();
+  prepareOECDData();
 }
 const deathRateCanvas = document.getElementById('deathRateCanvasID');
 const PercentageCanvas = document.getElementById('P2DeathPercentageID');
