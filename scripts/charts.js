@@ -38,6 +38,10 @@ let apiData = [
     dataString: '',
   },
 ]
+let ProgressMonitor = { 
+  Status: 0,
+  Max: 4 + apiData.length,
+}
 // this function downloads all data from provided urls in apiData
 async function fetchApiData() {
   const fetchPromises = apiData.map(async (entry) => { //async data fetch for entries
@@ -55,6 +59,7 @@ async function fetchApiData() {
       }
 
       entry.downloadStatus = 'Success';
+      ProgressMonitor.Status++;
     } catch (error) {
       entry.downloadStatus = 'Error';
       entry.dataString = `Error fetching data: ${error.message}`;
@@ -140,6 +145,7 @@ function prepareSdbData() {
   for (let i = 0; i < 12; i++) {
     DeathRateDataSweden['MonthDeathAvg'][i] = DeathRateDataSweden['MonthDeathCount'][i] / DeathRateDataSweden['MonthlyCount'][i];
   }
+  ProgressMonitor.Status++;
 }
 let OpenmeteoData = [];
 function prepareOpenMeteoData() {
@@ -155,6 +161,7 @@ function prepareOpenMeteoData() {
     Country.r2 = calculateDeterminationCoefficient(Country.b, Country.Year, Country.PMValues);
     OpenmeteoData.push(Country);
   }
+  ProgressMonitor.Status++;
 }
 let EurostatData = [];
 function prepareEuroStatData() {
@@ -178,6 +185,7 @@ function prepareEuroStatData() {
     Country.r2 = calculateDeterminationCoefficient(Country.b, Country.Year, Country.YearDeaths);
     EurostatData.push(Country);
   }
+  ProgressMonitor.Status++;
 }
 let OECDData = [];
 function prepareOECDData() {
@@ -199,6 +207,7 @@ function prepareOECDData() {
     }
     OECDData.push(Country);
   }
+  ProgressMonitor.Status++;
 }
 function prepareData() {
   apiData.forEach((entry, index) => {
