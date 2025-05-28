@@ -54,9 +54,6 @@ p {
     font-family: inherit;
     margin-bottom: 1em;
     margin-top: 0.6em;
-    font-family: "Metrophobic", sans-serif;
-    color: var(--textBlack);
-    font-size: 15pt;
 
     option:nth-of-type(odd) {
         background-color: var(--grayish);
@@ -67,11 +64,6 @@ p {
     }
 }
 
-label {
-    font-family: "Metrophobic", sans-serif;
-    color: var(--textBlack);
-    font-size: 15pt;
-}
 
 #liveMapPm25 {
 	height: 70vh;

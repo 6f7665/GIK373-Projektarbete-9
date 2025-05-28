@@ -309,9 +309,11 @@ function prepareCharts() {
   let SelectionInput = document.createElement("select"); //create selectioninput
   SelectionInput.title = "Länder";
   SelectionInput.id = "EurostatCountrySelector";
+  SelectionInput.className = "body__text";
   let SelectionLabel = document.createElement("label");
   SelectionLabel.htmlFor = "EurostatCountrySelector"; //add label to selectioninput
-  SelectionLabel.textContent = "Välj ett land:";
+  SelectionLabel.textContent = "Välj ett land: ";
+  SelectionLabel.className = "body__text";
 
   const CountryNames = apiData[1].dataString.dimension.geo.category.label; //re-instance to solve problems with directly acccessing JSON object as map.
   for (const [key, value] of Object.entries(CountryNames)) {

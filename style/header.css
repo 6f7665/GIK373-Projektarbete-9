@@ -19,15 +19,15 @@ nav ul {
     position: relative;
     z-index: 3;
     background-color: var(--deepBlue);
-    font-size: 12pt;
 
     li {
         height: 60px;
+        font-size: 12pt;
     }
 
     li:first-child {
         margin-right: auto;
-        font-size: 20pt;
+        font-size: 18pt;
     }
 
     li:first-child a:hover {

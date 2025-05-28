@@ -6,7 +6,7 @@
     overflow: hidden;
     display: grid;
     grid-template-columns: 25% 25% 25% 25%;
-    grid-template-rows: 5% auto auto 25%;
+    grid-template-rows: 10% auto auto 25%;
 
     img {
         height: 120%;
@@ -34,7 +34,7 @@
         text-align: left;
         font-family: "Metrophobic", sans-serif;
         color: var(--deepBlue);
-        font-size: 80pt;
+        font-size: 60pt;
         z-index: 2;
         font-family: "Sansation", sans-serif;
         font-style: normal;
