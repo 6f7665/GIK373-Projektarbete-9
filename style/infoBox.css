@@ -1,0 +1,132 @@
+.infoBoxContainer{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  width: 100%;
+}
+.infoBoxText {
+  color: var(--white);
+  line-height: 1.4em;
+  letter-spacing: 0.012rem;
+  font-size: 18pt;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  position: absolute;
+  z-index: 1;
+}
+.infoBox {
+  position: relative;
+  text-align: center;
+  height: 30rem;
+  width: 20rem;
+  margin: 2rem;
+  float: left;
+  cursor: pointer;
+}
+.infoBox::before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(14, 128, 194, 0.438);
+  z-index: 1;
+}
+ & .infoBoximg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: blur(2px);
+}
+.infoBoxPop {
+  display: none;
+  justify-content: center;
+  position: fixed;
+  left: 20vw;
+  height: 50vh;
+  width: 60vw;
+  top: 25vh;
+  background: var(--link-color);
+  z-index: 4;
+  overflow: scroll;
+}
+.closePop {
+  height: 4rem;
+  width: 4rem;
+  position: absolute;
+  top: 8px;
+  right: 16px;
+  fill: var(--deepBlue);
+}
+.closePop:hover {
+  fill: var(--mediumBlue)
+}
+.popImg {
+  float: right;
+  width: 40%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
+  mask-image: linear-gradient(90deg, transparent, var(--white));
+  -webkit-mask-image: linear-gradient(90deg, transparent, var(--white));
+  filter: grayscale(1);
+}
+
+.popText {
+  width: 90%;
+  height: 100%;
+  object-fit: fill;
+  margin-left: 2rem;
+  text-wrap: balance;
+  word-wrap: break-word;
+  margin-right: 2rem;
+
+  }
+.popHeader {
+    padding-left: 2rem;
+    padding-top: 2rem;
+    width: 60%;
+  }
+.infoBoxPop:after {
+  position: fixed;
+  content: "";
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: rgba(0,0,0,0.5);
+  z-index: -2;
+}
+.infoBoxPop:before {
+  position: absolute;
+  content: "";
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: var(--white);
+  z-index: -1;
+}
+
+@media only screen and (min-width: 800px) {
+.infoBoxPop{ 
+  overflow: hidden;
+}
+ 
+  .infoBoxContainer{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+  .popText {
+  width: 60%;
+  height: 100%;
+  margin-left: 2rem;
+}
+.closePop {
+  fill: var(--white);
+}
+}

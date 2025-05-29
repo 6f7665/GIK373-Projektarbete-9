@@ -33,6 +33,8 @@ height: 1rem;
   p {
     max-width: 50ch;
     text-wrap: balance;
+    justify-content: center;
+    font-size: 18px;
   }
 
   /* Display as a drawer */

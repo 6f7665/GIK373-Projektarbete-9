@@ -31,7 +31,7 @@ main {
 
 .content {
     width: 100%;
-    background-color: var(--white);
+    background-color: inherit;
 }
 
 .background__gray {

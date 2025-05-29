@@ -12,15 +12,16 @@
   <link rel="stylesheet" href="style/header.css">
   <link rel="stylesheet" href="style/main.css">
   <link rel="stylesheet" href="style/hero.css">
+  <link rel="stylesheet" href="style/infoBox.css">
+  <link rel="stylesheet" href="style/sourceSlider.css">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
   <!--fonts-->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Metrophobic&family=Sansation:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap" rel="stylesheet">
-
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-  <link rel="stylesheet" href="style/sourceSlider.css">
+
 </head>
 <body>
   <header>
@@ -48,7 +49,7 @@
     <span class="hero__text hide-on-mobile">Desktop Clean Air</span>
     <div class="hero__gradient"></div>
     <img src="image/david-ballew-pH6-eomaijQ-unsplash.jpg" alt="sunny sky">
-    <span class="welcome__text"><h2>Welcome!</h2>This page visually presents the relationship between the air you breath and your health</span>
+    <span class="welcome__text"><p><h2>Välkommen!</h2><br>Denna sida finns för att visuelt visa relationen mellan luften du andas och din hälsa  </p></span>
     <div class="hero__button">
       <button>Sverige</button>
       <button class="hero__secondary__button">Europa</button>
@@ -57,13 +58,54 @@
   <main>
     <div class="card">
       <article class="content">
-        <h2 class="header__text">Vad är PM2,5?</h2>
-        <p class="body__text">
-	  PM2,5 är små partiklar i luften som skapas av transporter och industri och kan orsaka kronisk lungsjukdom och astma.
-	  PM2,5-värde mäts i µg/m³, och enligt <button class="body__text" popovertarget="ref_2"><a popovertarget="ref_2">David Pui m.fl. (2014)</a></button> stiger risken för hälsoproblem med cirka 1,5% per 10 µg/m³.
-	  <button class="body__text" popovertarget="ref_1"><a>Anna Oudin och Bertil Forsberg</a></button> menar även att en minskning på 1 µg/m³ skulle betyda att antalet fall av KOL och barnastma bland annat skulle minska med 2%, respektive 3%.
-	</p>
-	    <canvas id="ScatterPlotCanvas" class="graph"></canvas>
+        <h2 class="header__text">PM2,5 en introduktion</h2>
+        <p class="body__text">PM2,5 är förkortningen av "partikelmassa 2.5 mikrometer" vilket är små partiklar som släpps ut i luften av framför allt förbränning, vägslitage samt slitage på däck och bromsar. Dessa partiklar är skadliga för vår hälsa och kan leda till ett flertal sjukdommar och även dödsfall. </p>
+    </div>
+    <div class="card background__gray">
+      <article class="content infoBoxContainer">
+          <a class="infoBox" onclick="showPop('popupAstma')">
+            <img class="infoBoximg "src="image/cnordic-nordic-WIBJXeFmr6A-unsplash.jpg" alt="man with inhaler">
+            <h3 class="infoBoxText">Astma</h3>
+          </a>
+          <a class="infoBox" onclick="showPop('popupLuftvag')">
+            <img class="infoBoximg"src="image\robina-weermeijer-Pw9aFhc92P8-unsplash.jpg" alt="man with inhaler">
+            <h3 class="infoBoxText">Luftvägsbesvär</h3>
+          </a>
+          <a class="infoBox" onclick="showPop('popupBronkit')">
+            <img class="infoBoximg"src="image\towfiqu-barbhuiya--jthScuVWT0-unsplash.jpg" alt="man with inhaler">
+            <h3 class="infoBoxText">Bronkit</h3>
+          </a>
+          <a class="infoBox" onclick="showPop('popupMortalitet')">
+            <img class="infoBoximg"src="image\waldemar-jeTlob-Wv0M-unsplash.jpg" alt="man with inhaler">
+            <h3 class="infoBoxText">Mortalitet</h3>
+          </a>
+      </article>
+    </div>
+  <div class="infoBoxPop" id="popupAstma" >
+    <img class="popImg hide-on-mobile"src="image/cnordic-nordic-WIBJXeFmr6A-unsplash.jpg" alt="man with inhaler">
+      <h2 class="header__text popHeader">Astma</h2>
+    <p class="body__text popText">Flera studier visar att risken för astma ökar vid långtidsexponering av PM2.5. Detta Blir extra tydligt hos barn som exponerats för höga halter sedan tidig ålder.Studier påvisat också en ökad risk att barn utvecklar astma om modern exponeras under graviditeten</p>
+     <a onclick="hidePop('popupAstma')"><svg class="closePop" xmlns="http://www.w3.org/2000/svg"  viewBox="0 -960 960 960" ><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z" /></svg></a>
+  </div>
+  <div  class="infoBoxPop" id="popupLuftvag" >
+    <img class="popImg"src="image\robina-weermeijer-Pw9aFhc92P8-unsplash.jpg" alt="man with inhaler">
+    <h2 class="header__text popHeader">Luftvägsbesvär</h2>
+    <p class="body__text popText">Studier visar att PM2.5 kan skapa bidra till ett flertal luftvägsbesvär, Det kan till exempel ge akut bronkit eller bidra till förvärrade astma symptomer. En studie visar att sjukhus inläggningar ökar med 1,9% per ökning av 10 µg/m³  </p>
+     <a onclick="hidePop('popupLuftvag')"><svg class="closePop" xmlns="http://www.w3.org/2000/svg"  viewBox="0 -960 960 960"  fill="#e3e3e3"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z" /></svg></a>
+    
+  </div>
+  <div  class="infoBoxPop" id="popupBronkit" >
+    <img class="popImg"src="image\towfiqu-barbhuiya--jthScuVWT0-unsplash.jpg" alt="man with inhaler">
+     <a onclick="hidePop('popupBronkit')"><svg class="closePop" xmlns="http://www.w3.org/2000/svg"  viewBox="0 -960 960 960"  fill="#e3e3e3"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z" /></svg></a>
+  </div>
+  <div  class="infoBoxPop" id="popupMortalitet" >
+    <img class="popImg"src="image\waldemar-jeTlob-Wv0M-unsplash.jpg" alt="man with inhaler">
+     <a onclick="hidePop('popupMortalitet')"><svg class="closePop" xmlns="http://www.w3.org/2000/svg"  viewBox="0 -960 960 960"  fill="#e3e3e3"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z" /></svg></a>
+  </div>
+    <div class="card">
+      <article class="content">
+        <h2 class="header__text">PM2.5 och hälsa</h2>
+        <P class="body__text"> Enligt <button class="body__text" popovertarget="ref_2"><a popovertarget="ref_2">David Pui m.fl. (2014)</a></button> stiger risken för hälsoproblem med cirka 1,5% per 10 µg/m³. <button class="body__text" popovertarget="ref_1"><a>Anna Oudin och Bertil Forsberg</a></button> menar även att en minskning på 1 µg/m³ skulle betyda att antalet fall av KOL och barnastma bland annat skulle minska med 2%, respektive 3%.</p>
         <h2 class="header__text">PM2,5 i Sverige</h2>
         <p class="body__text">I Sverige är PM2,5 värden ganska låga året runt även om det ökar något under vintern.
 	  Ökningen under vintern kan tänkas bero på dubbdäck som ökar slitaget på vägarna.
@@ -95,24 +137,21 @@
         <p class="body__text"></p>
       </article>
     </section>
-   
     <section class="card">
       <article class="content">
         <h2 class="header__text">Källor</h2>
         <p class="body__text">Pui, D. Y. H., Chen, S. C., & Zuo, Z. L. (2014). PM2.5 in China: Measurements, sources, visibility and health effects, and mitigation. Particuology, 13(1), 1–26. <a href="https://doi.org/10.1016/j.partic.2013.11.001">https://doi.org/10.1016/j.partic.2013.11.001</a></p>
       </article>
     </section>
-         <ol class="references">
-    <li id="ref_1" popover="auto">
-      <p><cite><a href="https://www.diva-portal.org/smash/get/diva2:1658046/FULLTEXT01.pdf">Hälsovinster med att uppnå miljömålet frisk luft</a></cite>, av Anna oudin </p>
+  <ol class="references">
+    <li id="ref_1" popover>
+      <p class=""><cite><a href="https://www.diva-portal.org/smash/get/diva2:1658046/FULLTEXT01.pdf">Hälsovinster med att uppnå miljömålet frisk luft</a></cite>, av Anna oudin </p>
     </li>
-
     <li id="ref_2" popover>
-      <p><cite><a href="https://doi.org/10.1016/j.partic.2013.11.001">PM2.5 in China: Measurements, sources, visibility and health effects, and mitigation</a></cite>, en studje av David Y.H. Pui et al</p>
+      <p class=""><cite><a href="https://doi.org/10.1016/j.partic.2013.11.001">PM2.5 in China: Measurements, sources, visibility and health effects, and mitigation</a></cite>, en studje av David Y.H. Pui et al</p>
     </li>
-
     <li id="ref_3" popover>
-      <p><cite><a href="https://www.norden.org/en/publication/air-quality-all">Air Quality For All: A Nordic air quality web-conference</a></cite>, skapad av: Secretary of the Nordic Council of Ministers </p>
+      <p class=""><cite><a href="https://www.norden.org/en/publication/air-quality-all">Air Quality For All: A Nordic air quality web-conference</a></cite>, skapad av: Secretary of the Nordic Council of Ministers </p>
     </li>
   </ol>
   </main>
@@ -135,5 +174,6 @@
   <!--<script src="scripts/euroStats.js"></script>-->
   <script src="scripts/qgiStats.js"></script>
   <script src="scripts/hamburgerMenu.js"></script>
+  <script src="scripts/infoBox.js"></script>
 </body>  
 </html>
