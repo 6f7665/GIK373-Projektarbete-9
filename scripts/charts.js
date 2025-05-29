@@ -1,6 +1,6 @@
 let apiData = [
   {
-    url: 'https://sdb.socialstyrelsen.se/api/v1/sv/dodsorsaker_manad/resultat/kon/3/region/01/diagnos/0203,1005', //0203 = Maligna tumörer i andningsorgan och brösthålans organ, 1005 = Kroniska sjukdomar i nedre luftvägarna
+    url: 'https://sdb.socialstyrelsen.se/api/v1/sv/dodsorsaker_manad/resultat/kon/3/region/00/diagnos/1005,1006', //1006 = Dammlunga, 1005 = Kroniska sjukdomar i nedre luftvägarna
     options: {method: 'GET'},
     downloadStatus: '',
     dataString: ''
@@ -130,7 +130,7 @@ function prepareSdbData() {
         DeathRateDataSweden['YearDeathCount'].push(parseInt(dataObj.varde));
       }
       else {
-        DeathRateDataSweden['YearDeathCount'][DeathRateDataSweden['Year'].indexOf(dataObj.ar)] += parseInt(dataObj.varde);
+        DeathRateDataSweden['YearDeathCount'][DeathRateDataSweden['Year'].indexOf(dataObj.ar)] += parseInt(dataObj.varde) / 106;
       }
       if ( DeathRateDataSweden['Month'].indexOf(dataObj.manadId) == -1 ) {
         DeathRateDataSweden['Month'].push(dataObj.manadId);
@@ -305,6 +305,60 @@ function updateEurostatChart() {
   printEurostatChart();
 }
 
+function printSwedenChart() {
+  const OpenmeteoStockholm = OpenmeteoData.find((element) => element.Code == "SE"); //where code is SE
+  const EurostatSweden = EurostatData.find((element) => element.Code == "SE"); //get country with SE
+  const StartYear = OpenmeteoStockholm.Year[0];
+  let SwedenChart = new Chart(SwedenCanvas, {
+    data: {
+      labels: OpenmeteoStockholm.Year,
+      datasets: [{
+        type: 'line',
+        label: 'PM2.5 i Stockholm',
+        data: OpenmeteoStockholm.PMValues,
+        yAxisID: 'PM2_5',
+        borderColor: '#696969',
+        backgroundColor: '#696969',
+      },{
+        type: 'bar',
+        label: 'Dödsfall direktrelaterade till PM2.5',
+        data: EurostatSweden.YearDeaths,//.splice(EurostatSweden.Year.indexOf(StartYear)), //splice the data so that it begins at same year as the PM-values
+        borderColor: '#010c32',
+        backgroundColor: '#010c32',
+        yAxisID: 'Deaths',
+      },{
+        type: 'bar',
+        label: 'Dödsfall av dammlunga, bronkit, KOL och astma',
+        data: DeathRateDataSweden.YearDeathCount,//.splice(DeathRateDataSweden.Year.indexOf(StartYear)), //splice the data so that both datasets begin at the same year
+        borderColor: '#010c76',
+        backgroundColor: '#010c76',
+        yAxisID: 'Deaths',
+      },]
+    },
+    options: {
+      scales: {
+        PM2_5: {
+          title: { text: 'µg/m³', display: true },
+          beginAtZero: true,
+          type: 'linear',
+          position: 'right',
+          min: 0,
+          max: 8,
+          ticks: { stepSize: 1}
+        },
+        Deaths: {
+          title: { text: 'antal dödsfall', display: true },
+          beginAtZero: true,
+          type: 'linear',
+          position: 'left',
+          //max: 400,
+          ticks: { stepSize: 100}
+        }
+      }
+    }
+  });
+  SwedenChart.update();
+}
 function printMap() {
   const container = document.getElementById("europeMapContainer");
   container.innerHTML = apiData[4].dataString;
@@ -397,8 +451,9 @@ function printScatterPlot() {
 }
 
 function printCharts() {
-  printEurostatChart();
   printScatterPlot();
+  printSwedenChart();
+  printEurostatChart();
   printMap();
   console.log("printing charts...");
 }
@@ -429,9 +484,8 @@ function prepareCharts() {
   EurostatCanvas.insertAdjacentElement("beforebegin", SelectionLabel); //insert the label for the selectioninput
   EurostatCanvas.insertAdjacentElement("beforebegin", SelectionInput); //insert the selectioninput
 }
- 
-  /*let deathRateChart = new Chart(deathRateCanvas, {
-    data: {
+
+    /*data: {
       labels: ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],
       datasets: [{
         type: 'line',
@@ -440,10 +494,10 @@ function prepareCharts() {
         yAxisID: 'Deaths',
         borderColor: '#ffbe0a',
         backgroundColor: '#ffbe0a',
-      }, {
+      },{
         type: 'line',
         label: 'PM2.5 i Stockholm',
-        data: PMValuesSweden['MonthlyAvarage'],
+        data: OpenmeteoData[]['MonthlyAvarage'],
         yAxisID: 'PM2_5',
         borderColor: '#0a3fff',
         backgroundColor: '#0a3fff',
@@ -476,58 +530,10 @@ function prepareCharts() {
         }
       }
     }
-  });
-  deathRateChart.update();
-  console.log(PercentPrematureDeaths.Percentages);/**/
+  });*/
+
 /*
   let PercentageChart = new Chart(PercentageCanvas, {
-    data: {
-      labels: PercentPrematureDeaths.Percentages.splice(PercentPrematureDeaths['Year'].indexOf(PMValuesSweden.Year[0])),
-      datasets: [{
-        type: 'line',
-        label: 'PM2.5 i Stockholm',
-        data: PMValuesSweden['AvarageValue'],
-        yAxisID: 'PM2_5',
-        borderColor: '#0a3fff',
-        backgroundColor: '#0a3fff',
-      },{
-        type: 'bar',
-        label: 'Dödsfall direktrelaterade till PM2.5',
-        data: EurostatData.YearDeaths.splice(EurostatData.Year.indexOf(PMValuesSweden.Year[0])), //splice the data so that it begins at same year as the PM-values
-        borderColor: '#ff0a46',
-        backgroundColor: '#ff0a46',
-        yAxisID: 'Deaths',
-      },{
-        type: 'bar',
-        label: 'Dödsfall av lungcancer och KOL',
-        data: DeathRateDataSweden['YearDeathCount'].splice(DeathRateDataSweden['Year'].indexOf(PMValuesSweden.Year[0])), //splice the data so that both datasets begin at the same year
-        borderColor: '#ffbe0a',
-        backgroundColor: '#ffbe0a',
-        yAxisID: 'Deaths',
-      },]
-    },
-    options: {
-      scales: {
-        PM2_5: {
-          title: { text: 'µg/m³', display: true },
-          beginAtZero: true,
-          type: 'linear',
-          position: 'right',
-          min: 0,
-          max: 15,
-          ticks: { stepSize: 1}
-        },
-        Deaths: {
-          title: { text: 'antal dödsfall', display: true },
-          beginAtZero: true,
-          type: 'linear',
-          position: 'left',
-          max: 7500,
-          ticks: { stepSize: 500}
-        }
-      }
-    }
-  });
   PercentageChart.update();*/
 
 fetchApiData().then(() => {
