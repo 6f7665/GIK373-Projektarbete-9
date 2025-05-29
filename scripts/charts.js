@@ -44,7 +44,7 @@ let ProgressMonitor = {
 }
 // this function downloads all data from provided urls in apiData
 async function fetchApiData() {
-  progressBar();
+  initProgressBar();
   const fetchPromises = apiData.map(async (entry) => { //async data fetch for entries
     try {
       const response = await fetch(entry.url, entry.options);
@@ -71,13 +71,13 @@ async function fetchApiData() {
   await Promise.all(fetchPromises);
 }
 
-function ProgressBar() {
-    const visuals = document.querySelectorAll('.visualinformation').forEach(element => {
+function initProgressBar() {
+    const visuals = document.querySelectorAll('.visual__information').forEach(element => {
     const progress = document.createElement('div');
     const progressBar = document.createElement('div');
     const progression = document.createElement('div');
     progress.className = 'progress';
-    progressBar.className = 'progressbar';
+    progressBar.className = 'progress__bar';
     progression.className = 'progression';
     progress.appendChild(progressBar);
     progressBar.appendChild(progression);
@@ -106,7 +106,7 @@ function updateProgressBar(ProgressMonitor) {
           }, 300); //short delay so that animation doesn't end too quick
         }
       } else {
-        current += 0.8; //this number is the speed of animation
+        current += 1; //this number is the speed of animation
         element.style.width = current + '%';
       }
     }, 10);
