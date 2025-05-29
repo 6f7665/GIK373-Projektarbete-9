@@ -40,10 +40,11 @@ let apiData = [
 ]
 let ProgressMonitor = { 
   Status: 0,
-  Max: 4 + apiData.length,
+  Max: apiData.length,
 }
 // this function downloads all data from provided urls in apiData
 async function fetchApiData() {
+  progressBar();
   const fetchPromises = apiData.map(async (entry) => { //async data fetch for entries
     try {
       const response = await fetch(entry.url, entry.options);
@@ -60,6 +61,7 @@ async function fetchApiData() {
 
       entry.downloadStatus = 'Success';
       ProgressMonitor.Status++;
+      updateProgressBar(ProgressMonitor);
     } catch (error) {
       entry.downloadStatus = 'Error';
       entry.dataString = `Error fetching data: ${error.message}`;
@@ -67,6 +69,48 @@ async function fetchApiData() {
   });
   //wait until everything is done
   await Promise.all(fetchPromises);
+}
+
+function ProgressBar() {
+    const visuals = document.querySelectorAll('.visualinformation').forEach(element => {
+    const progress = document.createElement('div');
+    const progressBar = document.createElement('div');
+    const progression = document.createElement('div');
+    progress.className = 'progress';
+    progressBar.className = 'progressbar';
+    progression.className = 'progression';
+    progress.appendChild(progressBar);
+    progressBar.appendChild(progression);
+    element.insertAdjacentElement('beforebegin', progress);
+  });
+}
+
+function updateProgressBar(ProgressMonitor) {
+  const progressPercent = ProgressMonitor.Status / ProgressMonitor.Max * 100;
+
+  document.querySelectorAll('.progression').forEach(element => {
+    let current = parseFloat(element.style.width) || 0;
+    const progressWrapper = element.closest('.progress'); //find closest .progress from where the element is
+
+    clearInterval(element.animationId);
+
+    element.animationId = setInterval(() => {
+      if (current >= progressPercent) {
+        clearInterval(element.animationId);
+        element.style.width = progressPercent + '%';
+
+        //if progress is complete, set the .progress to display none
+        if (progressPercent >= 100 && progressWrapper) {
+          setTimeout(() => {
+            progressWrapper.style.display = 'none';
+          }, 300); //short delay so that animation doesn't end too quick
+        }
+      } else {
+        current += 0.8; //this number is the speed of animation
+        element.style.width = current + '%';
+      }
+    }, 10);
+  });
 }
 
 function calculateSumOfArray(arr) {
