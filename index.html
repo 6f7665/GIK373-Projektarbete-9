@@ -58,18 +58,28 @@
   <main>
     <div class="card">
       <article class="content">
-        <h2 class="header__text">PM2,5 en introduktion</h2>
-        <p class="body__text">PM2,5 är förkortningen av "partikelmassa 2.5 mikrometer" vilket är små partiklar som släpps ut i luften av framför allt förbränning, vägslitage samt slitage på däck och bromsar. Dessa partiklar är skadliga för vår hälsa och kan leda till ett flertal sjukdommar och även dödsfall. </p>
+        <h2 class="header__text">Frisk luft</h2>
+        <p class="body__text">
+          Alla har hört uttrycket "gå ut och ta lite frisk luft", men vad är frisk luft egentligen? Utöver att vara ett uttryck är frisk luft också namnet på ett av sveriges miljömål. Miljömålet defenieras som "Luften ska vara så ren att människors hälsa samt djur, växter och kulturvärden inte skadas."<button class="body__text" popovertarget="ref_malfriskluft"><a popovertarget="ref_malfriskluft">(Sveriges miljömål, 2025)</a></button>
+          Frisk luft är altså syre fritt från utsläpp och föroreningar som sakdar både människa, djur och natur.
+        </p>
+        <p class="body__text">
+         Frisk luft kan också återfinnas som komponent i flera av de globala målen för hållbar utveckling som till exempel:<br> 
+        <button class="body__text" popovertarget="ref_mal11"><a popovertarget="ref_mal11">"11.6 Minska städers miljöpåverkan"(Globala målen, 2025)</a></button>
+        <button class="body__text" popovertarget="ref_mal15"><a popovertarget="ref_mal15">"15.5 Skydda den biologiska mångfalden och naturliga livsmiljöer"(Globala målen, 2025)</a></button>
+        <button class="body__text" popovertarget="ref_mal3"><a popovertarget="ref_mal3">"3.4 Minska antalet dödsfall till följd av icke smittsamma sjukdomar och främja mental hälsa"(Globala målen, 2025)</a></button>
+       <!---  <h2 class="header__text">PM2,5 en introduktion</h2>
+        <p class="body__text">PM2,5 är förkortningen av "partikelmassa 2.5 mikrometer" vilket är små partiklar som släpps ut i luften av framför allt förbränning, vägslitage samt slitage på däck och bromsar. Dessa partiklar är skadliga för vår hälsa och kan leda till ett flertal sjukdommar och även dödsfall. </p>-->
     </div>
     <div class="card background__gray">
       <article class="content infoBoxContainer">
           <a class="infoBox" onclick="showPop('popupAstma')">
-            <img class="infoBoximg "src="image/cnordic-nordic-WIBJXeFmr6A-unsplash.jpg" alt="man with inhaler">
+            <img class="infoBoximg "src="image/cnordic-nordic-WIBJXeFmr6A-unsplash.jpg" alt="man med inhaler">
             <h3 class="infoBoxText">Astma</h3>
           </a>
           <a class="infoBox" onclick="showPop('popupLuftvag')">
-            <img class="infoBoximg"src="image\robina-weermeijer-Pw9aFhc92P8-unsplash.jpg" alt="man with inhaler">
-            <h3 class="infoBoxText">Luftvägsbesvär</h3>
+            <img class="infoBoximg"src="image\kenny-eliason-MEbT27ZrtdE-unsplash.jpg" alt="">
+            <h3 class="infoBoxText">Hjärtinfarkt</h3>
           </a>
           <a class="infoBox" onclick="showPop('popupBronkit')">
             <img class="infoBoximg"src="image\towfiqu-barbhuiya--jthScuVWT0-unsplash.jpg" alt="man with inhaler">
@@ -82,24 +92,30 @@
       </article>
     </div>
     <div class="infoBoxPop" id="popupAstma" >
-      <img class="popImg hide-on-mobile"src="image/cnordic-nordic-WIBJXeFmr6A-unsplash.jpg" alt="man with inhaler">
+      <img class="popImg hide-on-mobile"src="image/cnordic-nordic-WIBJXeFmr6A-unsplash.jpg" alt="man med inhaler">
         <h2 class="header__text popHeader">Astma</h2>
-      <p class="body__text popText">Flera studier visar att risken för astma ökar vid långtidsexponering av PM2.5. Detta Blir extra tydligt hos barn som exponerats för höga halter sedan tidig ålder.Studier påvisat också en ökad risk att barn utvecklar astma om modern exponeras under graviditeten</p>
+      <p class="body__text popText">Flera studier visar att risken för astma ökar vid långtidsexponering av PM2.5. Detta Blir extra tydligt hos barn som exponerats för höga halter sedan tidig ålder.Studier påvisar också en ökad risk att barn utvecklar astma om modern exponeras under graviditeten</p>
       <a onclick="hidePop('popupAstma')"><svg class="closePop" xmlns="http://www.w3.org/2000/svg"  viewBox="0 -960 960 960" ><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z" /></svg></a>
+      
     </div>
     <div  class="infoBoxPop" id="popupLuftvag" >
-      <img class="popImg"src="image\robina-weermeijer-Pw9aFhc92P8-unsplash.jpg" alt="man with inhaler">
-      <h2 class="header__text popHeader">Luftvägsbesvär</h2>
-      <p class="body__text popText">Studier visar att PM2.5 kan skapa bidra till ett flertal luftvägsbesvär, Det kan till exempel ge akut bronkit eller bidra till förvärrade astma symptomer. En studie visar att sjukhus inläggningar ökar med 1,9% per ökning av 10 µg/m³  </p>
+      <img class="popImg hide-on-mobile" src="image\kenny-eliason-MEbT27ZrtdE-unsplash.jpg" alt="Modell av ett hjärta">
+      <h2 class="header__text popHeader">Stroke</h2>
+      <p class="body__text popText">PM2.5 exponering kan öka risken för att drabbas av hjärtinfarkt, Risken ökar för alla åldrar redan vid kortitids exponering och fotsätter att öka vid långtidsexponering. Det finns ocskså belägg för att flera hjärtsjukdommar kan påvärkas av PM2.5 så som hjärtsvikt och ischemtisk hjärtsjukdom.  </p>
       <a onclick="hidePop('popupLuftvag')"><svg class="closePop" xmlns="http://www.w3.org/2000/svg"  viewBox="0 -960 960 960"  fill="#e3e3e3"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z" /></svg></a>
     </div>
     <div  class="infoBoxPop" id="popupBronkit" >
-      <img class="popImg"src="image\towfiqu-barbhuiya--jthScuVWT0-unsplash.jpg" alt="man with inhaler">
+      <img class="popImg hide-on-mobile"src="image\towfiqu-barbhuiya--jthScuVWT0-unsplash.jpg" alt="Sjkuk man"><h2 class="header__text popHeader">Bronkit</h2>
+      <p class="body__text popText">En av det sjukdommar man kan drabbas av vid långtidsexponering av PM2.5 är kronisk bronkit, en luftvägs inflammation med hosta och andfåddhet som symptom. Det finns starkast kopplingar mellan PM2.5 och kronisk bronkit bland unga vuxna som utvecklar sjukdommen efter att exponerats som barn. Akut bronkit är däremot vanligare bland barn, 
       <a onclick="hidePop('popupBronkit')"><svg class="closePop" xmlns="http://www.w3.org/2000/svg"  viewBox="0 -960 960 960"  fill="#e3e3e3"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z" /></svg></a>
     </div>
     <div  class="infoBoxPop" id="popupMortalitet" >
-      <img class="popImg"src="image\christophe-maertens-3cObQnVR78A-unsplash.jpg" alt="man with inhaler">
+      <img class="popImg hide-on-mobile"src="image\christophe-maertens-3cObQnVR78A-unsplash.jpg" alt="Gravstenar">
       <a onclick="hidePop('popupMortalitet')"><svg class="closePop" xmlns="http://www.w3.org/2000/svg"  viewBox="0 -960 960 960"  fill="#e3e3e3"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z" /></svg></a>
+      <h2 class="header__text popHeader">Mortalitet</h2>
+      <p class="body__text popText">Det finns starka samband melölan högt korttids intag av Pm2.5 och förtids dödsfall. Exakt hur farligt det är varierar beroende på vilken av partiklarna under PM2.5 paraplyet det är du utsätsför, störts risk är så kallad "oorganisk kol" samt "black carbon" eller svart kol som det heter på svenska 
+        Det finns också liknande samband vid långtidsexponering men även där är exakt vilken sorts PM2.5 partikel du exponeras av viktig. 
+      </p>
     </div>
     <div class="card">
       <article class="content">
@@ -162,6 +178,18 @@
     </li>
     <li id="ref_3" popover>
       <p class=""><cite><a href="https://www.norden.org/en/publication/air-quality-all">Air Quality For All: A Nordic air quality web-conference</a></cite>, skapad av: Secretary of the Nordic Council of Ministers </p>
+    </li>
+    <li id="ref_mal3" popover>
+      <p class=""><cite><a href="https://globalamalen.se/om-globala-malen/mal-3-halsa-och-valbefinnande/">Globala målen: 3. God hälsa och välbefinnande</a></cite>, skapad av: Förenta nationerna </p>
+    </li>
+    <li id="ref_mal11" popover>
+      <p class=""><cite><a href="https://globalamalen.se/om-globala-malen/mal-11-hallbara-stader-och-samhallen/">Globala målen: 11. Hållbara städer och samhällen</a></cite>, skapad av: Förenta nationerna </p>
+    </li>
+    <li id="ref_mal15" popover>
+      <p class=""><cite><a href="https://globalamalen.se/om-globala-malen/mal-15-ekosystem-och-biologisk-mangfald/">Globala målen: 15. Ekosystem och biologisk mångfald</a></cite>, skapad av: Förenta nationerna </p>
+    </li>
+     <li id="ref_malfriskluft" popover>
+      <p class=""><cite><a href="https://www.sverigesmiljomal.se/miljomalen/frisk-luft/">Sveriges miljömål: frisk luft</a></cite>, skapad av: Sveriges riksdag</p>
     </li>
   </ol>
   </main>
