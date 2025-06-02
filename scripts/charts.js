@@ -254,11 +254,11 @@ function prepareOECDData() {
   ProgressMonitor.Status++;
 }
 function prepareData() {
-  apiData.forEach((entry, index) => {
+  /*apiData.forEach((entry, index) => {
     console.log(`DataString for URL ${index + 1}`);
     console.log(entry.dataString);
     console.log('--------------------');
-  });
+  });*/
   prepareSdbData();
   prepareOpenMeteoData();
   prepareEuroStatData();
@@ -291,6 +291,14 @@ function printEurostatChart() {
     }
     YearPM25.push(PM25);
   }
+  let Max = 0;
+  const DeathMax = Math.max.apply(Math, YearDeaths);
+  const PM25Max= parseInt(Math.max.apply(Math, YearPM25));
+  if (DeathMax / 10 >= PM25Max) {
+    Max = parseInt(DeathMax / 10) + 2;
+  } else {
+    Max = PM25Max + 2;
+  }
   /*const b = calculateLinearRegression(Years, YearDeaths);
   console.log(b);
   let Trend = [];
@@ -306,15 +314,15 @@ function printEurostatChart() {
         label: 'Dödsfall direktrelaterade till PM2.5 per 100 000 invånare',
         data: YearDeaths,
         yAxisID: 'Deaths',
-        borderColor: '#ffbe0a',
-        backgroundColor: '#ffbe0a',
+        borderColor: '#0d134b',
+        backgroundColor: '#0d134b',
       }, {
         type: 'line',
         label: 'PM2.5 i huvudstaden',
         data: YearPM25,
         yAxisID: 'PM2_5',
-        borderColor: '#0a3fff',
-        backgroundColor: '#0a3fff',
+        borderColor: '#7d89f5',
+        backgroundColor: '#7d89f5',
       },]
     },
     options: {
@@ -325,7 +333,8 @@ function printEurostatChart() {
           type: 'linear',
           position: 'right',
 	  min: 0,
-          ticks: { stepSize: 1}
+          max: Max,
+          ticks: { stepSize: 2}
         },
         Deaths: {
           title: { text: 'antal', display: true },
@@ -333,7 +342,8 @@ function printEurostatChart() {
           type: 'linear',
           position: 'left',
 	  min: 0,
-          ticks: { stepSize: 100}
+          max: (Max * 10),
+          ticks: { stepSize: 20}
         }
       },
       plugins: {
@@ -352,6 +362,7 @@ function updateEurostatChart() {
 function printSwedenChart() {
   const OpenmeteoStockholm = OpenmeteoData.find((element) => element.Code == "SE"); //where code is SE
   const EurostatSweden = EurostatData.find((element) => element.Code == "SE"); //get country with SE
+  const OECDSweden = OECDData.find((element) => element.Code == "SE"); //get country with SE
   const StartYear = OpenmeteoStockholm.Year[0];
   let SwedenChart = new Chart(SwedenCanvas, {
     data: {
@@ -361,8 +372,15 @@ function printSwedenChart() {
         label: 'PM2.5 i Stockholm',
         data: OpenmeteoStockholm.PMValues,
         yAxisID: 'PM2_5',
-        borderColor: '#696969',
-        backgroundColor: '#696969',
+        borderColor: '#7d89f5',
+        backgroundColor: '#7d89f5',
+      },{
+        type: 'line',
+        label: 'PM2.5 i Sverige',
+        data: OECDSweden.PM25Exp, 
+        yAxisID: 'PM2_5',
+        borderColor: '#4553ca',
+        backgroundColor: '#4553ca',
       },{
         type: 'bar',
         label: 'Dödsfall direktrelaterade till PM2.5',
@@ -388,7 +406,8 @@ function printSwedenChart() {
           position: 'right',
           min: 0,
           max: 8,
-          ticks: { stepSize: 1}
+          ticks: { stepSize: 1},
+          scaleFontSize: 30,
         },
         Deaths: {
           title: { text: 'antal dödsfall', display: true },
@@ -442,13 +461,13 @@ function printScatterPlot() {
     CountryCodeArray.push(OECDData[i].Code); //push cc here
     PointArray.push(Point);
   }
-  console.log(EurostatData);
+  //console.log(EurostatData);
   for (let i = 0; i < EurostatData.length; i++) {
     const y = EurostatData[i].YearDeaths.at(-1);
 	const cc = EurostatData[i].Code;
-	console.log(cc);
+	//console.log(cc);
     const index = CountryCodeArray.indexOf(cc);
-	console.log(index);
+	//console.log(index);
     if (index != -1) {
 	  PointArray[index].y = y;
 	}
@@ -473,6 +492,8 @@ function printScatterPlot() {
         type: 'scatter',
         label: 'Europeiska länder',
         data: PointArray,
+        borderColor: '#010d75',
+        backgroundColor: '#010d75',
 	  },{
         type: 'scatter',
         label: `trend: ${b[1].toFixed(2)} dödsfall per 100k / 1µg/m³, R² = ${R2.toFixed(3)}`,
@@ -480,6 +501,8 @@ function printScatterPlot() {
         showLine: true,
         lineTension: 0,
         borderDash: [5,5],
+        borderColor: '#7d89f5',
+        backgroundColor: '#7d89f5',
       }]
     },
     options: {
@@ -487,6 +510,7 @@ function printScatterPlot() {
         x: {
           type: 'linear',
           position: 'bottom',
+          ticks: { stepSize: 2}
         }
       }
     }
