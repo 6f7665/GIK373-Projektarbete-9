@@ -26,7 +26,7 @@ main {
     box-sizing: border-box;
     padding: 3rem;
     grid-column: 1;
-    padding-top: 5rem;
+    padding-top: 3rem;
 }
 
 .content {
@@ -86,11 +86,12 @@ p {
 .visual__container {
     position: relative;
     background-color: inherit;
-    margin-bottom: 5rem;
 
     p {
         font-style: italic;
         font-size: 12pt;
+        margin-top: 0;
+        margin-bottom: 0;
     }
 }
 
