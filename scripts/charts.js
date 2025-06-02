@@ -315,17 +315,18 @@ function printEurostatChart() {
         data: YearDeaths,
         yAxisID: 'Deaths',
         borderColor: '#0d134b',
-        backgroundColor: '#0d134b',
+        backgroundColor: 'rgba(0,0,0,0)'
       }, {
         type: 'line',
         label: 'PM2.5 i huvudstaden',
         data: YearPM25,
         yAxisID: 'PM2_5',
         borderColor: '#7d89f5',
-        backgroundColor: '#7d89f5',
+        backgroundColor: 'rgba(0,0,0,0)'
       },]
     },
     options: {
+      aspectRatio: 1.7,
       scales: {
         PM2_5: {
           title: { text: 'µg/m³', display: true },
@@ -350,6 +351,13 @@ function printEurostatChart() {
         legend: {
           display: true
         }
+      },
+      elements:{
+        point:{
+          borderWidth: 0,
+          radius: 0,
+          backgroundColor: 'rgba(0,0,0,0)'
+        }
       }
     }
   });
@@ -373,14 +381,14 @@ function printSwedenChart() {
         data: OpenmeteoStockholm.PMValues,
         yAxisID: 'PM2_5',
         borderColor: '#7d89f5',
-        backgroundColor: '#7d89f5',
+        backgroundColor: 'rgba(0,0,0,0)'
       },{
         type: 'line',
         label: 'PM2.5 i Sverige',
         data: OECDSweden.PM25Exp, 
         yAxisID: 'PM2_5',
         borderColor: '#4553ca',
-        backgroundColor: '#4553ca',
+        backgroundColor: 'rgba(0,0,0,0)'
       },{
         type: 'bar',
         label: 'Dödsfall direktrelaterade till PM2.5',
@@ -398,6 +406,7 @@ function printSwedenChart() {
       },]
     },
     options: {
+      aspectRatio: 1.7,
       scales: {
         PM2_5: {
           title: { text: 'µg/m³', display: true },
@@ -416,6 +425,13 @@ function printSwedenChart() {
           position: 'left',
           //max: 400,
           ticks: { stepSize: 100}
+        }
+      },
+      elements:{
+        point:{
+          borderWidth: 0,
+          radius: 0,
+          backgroundColor: 'rgba(0,0,0,0)'
         }
       }
     }
@@ -507,15 +523,23 @@ function printScatterPlot() {
         lineTension: 0,
         borderDash: [5,5],
         borderColor: '#7d89f5',
-        backgroundColor: '#7d89f5',
+        backgroundColor: 'rgba(0,0,0,0)',
       }]
     },
     options: {
+      aspectRatio: 1.7,
       scales: {
         x: {
           type: 'linear',
           position: 'bottom',
           ticks: { stepSize: 2}
+        }
+      },
+      elements:{
+        point:{
+          borderWidth: 0,
+          radius: 4,
+          backgroundColor: 'rgba(0,0,0,0)'
         }
       }
     }
@@ -535,11 +559,11 @@ function prepareCharts() {
   let SelectionInput = document.createElement("select"); //create selectioninput
   SelectionInput.title = "Länder";
   SelectionInput.id = "EurostatCountrySelector";
-  SelectionInput.className = "body__text";
+  SelectionInput.className = "selection__input";
   let SelectionLabel = document.createElement("label");
   SelectionLabel.htmlFor = "EurostatCountrySelector"; //add label to selectioninput
   SelectionLabel.textContent = "Välj ett land: ";
-  SelectionLabel.className = "body__text";
+  SelectionLabel.className = "selection__label";
 
   const CountryNames = apiData[1].dataString.dimension.geo.category.label; //re-instance to solve problems with directly acccessing JSON object as map.
   for (const [key, value] of Object.entries(CountryNames)) {

@@ -1,0 +1,14 @@
+/* skibidi sigma rizzler css (spaghetti-kod deluxe) */
+
+.selection__input, .selection__label {
+  font-size: 1.4rem;
+}
+.selection__input {
+  border-radius: 0px;
+  border: 1px solid #0d134b;
+  padding: 1px;
+  background-color: #ffffff;
+}
+.selection__label {
+  font-size: 1.4rem;
+}
