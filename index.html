@@ -12,6 +12,7 @@
   <link rel="stylesheet" href="style/header.css">
   <link rel="stylesheet" href="style/main.css">
   <link rel="stylesheet" href="style/hero.css">
+  <link rel="stylesheet" href="style/footer.css">
   <link rel="stylesheet" href="style/infoBox.css">
   <link rel="stylesheet" href="style/sourceSlider.css">
   <link rel="stylesheet" href="style/sgdList.css">
@@ -86,32 +87,34 @@
     <div class="card background__gray">
       <section class="content">
          <h2 class="header__text">Hälsoeffekter</h2>
-        <P class="body__text"> Enligt <button class="body__text" popovertarget="ref_2"><a popovertarget="ref_2">David Pui m.fl. (2014)</a></button> stiger risken för hälsoproblem med cirka 1,5% per 10 µg/m³. <button class="body__text" popovertarget="ref_1"><a>Anna Oudin och Bertil Forsberg</a></button> menar även att en minskning på 1 µg/m³ skulle betyda att antalet fall av KOL och barnastma bland annat skulle minska med 2%, respektive 3%.
-        </P>
-        <div class="infoBoxContainer">
-          <a class="infoBox" onclick="showPop('popupAstma')">
-            <img class="infoBoximg "src="image/cnordic-nordic-WIBJXeFmr6A-unsplash.jpg" alt="man med inhaler">
-            <h3 class="infoBoxText">Astma</h3>
-          </a>
-          <a class="infoBox" onclick="showPop('popupLuftvag')">
-            <img class="infoBoximg"src="image\kenny-eliason-MEbT27ZrtdE-unsplash.jpg" alt="">
-            <h3 class="infoBoxText">Hjärtinfarkt</h3>
-          </a>
-          <a class="infoBox" onclick="showPop('popupBronkit')">
-            <img class="infoBoximg"src="image\towfiqu-barbhuiya--jthScuVWT0-unsplash.jpg" alt="man with inhaler">
-            <h3 class="infoBoxText">Bronkit</h3>
-          </a>
-          <a class="infoBox" onclick="showPop('popupMortalitet')">
-            <img class="infoBoximg"src="image\christophe-maertens-3cObQnVR78A-unsplash.jpg" alt="man with inhaler">
-            <h3 class="infoBoxText">Mortalitet</h3>
-          </a>
-        </div>
+        <p class="body__text"> Enligt <button class="body__text" popovertarget="ref_2"><a popovertarget="ref_2">David Pui m.fl. (2014)</a></button> stiger risken för hälsoproblem med cirka 1,5% per 10 µg/m³. <button class="body__text" popovertarget="ref_1"><a>Anna Oudin och Bertil Forsberg</a></button> menar även att en minskning på 1 µg/m³ skulle betyda att antalet fall av KOL och barnastma bland annat skulle minska med 2%, respektive 3%.
+        </p>
+      </section>
+      <div class="content infoBoxContainer">
+        <a class="infoBox" onclick="showPop('popupAstma')">
+          <img class="infoBoximg "src="image/cnordic-nordic-WIBJXeFmr6A-unsplash.jpg" alt="man med inhaler">
+          <h3 class="infoBoxText">Astma</h3>
+        </a>
+        <a class="infoBox" onclick="showPop('popupLuftvag')">
+          <img class="infoBoximg"src="image\kenny-eliason-MEbT27ZrtdE-unsplash.jpg" alt="">
+          <h3 class="infoBoxText">Hjärtinfarkt</h3>
+        </a>
+        <a class="infoBox" onclick="showPop('popupBronkit')">
+          <img class="infoBoximg"src="image\towfiqu-barbhuiya--jthScuVWT0-unsplash.jpg" alt="man with inhaler">
+          <h3 class="infoBoxText">Bronkit</h3>
+        </a>
+        <a class="infoBox" onclick="showPop('popupMortalitet')">
+          <img class="infoBoximg"src="image\christophe-maertens-3cObQnVR78A-unsplash.jpg" alt="man with inhaler">
+          <h3 class="infoBoxText">Mortalitet</h3>
+        </a>
+      </div>
+      <section class="content">
          <p class="body__text">Enligt <button class="body__text" popovertarget="ref_4_who"><a popovertarget="ref_4_who">WHO (2021)</a></button> bör PM2.5 ligga under 10 µg/m³, men under 2019 bodde 90% av världsbefolkningen i områden som översteg gränsvärdet.
           Europa och delar av Amerika har de lägsta PM2,5 värdena och sydostasien har bland de högsta årsmedelvärdena.
           I grafen nedan kan vi se att antalet dödsfall per hundratusen invånare och år stiger med cirka 7,7 per 1 µg/m³, beräknat på data från länder i Europeiska unionen och Organisationen för ekonomsikt samarbete och utveckling.</p>
         <div class="visual__container">
          <canvas id="ScatterPlotCanvas" class="visual__information"></canvas>
-         <p>Denna scatterplot är gjort samt kalkulerat med hjälp av data från <a href="https://ec.europa.eu/eurostat/databrowser/view/sdg_11_52/default/table?lang=en">eurostat</a> samt <a>OECD</a></p>
+         <p>Denna diagram är gjort samt kalkulerat med hjälp av data från <a href="https://ec.europa.eu/eurostat/databrowser/view/sdg_11_52/default/table?lang=en">eurostat</a> samt <a>OECD</a></p>
         </div>
       </section>
     </div>
@@ -145,15 +148,15 @@
         <h2 class="header__text">Partiklar i Sverige</h2>
         <!--<p class="body__text">I Sverige är PM2,5 värden ganska låga året runt även om det ökar något under vintern.
           Ökningen under vintern kan tänkas bero på dubb*däck som ökar slitaget på vägarna och att fler eldar för att värma bostäder.
-	</p>-->
-            <p class="body__text">I Sverige är årsmedelvärdet för PM2.5 relativt lågt jämfört med resten av Europa.
-              Detta kan tänkas ha att göra med att Sverige är ett högteknologiskt land som sätter krav på att industrier använder filter.
-              En stor källa till utsläppen i Sverige är bostaduppvärmning, som kan tänkas orsaka de ökade nivåerna under vinterhalvåret.
-              Sverige använder dock mycket fjärrvärme vilket är renare då fjärrvärmeverken oftas är utrustade med filter.
-            </p>
+	      </p>-->
+        <p class="body__text">I Sverige är årsmedelvärdet för PM2.5 relativt lågt jämfört med resten av Europa.
+          Detta kan tänkas ha att göra med att Sverige är ett högteknologiskt land som sätter krav på att industrier använder filter.
+          En stor källa till utsläppen i Sverige är bostaduppvärmning, som kan tänkas orsaka de ökade nivåerna under vinterhalvåret.
+          Sverige använder dock mycket fjärrvärme vilket är renare då fjärrvärmeverken oftas är utrustade med filter.
+        </p>
         <div class="visual__container">
           <canvas id="SwedenCanvas" class="visual__information"></canvas>
-          <p>Denna scatterplot är gjort samt kalkulerat med hjälp av data från <a href="https://ec.europa.eu/eurostat/databrowser/view/sdg_11_52/default/table?lang=en">eurostat</a>, <a href="https://open-meteo.com/">Open-meteo</a> och <a href="https://www.socialstyrelsen.se/">Socialstylrelsen</a></p>
+          <p>Denna diagram är gjort samt kalkulerat med hjälp av data från <a href="https://ec.europa.eu/eurostat/databrowser/view/sdg_11_52/default/table?lang=en">eurostat</a>, <a href="https://open-meteo.com/">Open-meteo</a> och <a href="https://www.socialstyrelsen.se/">Socialstylrelsen</a></p>
         </div>
       </section>
     </div>
@@ -162,7 +165,7 @@
         <h2 class="header__text">Hur ser det ut i andra EU länder?</h2>
         <div class="visual__container">
           <canvas id="EurostatCanvas" class="visual__information"></canvas>
-          <p>Denna scatterplot är gjort samt kalkulerat med hjälp av data från <a href="https://ec.europa.eu/eurostat/databrowser/view/sdg_11_52/default/table?lang=en">eurostat</a> samt <a href="https://open-meteo.com/">Open-meteo</a></p>
+          <p>Denna diagram är gjort samt kalkulerat med hjälp av data från <a href="https://ec.europa.eu/eurostat/databrowser/view/sdg_11_52/default/table?lang=en">eurostat</a> samt <a href="https://open-meteo.com/">Open-meteo</a></p>
         </div>
       </section> 
     </section>
@@ -190,7 +193,10 @@
     <section class="card">
       <section class="content">
         <h2 class="header__text">Källor</h2>
-        <p class="body__text">Pui, D. Y. H., Chen, S. C., & Zuo, Z. L. (2014). PM2.5 in China: Measurements, sources, visibility and health effects, and mitigation. Particuology, 13(1), 1–26. <a href="https://doi.org/10.1016/j.partic.2013.11.001">https://doi.org/10.1016/j.partic.2013.11.001</a></p>
+        <p class="body__text">Pui, D. Y. H., Chen, S. C., & Zuo, Z. L. (2014). <i>PM2.5 in China: Measurements, sources, visibility and health effects, and mitigation.</i> Particuology, 13(1), 1–26. <a href="https://doi.org/10.1016/j.partic.2013.11.001">https://doi.org/10.1016/j.partic.2013.11.001</a></p>
+        <p class="body__text">Oudin, A., Forsberg, B., Flanagan, E., & Malmqvist, E. (2022). <i>Hälsovinster med att uppnå miljömålet frisk luft.</i> Hämtad från Umeå universitet website: <a href="https://urn.kb.se/resolve?urn=urn:nbn:se:umu:diva-194693">https://urn.kb.se/resolve?urn=urn:nbn:se:umu:diva-194693</a></p>
+        <p class="body__text">World Health Organization. (2021). <i>WHO global air quality guidelines: particulate matter (PM2.5 and PM10), ozone, nitrogen dioxide, sulfur dioxide and carbon monoxide</i> <a href="https://iris.who.int/bitstream/handle/10665/345329/9789240034228-eng.pdf?sequence=1">https://iris.who.int/bitstream/handle/10665/345329/9789240034228-eng.pdf?sequence=1</a></p>
+        <p class="body__text">Sveriges Miljömål. (31 mars 2025). <i>Frisk Luft</i> <a href="https://www.sverigesmiljomal.se/miljomalen/frisk-luft/">https://www.sverigesmiljomal.se/miljomalen/frisk-luft/</a></p>
       </section>
     </section>
   <ol class="references">
@@ -223,10 +229,10 @@
     <h2 class="footer__heading">Clean Air</h2>
     <div class="footer__content">
       <ul>
-        <li class="footer__text">Blablablabla</li>
-        <li class="footer__text">Sleep</li>
-        <li class="footer__text">ZZZZZZZZZ</li>
-        <li class="footer__text">Can't sleep</li>
+        <li class="footer__text">Informationsdesign GIK373</li>
+        <li class="footer__text">Projektarbete</li>
+        <li class="footer__text">Grupp 9</li>
+        <li class="footer__text">Oscar Vestlund, Joel Sandbäck, Porsche Thichan</li>
       </ul>
     </div>
   </footer>

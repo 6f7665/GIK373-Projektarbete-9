@@ -1,0 +1,33 @@
+footer {
+    background-color: var(--deepBlue);
+    font-family: "Sansation", sans-serif;
+    color: var(--white);
+    height: 30vh;
+    display: grid;
+    padding: 4rem;
+    grid-template-areas: 
+        "fheader fheader"
+        "fcontent1 fcontent2";
+    grid-template-columns: 50% 50%;
+    grid-template-rows: 15% 85%;
+
+
+
+    .footer__heading {
+        width: 100%;
+        height: max-content;
+        font-size: 20pt;
+        border-bottom: 2px var(--white) solid;
+        grid-area: fheader;
+    }
+    .footer__content {
+        grid-area: fcontent1;
+        text-align: left;
+        padding-top: 2vh;
+    }
+
+    .footer__text {
+        font-size: 10pt;
+        margin-bottom: 2vh;
+    }
+}
