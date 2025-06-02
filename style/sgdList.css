@@ -5,12 +5,12 @@
  margin-bottom: 5rem;
  float: left;
 }
- & h4 {
+.sgdListItem h4 {
     width: 100%;
     left: 0%;
  }
 
- & img {
+ .sgdListItem img {
     height: 100%;
     float: left;
     margin-right: 1rem;
