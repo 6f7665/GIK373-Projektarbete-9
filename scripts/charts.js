@@ -434,17 +434,22 @@ function printMap() {
     }
   }
   //console.log(barr);
-  const bmin = Math.max.apply(Math, barr);
+  const bmax = 10 + 10 * parseInt(Math.max.apply(Math, barr) / 10);
   for (let i = 0; i < EurostatData.length; i++) {
-    const value = (1 * EurostatData[i].YearDeaths.at(-1) / bmin);
+    const value = (1 * EurostatData[i].YearDeaths.at(-1) / bmax);
     //console.log(value);
     let id = EurostatData[i].Code;
     let color = `hsla(0, 100%, 50%, ${value})`;
-    try{
+    try {
       document.getElementById(id).style.fill = color;
 	} catch (error){
       console.log(id,error);
     }
+  }
+  try {
+    document.getElementById('LegendMax').textContent=`${bmax}`;
+  } catch (error) {
+    console.log(id,error);
   }
 };
 function printScatterPlot() {
