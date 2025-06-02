@@ -45,7 +45,7 @@ main {
 }
 
 p {
-    margin-bottom: 2em;
+    margin-bottom: 1rem;
     margin-top: 0.6em;
 }
 
@@ -86,6 +86,12 @@ p {
 .visual__container {
     position: relative;
     background-color: inherit;
+    margin-bottom: 5rem;
+
+    p {
+        font-style: italic;
+        font-size: 12pt;
+    }
 }
 
 .progress{
