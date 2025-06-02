@@ -119,16 +119,23 @@
     </div>
     <div class="card">
       <article class="content">
-        <h2 class="header__text">PM2.5 och hälsa</h2>
-        <P class="body__text"> Enligt <button class="body__text" popovertarget="ref_2"><a popovertarget="ref_2">David Pui m.fl. (2014)</a></button> stiger risken för hälsoproblem med cirka 1,5% per 10 µg/m³. <button class="body__text" popovertarget="ref_1"><a>Anna Oudin och Bertil Forsberg</a></button> menar även att en minskning på 1 µg/m³ skulle betyda att antalet fall av KOL och barnastma bland annat skulle minska med 2%, respektive 3%.</p>
+        <h2 class="header__text">Hälsoeffekter</h2>
+        <P class="body__text"> Enligt <button class="body__text" popovertarget="ref_2"><a popovertarget="ref_2">David Pui m.fl. (2014)</a></button> stiger risken för hälsoproblem med cirka 1,5% per 10 µg/m³. <button class="body__text" popovertarget="ref_1"><a>Anna Oudin och Bertil Forsberg</a></button> menar även att en minskning på 1 µg/m³ skulle betyda att antalet fall av KOL och barnastma bland annat skulle minska med 2%, respektive 3%.
+	Enligt <button class="body__text" popovertarget="ref_4_who"><a popovertarget="ref_4_who">WHO (2021)</a></button> bör PM2.5 ligga under 10 µg/m³, men under 2019 bodde 90% av världsbefolkningen i områden som översteg gränsvärdet.
+	Europa och delar av Amerika har de lägsta PM2,5 värdena och sydostasien har bland de högsta årsmedelvärdena.
+	I grafen nedan kan vi se att antalet dödsfall per hundratusen invånare och år stiger med cirka 7,7 per 1 µg/m³, beräknat på data från länder i Europeiska unionen och Organisationen för ekonomsikt samarbete och utveckling.</p>
         <div class="visual__container">
           <canvas id="ScatterPlotCanvas" class="visual__information"></canvas>
         </div>
-        <h2 class="header__text">PM2,5 i Sverige</h2>
-        <p class="body__text">I Sverige är PM2,5 värden ganska låga året runt även om det ökar något under vintern.
-          Ökningen under vintern kan tänkas bero på dubbdäck som ökar slitaget på vägarna.
-          Dock menar transportstyrelsen (fixa källa) att dubbdäck bidrar till en säkrare trafik vilket uppväger nackdelarna av ökade PM2,5 värden.
-        </p>
+        <h2 class="header__text">Partiklar i Sverige</h2>
+        <!--<p class="body__text">I Sverige är PM2,5 värden ganska låga året runt även om det ökar något under vintern.
+          Ökningen under vintern kan tänkas bero på dubbdäck som ökar slitaget på vägarna och att fler eldar för att värma bostäder.
+	</p>-->
+	<p class="body__text">I Sverige är årsmedelvärdet för PM2.5 relativt lågt jämfört med resten av Europa.
+	Detta kan tänkas ha att göra med att Sverige är ett högteknologiskt land som sätter krav på att industrier använder filter.
+	En stor källa till utsläppen i Sverige är bostaduppvärmning, som kan tänkas orsaka de ökade nivåerna under vinterhalvåret.
+	Sverige använder dock mycket fjärrvärme vilket är renare då fjärrvärmeverken oftas är utrustade med filter.
+	</p>
         <div class="visual__container">
           <canvas id="SwedenCanvas" class="visual__information"></canvas>
         </div>
@@ -190,6 +197,8 @@
     </li>
      <li id="ref_malfriskluft" popover>
       <p class=""><cite><a href="https://www.sverigesmiljomal.se/miljomalen/frisk-luft/">Sveriges miljömål: frisk luft</a></cite>, skapad av: Sveriges riksdag</p>
+    <li id="ref_4_who" popover>
+      <p class=""><cite><a href="https://www.who.int/publications/i/item/9789240034228">WHO global air quality quidelines</a></cite>, av WHO 22 september 2021.</p>
     </li>
   </ol>
   </main>
