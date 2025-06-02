@@ -57,7 +57,7 @@
   </div>
   <main>
     <div class="card">
-      <article class="content">
+      <section class="content">
         <h2 class="header__text">Frisk luft</h2>
         <p class="body__text">
           Alla har hört uttrycket "gå ut och ta lite frisk luft", men vad är frisk luft egentligen? Utöver att vara ett uttryck är frisk luft också namnet på ett av sveriges miljömål. Miljömålet defenieras som "Luften ska vara så ren att människors hälsa samt djur, växter och kulturvärden inte skadas."<button class="body__text" popovertarget="ref_malfriskluft"><a popovertarget="ref_malfriskluft">(Sveriges miljömål, 2025)</a></button>
@@ -71,10 +71,10 @@
        <!---  <h2 class="header__text">PM2,5 en introduktion</h2>
         <p class="body__text">PM2,5 är förkortningen av "partikelmassa 2.5 mikrometer" vilket är små partiklar som släpps ut i luften av framför allt förbränning, vägslitage samt slitage på däck och bromsar. Dessa partiklar är skadliga för vår hälsa och kan leda till ett flertal sjukdommar och även dödsfall. </p>-->
         </p>
-      </article>
+      </section>
     </div>
     <div class="card background__gray">
-      <article class="content infoBoxContainer">
+      <section class="content infoBoxContainer">
           <a class="infoBox" onclick="showPop('popupAstma')">
             <img class="infoBoximg "src="image/cnordic-nordic-WIBJXeFmr6A-unsplash.jpg" alt="man med inhaler">
             <h3 class="infoBoxText">Astma</h3>
@@ -91,7 +91,7 @@
             <img class="infoBoximg"src="image\christophe-maertens-3cObQnVR78A-unsplash.jpg" alt="man with inhaler">
             <h3 class="infoBoxText">Mortalitet</h3>
           </a>
-      </article>
+      </section>
     </div>
     <div class="infoBoxPop" id="popupAstma" >
       <img class="popImg hide-on-mobile"src="image/cnordic-nordic-WIBJXeFmr6A-unsplash.jpg" alt="man med inhaler">
@@ -120,7 +120,7 @@
       </p>
     </div>
     <div class="card">
-      <article class="content">
+      <section class="content">
         <h2 class="header__text">Hälsoeffekter</h2>
         <P class="body__text"> Enligt <button class="body__text" popovertarget="ref_2"><a popovertarget="ref_2">David Pui m.fl. (2014)</a></button> stiger risken för hälsoproblem med cirka 1,5% per 10 µg/m³. <button class="body__text" popovertarget="ref_1"><a>Anna Oudin och Bertil Forsberg</a></button> menar även att en minskning på 1 µg/m³ skulle betyda att antalet fall av KOL och barnastma bland annat skulle minska med 2%, respektive 3%.
 	Enligt <button class="body__text" popovertarget="ref_4_who"><a popovertarget="ref_4_who">WHO (2021)</a></button> bör PM2.5 ligga under 10 µg/m³, men under 2019 bodde 90% av världsbefolkningen i områden som översteg gränsvärdet.
@@ -143,19 +143,19 @@
           <canvas id="SwedenCanvas" class="visual__information"></canvas>
           <p>Denna scatterplot är gjort samt kalkulerat med hjälp av data från <a href="https://ec.europa.eu/eurostat/databrowser/view/sdg_11_52/default/table?lang=en">eurostat</a>, <a href="https://open-meteo.com/">Open-meteo</a> och <a href="https://www.socialstyrelsen.se/">Socialstylrelsen</a></p>
         </div>
-      </article>
+      </section>
     </div>
     <section class="card background__gray">
-      <article class="content background__gray">
+      <section class="content background__gray">
         <h2 class="header__text">Hur ser det ut i andra EU länder?</h2>
         <div class="visual__container">
           <canvas id="EurostatCanvas" class="visual__information"></canvas>
           <p>Denna scatterplot är gjort samt kalkulerat med hjälp av data från <a href="https://ec.europa.eu/eurostat/databrowser/view/sdg_11_52/default/table?lang=en">eurostat</a> samt <a href="https://open-meteo.com/">Open-meteo</a></p>
         </div>
-      </article> 
+      </section> 
     </section>
     <section class="card">
-      <article class ="content">
+      <section class ="content">
         <h2 class="header__text">Karta över dödsfall på grund av PM2.5 i Europa</h1>
         <p class="body__text">Denna karta visar dödfall från förra året som är direktrelaterade till PM2.5 i Europa normaliserat till antal dödsfall per hundra tusen invånare.</p>
         <div class="visual__container">
@@ -163,23 +163,23 @@
           <p>Denna karta är gjort samt kalkulerat med hjälp av data från <a href="https://ec.europa.eu/eurostat/databrowser/view/sdg_11_52/default/table?lang=en">eurostat</a></p>
         </div>
         <p class="body__text"></p>
-      </article>
+      </section>
     </section>
     <section class="card">
-      <article class ="content">
+      <section class ="content">
         <h2 class="header__text">Live världskarta av PM2,5 </h1>
         <p class="body__text">Denna live interaktiva karta visar aktuella PM 2.5-mätvärden över hela världen med hjälp av över 400 källor från Aqicn:s API. Mätvärdena uppdateras var 15:e till 60:e minut beroende på trafiken hos våra leverantörer.</p>
         <div class="visual__container">
           <div id="liveMapPm25" class="visual__information"></div>
         </div>
         <p class="body__text"></p>
-      </article>
+      </section>
     </section>
     <section class="card">
-      <article class="content">
+      <section class="content">
         <h2 class="header__text">Källor</h2>
         <p class="body__text">Pui, D. Y. H., Chen, S. C., & Zuo, Z. L. (2014). PM2.5 in China: Measurements, sources, visibility and health effects, and mitigation. Particuology, 13(1), 1–26. <a href="https://doi.org/10.1016/j.partic.2013.11.001">https://doi.org/10.1016/j.partic.2013.11.001</a></p>
-      </article>
+      </section>
     </section>
   <ol class="references">
     <li id="ref_1" popover>
