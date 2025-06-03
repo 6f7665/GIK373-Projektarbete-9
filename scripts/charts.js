@@ -42,6 +42,7 @@ let ProgressMonitor = {
   Status: 0,
   Max: apiData.length,
 }
+let ChartFontSize = 11;
 // this function downloads all data from provided urls in apiData
 async function fetchApiData() {
   initProgressBar();
@@ -267,9 +268,9 @@ function prepareData() {
 const deathRateCanvas = document.getElementById('deathRateCanvasID');
 const PercentageCanvas = document.getElementById('P2DeathPercentageID');
 
+
 //Initialize charts
 let EurostatChart = new Chart(document.getElementById("EurostatCanvas"));
-
 function printEurostatChart() {
   //print eurostat here
   const CountryCode = document.getElementById("EurostatCountrySelector").value;
@@ -335,7 +336,7 @@ function printEurostatChart() {
           position: 'right',
 	  min: 0,
           max: Max,
-          ticks: { stepSize: 2}
+          ticks: { stepSize: 2, fontSize: ChartFontSize}
         },
         Deaths: {
           title: { text: 'antal', display: true },
@@ -344,13 +345,16 @@ function printEurostatChart() {
           position: 'left',
 	  min: 0,
           max: (Max * 10),
-          ticks: { stepSize: 20}
+          ticks: { stepSize: 20, fontSize: ChartFontSize}
         }
       },
       plugins: {
         legend: {
-          display: true
-        }
+          labels: {
+            boxWidth: ChartFontSize,
+            font: { size: ChartFontSize}
+	  }
+        },
       },
       elements:{
         point:{
@@ -367,12 +371,15 @@ function updateEurostatChart() {
   printEurostatChart();
 }
 
+
+let SwedenChart = new Chart(document.getElementById("SwedenCanvas"));
 function printSwedenChart() {
   const OpenmeteoStockholm = OpenmeteoData.find((element) => element.Code == "SE"); //where code is SE
   const EurostatSweden = EurostatData.find((element) => element.Code == "SE"); //get country with SE
   const OECDSweden = OECDData.find((element) => element.Code == "SE"); //get country with SE
   const StartYear = OpenmeteoStockholm.Year[0];
-  let SwedenChart = new Chart(SwedenCanvas, {
+  SwedenChart.destroy(); //remove old chart
+  SwedenChart = new Chart(SwedenCanvas, {
     data: {
       labels: OpenmeteoStockholm.Year,
       datasets: [{
@@ -406,6 +413,14 @@ function printSwedenChart() {
       },]
     },
     options: {
+      plugins: {
+        legend: {
+          labels: {
+            boxWidth: ChartFontSize,
+            font: { size: ChartFontSize}
+	  }
+        },
+      },
       aspectRatio: 1.7,
       scales: {
         PM2_5: {
@@ -424,7 +439,7 @@ function printSwedenChart() {
           type: 'linear',
           position: 'left',
           //max: 400,
-          ticks: { stepSize: 100}
+          ticks: { stepSize: 100, fontSize: ChartFontSize}
         }
       },
       elements:{
@@ -468,6 +483,7 @@ function printMap() {
     console.log(id,error);
   }
 };
+let ScatterPlot = new Chart(document.getElementById("ScatterPlotCanvas"));
 function printScatterPlot() {
   let PointArray = [];
   let CountryCodeArray = [];
@@ -507,6 +523,7 @@ function printScatterPlot() {
     {x: 18,y: (b[0] + b[1] * 18)}
   ];
   const R2 = calculateDeterminationCoefficient(b, xa, ya);
+  ScatterPlot.destroy();
   ScatterPlot = new Chart(document.getElementById("ScatterPlotCanvas"), {
     data: {
       datasets: [{
@@ -532,8 +549,16 @@ function printScatterPlot() {
         x: {
           type: 'linear',
           position: 'bottom',
-          ticks: { stepSize: 2}
+          ticks: { stepSize: 2, fontSize: ChartFontSize}
         }
+      },
+      plugins: {
+        legend: {
+          labels: {
+            boxWidth: ChartFontSize,
+            font: { size: ChartFontSize}
+	  }
+        },
       },
       elements:{
         point:{
@@ -554,6 +579,15 @@ function printCharts() {
   printMap();
   console.log("printing charts...");
 }
+function updateFontSize() {
+  if (window.innerWidth >= 800) {
+    ChartFontSize = 14;
+  } else {
+    ChartFontSize = 11;
+  }
+  printCharts();
+}
+window.onresize = updateFontSize;
 
 function prepareCharts() {
   let SelectionInput = document.createElement("select"); //create selectioninput
@@ -637,5 +671,5 @@ fetchApiData().then(() => {
   prepareData();
 }).then(() => {
   prepareCharts();
-  printCharts();
+  updateFontSize(); //this updates font size for graphs and prints the charts
 });
