@@ -49,7 +49,7 @@
   </header>
   <div class="hero">
     <span class="hero__text hide-on-desktop">Clean Air</span>
-    <span class="hero__text hide-on-mobile">Desktop Clean Air</span>
+    <span class="hero__text hide-on-mobile">Clean Air</span>
     <div class="hero__gradient"></div>
     <img src="image/david-ballew-pH6-eomaijQ-unsplash.jpg" alt="sunny sky">
     <span class="welcome__text"><p><h2>Välkommen!</h2><br>Denna sida finns för att visuelt visa relationen mellan luften du andas och din hälsa  </p></span>
@@ -68,17 +68,19 @@
       <p class="body__text">
         Frisk luft kan också återfinnas som komponent i flera av de globala målen för hållbar utveckling som till exempel:
       </p>
-      <div class="sgdList">
-        <div class="sgdListItem"><img class="sgdImg mal3Img" src="image\Mal3.jpg" alt="Global målen: mål 3"><div class="sgdText"><h4>Mål 3 : Delmål 4</h4> <p class="body__text">Detta delmål handlar om att förhindra sjukdomsfall. Genom att t.ex minska föroreningar i luften </p></div></div>
-        <div class="sgdListItem"><img class="sgdImg mal11Img" src="image\Mal11.jpg" alt="Global målen: mål 3"> <div class="sgdText"><h4>Mål 11 : Delmål 6</h4><p class="body__text">Detta delmål handlar om städers miljöpåverkan, det har ett särskilt fokus på luftkvalitet </p></div></div>
-        <div class="sgdListItem"><img class="sgdImg mal15Img" src="image\Mal15.jpg" alt="Global målen: mål 3"><div class="sgdText"><h4>Mål 15 : Delmål 5</h4><p class="body__text"> Detta delmål behandlar bevarandet av biologisk mångfald och naturliga livsmiljöer.</p></div></div>
-      </div>
       <!--Frisk luft kan också återfinnas som komponent i flera av de globala målen för hållbar utveckling som till exempel
       "11.6 Minska städers miljöpåverkan"<button class="body__text" popovertarget="ref_mal11"><a popovertarget="ref_mal11">(Globala målen, 2025)</a></button> 
       15.5 Skydda den biologiska mångfalden och naturliga livsmiljöer"<button class="body__text" popovertarget="ref_mal15"><a popovertarget="ref_mal15">(Globala målen, 2025)</a></button>
       "3.4 Minska antalet dödsfall till följd av icke smittsamma sjukdomar och främja mental hälsa"<button class="body__text" popovertarget="ref_mal3"><a popovertarget="ref_mal3">"(Globala målen, 2025)</a></button>
       <h2 class="header__text">PM2,5 en introduktion</h2>
       <p class="body__text">PM2,5 är förkortningen av "partikelmassa 2.5 mikrometer" vilket är små partiklar som släpps ut i luften av framför allt förbränning, vägslitage samt slitage på däck och bromsar. Dessa partiklar är skadliga för vår hälsa och kan leda till ett flertal sjukdommar och även dödsfall. </p>-->
+    </section>
+    <section>
+      <div class="sgdList">
+        <div class="sgdListItem"><img class="sgdImg mal3Img" src="image\Mal3.jpg" alt="Global målen: mål 3"><div class="sgdText"><h4>Mål 3 : Delmål 4</h4> <p class="body__text">Detta delmål handlar om att förhindra sjukdomsfall. Genom att t.ex minska föroreningar i luften </p></div></div>
+        <div class="sgdListItem"><img class="sgdImg mal11Img" src="image\Mal11.jpg" alt="Global målen: mål 3"> <div class="sgdText"><h4>Mål 11 : Delmål 6</h4><p class="body__text">Detta delmål handlar om städers miljöpåverkan, det har ett särskilt fokus på luftkvalitet </p></div></div>
+        <div class="sgdListItem"><img class="sgdImg mal15Img" src="image\Mal15.jpg" alt="Global målen: mål 3"><div class="sgdText"><h4>Mål 15 : Delmål 5</h4><p class="body__text"> Detta delmål behandlar bevarandet av biologisk mångfald och naturliga livsmiljöer.</p></div></div>
+      </div>
     </section>
     <div class="background__gray">
       <section class="content">
@@ -132,21 +134,18 @@
     </section>
     <div class="background__gray">
       <section id="europe" class="content">
-      <h2 class="header__text">Hur ser det ut i andra EU länder?</h2>
-      <div class="visual__container">
-        <canvas id="EurostatCanvas" class="visual__information"></canvas>
-        <p>Detta diagram är skapat med hjälp av datat från <a href="https://ec.europa.eu/eurostat/databrowser/view/sdg_11_52/default/table?lang=en">eurostat</a> samt <a href="https://open-meteo.com/">Open-meteo</a></p>
-      </div>
-    </section>
-    <section class ="content">
-      <h2 class="header__text">Karta över dödsfall på grund av PM2.5 i Europa</h1>
-      <p class="body__text">Denna karta visar dödfall från förra året som är direktrelaterade till PM2.5 i Europa normaliserat till antal dödsfall per hundra tusen invånare.</p>
-      <div class="visual__container">
-        <div id="europeMapContainer" class="visual__information"></div>
-        <p>Detta diagram är skapat med hjälp av datat från <a href="https://ec.europa.eu/eurostat/databrowser/view/sdg_11_52/default/table?lang=en">eurostat</a></p>
-      </div>
-      <p class="body__text"></p>
-    </section>
+        <h2 class="header__text">Hur ser det ut i andra EU länder?</h2>
+        <div class="visual__container">
+          <canvas id="EurostatCanvas" class="visual__information"></canvas>
+          <p>Detta diagram är skapat med hjälp av datat från <a href="https://ec.europa.eu/eurostat/databrowser/view/sdg_11_52/default/table?lang=en">eurostat</a> samt <a href="https://open-meteo.com/">Open-meteo</a></p>
+        </div>
+        <h2 class="header__text">Karta över dödsfall på grund av PM2.5 i Europa</h1>
+        <p class="body__text">Denna karta visar dödfall från förra året som är direktrelaterade till PM2.5 i Europa normaliserat till antal dödsfall per hundra tusen invånare.</p>
+        <div class="visual__container">
+          <div id="europeMapContainer" class="visual__information"></div>
+          <p>Detta diagram är skapat med hjälp av datat från <a href="https://ec.europa.eu/eurostat/databrowser/view/sdg_11_52/default/table?lang=en">eurostat</a></p>
+        </div>
+      </section>
     </div>
     <section id="world" class="content">
       <h2 class="header__text">Live världskarta av PM2,5 </h1>

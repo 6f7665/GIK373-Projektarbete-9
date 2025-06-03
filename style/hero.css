@@ -147,6 +147,8 @@
             font-size: 100pt;
             text-align: center;
             margin-left: 0vw;
+            align-content: center;
+            justify-content: center;
         }
 
         .welcome__text {
