@@ -25,6 +25,7 @@ main {
 
 
 .content {
+    background-color: inherit;
     width: 100%;
     max-width: 160ch;
     margin-left: auto;
@@ -83,6 +84,7 @@ main {
 	height: 50vh;
     width: 100%;
     z-index: 3;
+    margin-bottom: 2vh;
 }
 
 #europeMapContainer {
@@ -92,6 +94,8 @@ main {
     }
 }
 
+
+/*-------------- progress bar---------------------------*/
 .visual__container {
     position: relative;
     background-color: inherit;

@@ -3,10 +3,9 @@
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-around;
-  row-gap: 4rem;
+  row-gap: 2rem;
+  padding: 2rem;
   width: 100%;
-  margin-top: 5rem;
-  margin-bottom: 4rem;
 }
 .infoBoxText {
   color: var(--white);

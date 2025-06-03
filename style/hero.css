@@ -68,11 +68,10 @@
         gap: 5%;
         justify-content: center;
 
-        button {
+        .scroll__button {
             width: 40%;
             height: 30%;
             border: none;
-            text-align: center;
             z-index: 2;
             color: var(--white);
             background-color: var(--deepBlue);
@@ -82,6 +81,18 @@
 
             &:hover {
                 background-color: var(--button-hover);
+            }
+
+            a {
+                display: flex;
+                height: 100%;
+                align-items: center;
+                justify-content: center;
+            }
+
+            a:hover, a:visited {
+                color: var(--white);
+                text-decoration: none;
             }
         }
 
@@ -94,6 +105,11 @@
 
                 background-color: var(--secondary-button-hover);
                 border: 2px var(--deepBlue) solid;
+            }
+
+            a:visited {
+                color: var(--deepBlue);
+                text-decoration: none;
             }
         }
     }
