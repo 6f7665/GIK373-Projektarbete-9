@@ -16,22 +16,28 @@ a, a:visited {
 
 main {
     background-color: var(--white);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: left;
 }
 
-.card {
-    font-family: "Metrophobic", sans-serif;
-    background-color: var(--white);
-    box-sizing: border-box;
-    padding: 6rem;
-}
 
 .content {
-    max-width: 100%;
-    background-color: inherit;
+    width: 100%;
+    max-width: 160ch;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 2rem;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
 }
 
 .background__gray {
     background-color: var(--grayish);
+    width: 100%;
 }
 
 .background__dark {
@@ -42,21 +48,18 @@ main {
     color: var(--deepBlue);
     font-size: 24pt;
     line-height: 24pt; 
-}
-
-p {
-    margin-bottom: 2rem;
-    margin-top: 1rem;
-}
-
-p:last-child {
-    margin-bottom: 0rem;
+    margin-bottom: 1vh;
 }
 
 .body__text {
     font-family: "Metrophobic", sans-serif;
     color: var(--textBlack);
     font-size: 15pt;
+    margin-bottom: 2vh;
+}
+
+.body__text:last-child {
+    margin-bottom: 0;
 }
 
 #EurostatCountrySelector {
@@ -75,7 +78,7 @@ p:last-child {
 
 
 #liveMapPm25 {
-	height: 70vh;
+	height: 50vh;
     width: 100%;
     z-index: 3;
 }
@@ -133,24 +136,7 @@ p:last-child {
 }
 
 @media only screen and (min-width: 800px){
-    p {
-        max-width: 85ch;
-    }
-
     .body__text{
         font-size: 18pt;
-    }
-
-    .card {
-        display: grid;
-        grid-template-columns: 20% 60% 20%;
-        justify-content: center;
-        padding: 6rem;
-    }
-
-    .content {
-        font-family: "Metrophobic", sans-serif;
-        grid-column: 2;
-        width: 100%;
     }
 }
