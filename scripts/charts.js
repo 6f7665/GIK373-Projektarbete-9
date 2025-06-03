@@ -330,7 +330,14 @@ function printEurostatChart() {
       aspectRatio: 1.7,
       scales: {
         PM2_5: {
-          title: { text: 'µg/m³', display: true },
+          title: {
+            text: 'µg/m³',
+            display: true,
+            font: {
+              size: ChartFontSize,
+              family: "Metrophobic, sans-serif"
+	    }
+	  },
           beginAtZero: true,
           type: 'linear',
           position: 'right',
@@ -339,7 +346,14 @@ function printEurostatChart() {
           ticks: { stepSize: 2, fontSize: ChartFontSize}
         },
         Deaths: {
-          title: { text: 'antal', display: true },
+          title: {
+            text: 'antal',
+            display: true,
+            font: {
+              size: ChartFontSize,
+              family: "Metrophobic, sans-serif"
+	    }
+	  },
           beginAtZero: true,
           type: 'linear',
           position: 'left',
@@ -352,7 +366,10 @@ function printEurostatChart() {
         legend: {
           labels: {
             boxWidth: ChartFontSize,
-            font: { size: ChartFontSize}
+            font: {
+              size: ChartFontSize,
+              family: "Metrophobic, sans-serif"
+	    }
 	  }
         },
       },
@@ -424,7 +441,14 @@ function printSwedenChart() {
       aspectRatio: 1.7,
       scales: {
         PM2_5: {
-          title: { text: 'µg/m³', display: true },
+          title: {
+            text: 'µg/m³',
+            display: true,
+            font: {
+              size: ChartFontSize,
+              family: "Metrophobic, sans-serif"
+	    }
+	  },
           beginAtZero: true,
           type: 'linear',
           position: 'right',
@@ -434,7 +458,14 @@ function printSwedenChart() {
           scaleFontSize: 30,
         },
         Deaths: {
-          title: { text: 'antal dödsfall', display: true },
+          title: {
+            text: 'antal dödsfall',
+            display: true,
+            font: {
+              size: ChartFontSize,
+              family: "Metrophobic, sans-serif"
+	    }
+	  },
           beginAtZero: true,
           type: 'linear',
           position: 'left',
@@ -487,15 +518,19 @@ let ScatterPlot = new Chart(document.getElementById("ScatterPlotCanvas"));
 function printScatterPlot() {
   let PointArray = [];
   let CountryCodeArray = [];
+  let LabelArray = [];
   let xa = [];
   let ya = [];
   for (let i = 0; i < OECDData.length; i++) {
 	const Point = {
       x: OECDData[i].PM25Exp.at(-1),
+      c: apiData[5].dataString.at(apiData[5].dataString.indexOf(OECDData[i].Code) - 1),
       y: -1,
+      //cc: OECDData[i].Code,
 	};
     //xa.push(Point.x);
     CountryCodeArray.push(OECDData[i].Code); //push cc here
+    LabelArray.push(apiData[5].dataString.at(apiData[5].dataString.indexOf(OECDData[i].Code) - 1));
     PointArray.push(Point);
   }
   //console.log(EurostatData);
@@ -526,6 +561,7 @@ function printScatterPlot() {
   ScatterPlot.destroy();
   ScatterPlot = new Chart(document.getElementById("ScatterPlotCanvas"), {
     data: {
+      labels: LabelArray,
       datasets: [{
         type: 'scatter',
         label: 'Europeiska länder',
@@ -534,23 +570,45 @@ function printScatterPlot() {
         backgroundColor: '#010d75',
 	  },{
         type: 'scatter',
-        label: `trend: ${b[1].toFixed(2)} dödsfall per 100k / 1µg/m³, R² = ${R2.toFixed(3)}`,
+        label: `trend: ${b[1].toFixed(2)} dödsfall / hundratusen / 1 µg / m³, R² = ${R2.toFixed(3)}`,
         data: Prediction,
         showLine: true,
         lineTension: 0,
         borderDash: [5,5],
         borderColor: '#7d89f5',
         backgroundColor: 'rgba(0,0,0,0)',
+        tooltip: false,
       }]
     },
     options: {
       aspectRatio: 1.7,
       scales: {
         x: {
+          title: {
+            text: 'µg/m³',
+            display: true,
+            font: {
+              size: ChartFontSize,
+              family: "Metrophobic, sans-serif"
+	    }
+	  },
           type: 'linear',
           position: 'bottom',
           ticks: { stepSize: 2, fontSize: ChartFontSize}
-        }
+        },
+        y: {
+          title: {
+            text: 'dödsfall/hundratusen',
+            display: true,
+            font: {
+              size: ChartFontSize,
+              family: "Metrophobic, sans-serif"
+	    }
+	  },
+          type: 'linear',
+          position: 'bottom',
+          ticks: { stepSize: 10, fontSize: ChartFontSize}
+        },
       },
       plugins: {
         legend: {
@@ -559,6 +617,11 @@ function printScatterPlot() {
             font: { size: ChartFontSize}
 	  }
         },
+        tooltip: { //thanks andrei, https://github.com/chartjs/Chart.js/issues/1889#issuecomment-304695797
+          filter: function (tooltipItem) {
+            return tooltipItem.datasetIndex === 0;
+          }
+	}
       },
       elements:{
         point:{
@@ -605,7 +668,8 @@ function prepareCharts() {
       const NewOption = document.createElement("option");
       //console.log(`${key}:${value}`);
       NewOption.value = key;
-      NewOption.textContent = value; //apiData[1].dataString.dimension.geo.category.label[key];
+      let SwedishCountryName = apiData[5].dataString.at(apiData[5].dataString.indexOf(key) - 1);
+      NewOption.textContent = SwedishCountryName; //apiData[1].dataString.dimension.geo.category.label[key];
       SelectionInput.appendChild(NewOption);
     }
   }
