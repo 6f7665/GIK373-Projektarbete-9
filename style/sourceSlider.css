@@ -22,7 +22,7 @@ border: none ;
 height: 1rem;
 }
 
-/* Display as a footnote */
+
 [popover] {
   display: list-item;
   position: relative;
@@ -38,7 +38,7 @@ height: 1rem;
     font-size: 18px;
   }
 
-  /* Display as a drawer */
+
   &:popover-open {
     z-index: 1;
     position: fixed;
@@ -54,7 +54,7 @@ height: 1rem;
     box-shadow: 0 10px 9px -10px black, 0px 2px 5px rgb(54, 54, 54);
     animation: sliderAnim 0.2s;
 
-    /* Make sure the popup isn't screen-covering */
+ 
     max-block-size: 50vh;
     overflow: auto;
 
@@ -76,7 +76,7 @@ height: 1rem;
 @media only screen and (min-width: 800px){
 
 
- /* Display as a footnote */
+
  [popover] {
   display: list-item;
   position: relative;
@@ -91,7 +91,7 @@ height: 1rem;
     text-wrap: balance;
   }
 
-  /* Display as a drawer */
+ 
   &:popover-open {
     z-index: 1;
     position: fixed;
@@ -109,7 +109,7 @@ height: 1rem;
 
     animation: sliderAnimHorizontal 0.2s;
 
-    /* Make sure the popup isn't screen-covering */
+ 
     max-block-size: 50vh;
     overflow: auto;
                      
