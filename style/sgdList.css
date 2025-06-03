@@ -13,9 +13,6 @@
  height: 30rem;
 }
 
-
-@media only screen and (min-width: 800px) {
-  
  .sgdList {
     display: flex;
    flex-direction: row;
@@ -35,5 +32,4 @@
 .sgdText{
     width: 30rem;
 
-}
 }
