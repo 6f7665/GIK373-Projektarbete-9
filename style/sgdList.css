@@ -1,39 +1,39 @@
 
+ .sgdList {
+    display: flex;
+   flex-direction: row;
+   flex-wrap: wrap;
+}
 .sgdListItem {
- width: 100%;
- height: 13rem;
- margin-bottom: 5rem;
- float: left;
-}
-.sgdListItem h4 {
-    width: 100%;
-    left: 0%;
- }
-
- .sgdListItem img {
-    height: 100%;
-    float: left;
-    margin-right: 1rem;
+ flex-direction: column;
 }
 
- 
-.rightImg {
-    float: right;
-    margin-right: 0rem;
-    margin-left: 1rem;
+.sdgImg {
+ width: 30rem;
+ height: 30rem;
 }
+
 
 @media only screen and (min-width: 800px) {
+  
+ .sgdList {
+    display: flex;
+   flex-direction: row;
+   flex-wrap: wrap;
+   gap: 2rem;
+   justify-content: space-around;
+
+}
 .sgdListItem {
- height: 20rem;
+ flex-direction: column;
+}
+
+.sdgImg {
+    width: 30rem;
+    height: 30rem;
 }
 .sgdText{
-  width: 50ch;
+    width: 30rem;
+
 }
-.rightImg {
-    float: left;
-    margin-right: 1rem;
-    margin-left: 0rem;
-}
- 
 }

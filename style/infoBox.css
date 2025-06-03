@@ -22,9 +22,8 @@
 .infoBox {
   position: relative;
   text-align: center;
-  height: 30rem;
-  width: 20rem;
-  margin: 0 2rem 0 2rem;
+  height: 20rem;
+  width: 25rem;
   float: left;
   cursor: pointer;
 }
@@ -130,8 +129,10 @@
   width: 60vw;
   top: 25vh;
 }
- 
-  .infoBoxContainer{
+ .infoBox {
+  width: 40rem;
+ }
+.infoBoxContainer{
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
