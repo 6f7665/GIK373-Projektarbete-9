@@ -157,7 +157,7 @@ function serveFile(request, response, type, folder) {
 }
 
 //initialize data
-function init {
+function init() {
 	try {
 		const StoredData = readData('data/open_meteo.json');
 		if (StoredData != undefined ) {

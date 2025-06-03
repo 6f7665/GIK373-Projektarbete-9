@@ -273,7 +273,7 @@ const PercentageCanvas = document.getElementById('P2DeathPercentageID');
 let EurostatChart = new Chart(document.getElementById("EurostatCanvas"));
 function printEurostatChart() {
   //print eurostat here
-  const CountryCode = document.getElementById("EurostatCountrySelector").value;
+  let CountryCode = document.getElementById("EurostatCountrySelector").value;
   const CountryIndex = apiData[1].dataString.dimension.geo.category.index[CountryCode]; //Countrycodes and their index pos
   let YearPM25 = [];
   let YearDeaths = [];
@@ -315,14 +315,14 @@ function printEurostatChart() {
         label: 'Dödsfall direktrelaterade till PM2.5 per 100 000 invånare',
         data: YearDeaths,
         yAxisID: 'Deaths',
-        borderColor: '#0d134b',
+        borderColor: '#FFAB03',
         backgroundColor: 'rgba(0,0,0,0)'
       }, {
         type: 'line',
         label: 'PM2.5 i huvudstaden',
         data: YearPM25,
         yAxisID: 'PM2_5',
-        borderColor: '#7d89f5',
+        borderColor: '#010d75',
         backgroundColor: 'rgba(0,0,0,0)'
       },]
     },
@@ -404,28 +404,28 @@ function printSwedenChart() {
         label: 'PM2.5 i Stockholm',
         data: OpenmeteoStockholm.PMValues,
         yAxisID: 'PM2_5',
-        borderColor: '#7d89f5',
+        borderColor: '#010d75',
         backgroundColor: 'rgba(0,0,0,0)'
       },{
         type: 'line',
         label: 'PM2.5 i Sverige',
         data: OECDSweden.PM25Exp, 
         yAxisID: 'PM2_5',
-        borderColor: '#4553ca',
+        borderColor: '#7d89f5',
         backgroundColor: 'rgba(0,0,0,0)'
       },{
         type: 'bar',
         label: 'Dödsfall direktrelaterade till PM2.5',
         data: EurostatSweden.YearDeaths,//.splice(EurostatSweden.Year.indexOf(StartYear)), //splice the data so that it begins at same year as the PM-values
-        borderColor: '#010c32',
-        backgroundColor: '#010c32',
+        borderColor: '#FFAB03',
+        backgroundColor: '#FFAB03',
         yAxisID: 'Deaths',
       },{
         type: 'bar',
         label: 'Dödsfall av dammlunga, bronkit, KOL och astma',
         data: DeathRateDataSweden.YearDeathCount,//.splice(DeathRateDataSweden.Year.indexOf(StartYear)), //splice the data so that both datasets begin at the same year
-        borderColor: '#010c76',
-        backgroundColor: '#010c76',
+        borderColor: '#F5E97D',
+        backgroundColor: '#F5E97D',
         yAxisID: 'Deaths',
       },]
     },
@@ -501,7 +501,7 @@ function printMap() {
     const value = (1 * EurostatData[i].YearDeaths.at(-1) / bmax);
     //console.log(value);
     let id = EurostatData[i].Code;
-    let color = `hsla(0, 100%, 50%, ${value})`;
+    let color = `hsla(40, 99%, 50%, ${value})`;
     try {
       document.getElementById(id).style.fill = color;
 	} catch (error){
@@ -575,7 +575,7 @@ function printScatterPlot() {
         showLine: true,
         lineTension: 0,
         borderDash: [5,5],
-        borderColor: '#7d89f5',
+        borderColor: '#FFAB03',
         backgroundColor: 'rgba(0,0,0,0)',
         tooltip: false,
       }]
@@ -664,7 +664,7 @@ function prepareCharts() {
 
   const CountryNames = apiData[1].dataString.dimension.geo.category.label; //re-instance to solve problems with directly acccessing JSON object as map.
   for (const [key, value] of Object.entries(CountryNames)) {
-    if ( key.length < 3 ) {
+    if ( key.length < 3 && key != 'EL' && key != 'UK' && key != 'XK' ) {
       const NewOption = document.createElement("option");
       //console.log(`${key}:${value}`);
       NewOption.value = key;
