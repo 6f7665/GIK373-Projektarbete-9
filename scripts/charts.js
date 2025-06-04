@@ -541,7 +541,7 @@ function printMap() {
     console.log(id,error);
   }
   try {
-    document.getElementById('TID').textContent=`${T}`;
+    document.getElementById('TID').textContent=`${T.toFixed(2)}`;
     document.getElementById('FDID').textContent=`${FD}`;
   } catch (error) {
     console.log(id,error);
