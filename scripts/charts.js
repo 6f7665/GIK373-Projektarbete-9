@@ -296,9 +296,9 @@ function printEurostatChart() {
   const DeathMax = Math.max.apply(Math, YearDeaths);
   const PM25Max= parseInt(Math.max.apply(Math, YearPM25));
   if (DeathMax / 10 >= PM25Max) {
-    Max = parseInt(DeathMax / 10) + 2;
+    Max = parseInt(DeathMax / 20) + 2;
   } else {
-    Max = PM25Max + 2;
+    Max = (parseInt(PM25Max / 2) + 1 );
   }
   /*const b = calculateLinearRegression(Years, YearDeaths);
   console.log(b);
@@ -342,7 +342,7 @@ function printEurostatChart() {
           type: 'linear',
           position: 'right',
 	  min: 0,
-          max: Max,
+          max: Max * 2,
           ticks: { stepSize: 2, fontSize: ChartFontSize}
         },
         Deaths: {
@@ -358,7 +358,7 @@ function printEurostatChart() {
           type: 'linear',
           position: 'left',
 	  min: 0,
-          max: (Max * 10),
+          max: (Max * 20),
           ticks: { stepSize: 20, fontSize: ChartFontSize}
         }
       },
@@ -495,19 +495,46 @@ function printMap() {
       barr.push(EurostatData[i].YearDeaths.at(-1));
     }
   }
+  let EastArr = [];
+  let WestArr = [];
   //console.log(barr);
   const bmax = 10 + 10 * parseInt(Math.max.apply(Math, barr) / 10);
   for (let i = 0; i < EurostatData.length; i++) {
     const value = (1 * EurostatData[i].YearDeaths.at(-1) / bmax);
     //console.log(value);
     let id = EurostatData[i].Code;
+    const WestEuropeanCountryCodes = ["AD","BE","CH","DE","DK","ES","FI","FR","IT","LI","NL","NO","PT","SE"];
     let color = `hsla(40, 99%, 50%, ${value})`;
     try {
       document.getElementById(id).style.fill = color;
-	} catch (error){
+        if (WestEuropeanCountryCodes.indexOf(id) != -1) {
+          WestArr.push(EurostatData[i].YearDeaths.at(-1));
+        } else {
+          EastArr.push(EurostatData[i].YearDeaths.at(-1));
+        }
+      } catch (error){
       console.log(id,error);
     }
   }
+  const EastMed = calculateSumOfArray(EastArr) / EastArr.length;
+  const WestMed = calculateSumOfArray(WestArr) / WestArr.length;
+  let EastDiff2 = [];
+  let WestDiff2 = [];
+  for (let x = 0; x < WestArr.length; x++) {
+    let Diff = WestArr[x] - WestMed;
+    WestDiff2.push(Diff * Diff);
+  }
+  const WestSigma = Math.sqrt(calculateSumOfArray(WestDiff2) / WestDiff2.length);
+  //console.log(WestSigma);
+  for (let x = 0; x < EastArr.length; x++) {
+    let Diff = EastArr[x] - EastMed;
+    EastDiff2.push(Diff * Diff);
+  }
+  const EastSigma = Math.sqrt(calculateSumOfArray(EastDiff2) / EastDiff2.length);
+  //console.log(EastSigma);
+  const T = (EastMed - WestMed) / ((EastMed - WestMed) / Math.sqrt((EastSigma/EastDiff2.length) + (WestSigma/WestDiff2.length)) * Math.sqrt(1/EastDiff2.length + 1/WestDiff2.length) );
+  console.log(EastDiff2.length + WestDiff2.length - 2);
+  console.log(T);
   try {
     document.getElementById('LegendMax').textContent=`${bmax}`;
   } catch (error) {
