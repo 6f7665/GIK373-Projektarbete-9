@@ -6,9 +6,10 @@
 	--foreground: hsl(var(--hue),var(--saturation),4%);
     --grayish: hsl(220, 16%, 93%);
     --button-hover: hsl(226, 77%, 19%);
-    --mediumBlue: hsl(199, 52%, 42%);;
+    --mediumBlue: hsl(199, 52%, 42%);
     --secondary-button-hover: hsl(var(--hue),var(--saturation),90%);
     --textBlack: hsl(0, 0%, 24%, 100%);
+    --darkGray: hsl(0, 0%, 61%);
     --headingBlack: hsl(0, 0%, 11%);
     --deepBlue: hsl(227, 96%, 10%, 100%);
     --white: hsl(0, 0%, 98%, 100%);

@@ -1,5 +1,5 @@
 
-.sgdList {
+.sgd__list {
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
@@ -10,7 +10,7 @@
     padding: 0 2rem 2rem 2rem;
 }
 
-.sgdListItem {
+.sgd__list__item {
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
@@ -19,12 +19,12 @@
     background-color: var(--grayish);
 }
 
-.sgdImg {
+.sgd__img {
     width: 10rem;
     height: 10rem;
 }
 
-.sgdText{
+.sgd__text{
     padding: 1vw;
     width: auto;
 
@@ -39,47 +39,47 @@
 }
 
 @media only screen and (max-width: 450px) {
-    .sgdList {
+    .sgd__list {
         flex-direction: row;
         column-gap: 1rem;
     }
 
-    .sgdImg {
+    .sgd__img {
         width: 30rem;
         height: 30rem;
     }
 
-    .sgdListItem {
+    .sgd__list__item {
         flex-direction: column;
         height: auto;
         width: auto;
     }
 
-    .sgdText{
+    .sgd__text{
         padding: 2vw;
         width: 30rem;
     }
 }
 
 @media only screen and (min-width: 800px){
-    .sgdList {
+    .sgd__list {
         flex-direction: row;
         row-gap: 4rem;
         column-gap: 4rem;
     }
 
-    .sgdImg {
+    .sgd__img {
         width: 30rem;
         height: 30rem;
     }
 
-    .sgdListItem {
+    .sgd__list__item {
         flex-direction: column;
         height: auto;
         width: auto;
     }
 
-    .sgdText{
+    .sgd__text{
         padding: 2vw;
         width: 30rem;
     }

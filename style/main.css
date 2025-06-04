@@ -43,10 +43,6 @@ main {
     width: 100%;
 }
 
-.background__dark {
-    background-color: var(--deepBlue);
-}
-
 .header__text {
     color: var(--deepBlue);
     font-size: 24pt;
@@ -54,15 +50,18 @@ main {
     margin-bottom: 1vh;
 }
 
+p {
+    margin-bottom: 2vh;
+}
+
+p:last-child {
+    margin-bottom: 0;
+}
+
 .body__text {
     font-family: "Metrophobic", sans-serif;
     color: var(--textBlack);
     font-size: 15pt;
-    margin-bottom: 2vh;
-}
-
-.body__text:last-child {
-    margin-bottom: 0;
 }
 
 #EurostatCountrySelector {
@@ -91,53 +90,6 @@ main {
     svg {
         width: 100%;
         height: 100%;
-    }
-}
-
-
-/*-------------- progress bar---------------------------*/
-.visual__container {
-    position: relative;
-    background-color: inherit;
-    margin-bottom: 6rem;
-
-    p {
-        font-style: italic;
-        font-size: 11pt;
-        margin-top: 1rem;
-        margin-bottom: 0;
-    }
-}
-
-.visual__container:last-of-type {
-    margin-bottom: 0;
-}
-
-.progress{
-    background-color: inherit;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 4;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    .progress__bar {
-        width: 80%;
-        height: 40px;
-        margin: auto;
-        padding: 5px;
-        border-radius: 5px;
-        background-color: var(--grayish);
-        
-        .progression {
-            width: 1%;
-            height: 30px;
-            border-radius: 4px;
-            background-color: var(--deepBlue);
-        }
     }
 }
 

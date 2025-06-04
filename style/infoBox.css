@@ -1,4 +1,4 @@
-.infoBoxContainer{
+.info__box__container{
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -7,7 +7,8 @@
   padding: 2rem;
   width: 100%;
 }
-.infoBoxText {
+
+.info__box__text {
   color: var(--white);
   line-height: 1.4em;
   letter-spacing: 0.012rem;
@@ -18,7 +19,8 @@
   position: absolute;
   z-index: 1;
 }
-.infoBox {
+
+.info__box {
   position: relative;
   text-align: center;
   height: 20rem;
@@ -26,7 +28,8 @@
   float: left;
   cursor: pointer;
 }
-.infoBox::before {
+
+.info__box::before {
   content: "";
   display: block;
   position: absolute;
@@ -38,13 +41,14 @@
   z-index: 1;
 }
 
- & .infoBoximg {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    filter: blur(2px);
+& .info__boximg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: blur(2px);
 }
-.infoBoxPop {
+
+.info__box__pop {
   display: none;
   justify-content: center;
   position: fixed;
@@ -55,9 +59,9 @@
   top: 15vh;
   background: var(--link-color);
   z-index: 4;
-
 }
-.closePop {
+
+.close__pop {
   height: 4rem;
   width: 4rem;
   position: absolute;
@@ -66,10 +70,12 @@
   fill: var(--deepBlue);
   cursor: pointer;
 }
-.closePop:hover {
+
+.close__pop:hover {
   fill: var(--mediumBlue)
 }
-.popImg {
+
+.pop__img {
   float: right;
   width: 40%;
   height: 100%;
@@ -80,7 +86,7 @@
   filter: grayscale(1);
 }
 
-.popText {
+.pop__text {
   width: 90%;
   height: 100%;
   object-fit: fill;
@@ -88,14 +94,15 @@
   text-wrap: balance;
   word-wrap: break-word;
   margin-right: 2rem;
+}
 
-  }
-.popHeader {
+.pop__header {
     padding-left: 2rem;
     padding-top: 2rem;
     width: 60%;
-  }
-.infoBoxPop:after {
+}
+
+.info__box__pop:after {
   position: fixed;
   content: "";
   top: 0;
@@ -105,7 +112,8 @@
   background: rgba(0,0,0,0.5);
   z-index: -2;
 }
-.infoBoxPop:before {
+
+.info__box__pop:before {
   position: absolute;
   content: "";
   top: 0;
@@ -115,33 +123,34 @@
   background: var(--white);
   z-index: -1;
 }
-.infoBox:hover .infoBoximg{
+
+.info__box:hover .infoBoximg{
   filter: grayscale(1);
 }
 
 
 @media only screen and (min-width: 800px) {
-.infoBoxPop{ 
-  overflow: hidden;
-  left: 20vw;
-  height: 50vh;
-  width: 60vw;
-  top: 25vh;
-}
- .infoBox {
-  width: 40rem;
- }
-.infoBoxContainer{
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-}
-  .popText {
-  width: 60%;
-  height: 100%;
-  margin-left: 2rem;
-}
-.closePop {
-  fill: var(--white);
-}
+  .info__box__pop{ 
+    overflow: hidden;
+    left: 20vw;
+    height: 50vh;
+    width: 60vw;
+    top: 25vh;
+  }
+  .info__box {
+    width: 40rem;
+  }
+  .info__box__container{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+    .pop__text {
+    width: 60%;
+    height: 100%;
+    margin-left: 2rem;
+  }
+  .close__pop {
+    fill: var(--white);
+  }
 }

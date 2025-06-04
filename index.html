@@ -17,6 +17,7 @@
   <link rel="stylesheet" href="style/sourceSlider.css">
   <link rel="stylesheet" href="style/sgdList.css">
   <link rel="stylesheet" href="style/charts.css">
+  <link rel="stylesheet" href="style/progressBar.css">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
   <!--fonts-->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -76,33 +77,33 @@
       <p class="body__text">PM2,5 är förkortningen av "partikelmassa 2.5 mikrometer" vilket är små partiklar som släpps ut i luften av framför allt förbränning, vägslitage samt slitage på däck och bromsar. Dessa partiklar är skadliga för vår hälsa och kan leda till ett flertal sjukdommar och även dödsfall. </p>-->
     </section>
     <section>
-      <div class="sgdList">
-        <div class="sgdListItem"><img class="sgdImg mal3Img" src="image\Mal3.jpg" alt="Global målen: mål 3"><div class="sgdText"><h4>Mål 3 : Delmål 4</h4> <p class="body__text">Detta delmål handlar om att förhindra sjukdomsfall. Genom att t.ex minska föroreningar i luften </p></div></div>
-        <div class="sgdListItem"><img class="sgdImg mal11Img" src="image\Mal11.jpg" alt="Global målen: mål 3"> <div class="sgdText"><h4>Mål 11 : Delmål 6</h4><p class="body__text">Detta delmål handlar om städers miljöpåverkan, det har ett särskilt fokus på luftkvalitet </p></div></div>
-        <div class="sgdListItem"><img class="sgdImg mal15Img" src="image\Mal15.jpg" alt="Global målen: mål 3"><div class="sgdText"><h4>Mål 15 : Delmål 5</h4><p class="body__text"> Detta delmål behandlar bevarandet av biologisk mångfald och naturliga livsmiljöer.</p></div></div>
+      <div class="sgd__list">
+        <div class="sgd__list__item"><img class="sgd__img mal3Img" src="image\Mal3.jpg" alt="Global målen: mål 3"><div class="sgd__text"><h4>Mål 3 : Delmål 4</h4> <p class="body__text">Detta delmål handlar om att förhindra sjukdomsfall. Genom att t.ex minska föroreningar i luften </p></div></div>
+        <div class="sgd__list__item"><img class="sgd__img mal11Img" src="image\Mal11.jpg" alt="Global målen: mål 3"> <div class="sgd__text"><h4>Mål 11 : Delmål 6</h4><p class="body__text">Detta delmål handlar om städers miljöpåverkan, det har ett särskilt fokus på luftkvalitet </p></div></div>
+        <div class="sgd__list__item"><img class="sgd__img mal15Img" src="image\Mal15.jpg" alt="Global målen: mål 3"><div class="sgd__text"><h4>Mål 15 : Delmål 5</h4><p class="body__text"> Detta delmål behandlar bevarandet av biologisk mångfald och naturliga livsmiljöer.</p></div></div>
       </div>
     </section>
     <div class="background__gray">
       <section class="content">
         <h2 class="header__text">Hälsoeffekter</h2>
-        <p class="body__text"> Enligt <button class="body__text" popovertarget="ref_2"><a popovertarget="ref_2">David Pui m.fl. (2014)</a></button> stiger risken för hälsoproblem med cirka 1,5% per 10 µg/m³. <button class="body__text" popovertarget="ref_1"><a>Anna Oudin och Bertil Forsberg</a></button> menar även att en minskning på 1 µg/m³ skulle betyda att antalet fall av KOL och barnastma bland annat skulle minska med 2%, respektive 3%.</p>
+        <p class="body__text"> Enligt <button class="body__text" popovertarget="ref_2"><a>David Pui m.fl. (2014)</a></button> stiger risken för hälsoproblem med cirka 1,5% per 10 µg/m³. <button class="body__text" popovertarget="ref_1"><a>Anna Oudin och Bertil Forsberg</a></button> menar även att en minskning på 1 µg/m³ skulle betyda att antalet fall av KOL och barnastma bland annat skulle minska med 2%, respektive 3%.</p>
       </section>
-      <div class="infoBoxContainer">
-        <a class="infoBox" onclick="showPop('popupAstma')">
-          <img class="infoBoximg "src="image/cnordic-nordic-WIBJXeFmr6A-unsplash.jpg" alt="man med inhaler">
-          <h3 class="infoBoxText">Astma</h3>
+      <div class="info__box__container">
+        <a class="info__box" onclick="showPop('popupAstma')">
+          <img class="info__boximg"src="image/cnordic-nordic-WIBJXeFmr6A-unsplash.jpg" alt="man med inhaler">
+          <h3 class="info__box__text">Astma</h3>
         </a>
-        <a class="infoBox" onclick="showPop('popupLuftvag')">
-          <img class="infoBoximg"src="image\kenny-eliason-MEbT27ZrtdE-unsplash.jpg" alt="">
-          <h3 class="infoBoxText">Hjärtinfarkt</h3>
+        <a class="info__box" onclick="showPop('popupLuftvag')">
+          <img class="info__boximg"src="image\kenny-eliason-MEbT27ZrtdE-unsplash.jpg" alt="">
+          <h3 class="info__box__text">Hjärtinfarkt</h3>
         </a>
-        <a class="infoBox" onclick="showPop('popupBronkit')">
-          <img class="infoBoximg"src="image\towfiqu-barbhuiya--jthScuVWT0-unsplash.jpg" alt="man with inhaler">
-          <h3 class="infoBoxText">Bronkit</h3>
+        <a class="info__box" onclick="showPop('popupBronkit')">
+          <img class="info__boximg"src="image\towfiqu-barbhuiya--jthScuVWT0-unsplash.jpg" alt="man with inhaler">
+          <h3 class="info__box__text">Bronkit</h3>
         </a>
-        <a class="infoBox" onclick="showPop('popupMortalitet')">
-          <img class="infoBoximg"src="image\christophe-maertens-3cObQnVR78A-unsplash.jpg" alt="man with inhaler">
-          <h3 class="infoBoxText">Mortalitet</h3>
+        <a class="info__box" onclick="showPop('popupMortalitet')">
+          <img class="info__boximg"src="image\christophe-maertens-3cObQnVR78A-unsplash.jpg" alt="man with inhaler">
+          <h3 class="info__box__text">Mortalitet</h3>
         </a>
       </div>
     </div>
@@ -119,9 +120,6 @@
     </div>
     <section id="sweden" class="content">
       <h2 class="header__text">Partiklar i Sverige</h2>
-      <!--<p class="body__text">I Sverige är PM2,5 värden ganska låga året runt även om det ökar något under vintern.
-        Ökningen under vintern kan tänkas bero på dubb*däck som ökar slitaget på vägarna och att fler eldar för att värma bostäder.
-      </p>-->
       <p class="body__text">I Sverige är årsmedelvärdet för PM2.5 relativt lågt jämfört med resten av Europa.
         Detta kan tänkas ha att göra med att Sverige är ett högteknologiskt land som sätter krav på att industrier använder filter.
         En stor källa till utsläppen i Sverige är bostaduppvärmning, som kan tänkas orsaka de ökade nivåerna under vinterhalvåret.
@@ -197,28 +195,29 @@
       </li>
     </ol>
 
-    <div class="infoBoxPop" id="popupAstma" >
-      <img class="popImg hide-on-mobile"src="image/cnordic-nordic-WIBJXeFmr6A-unsplash.jpg" alt="man med inhaler">
-        <h2 class="header__text popHeader">Astma</h2>
-      <p class="body__text popText">Flera studier visar att risken för astma ökar vid långtidsexponering av PM2.5. Detta Blir extra tydligt hos barn som exponerats för höga halter sedan tidig ålder.Studier påvisar också en ökad risk att barn utvecklar astma om modern exponeras under graviditeten</p>
-      <a onclick="hidePop('popupAstma')"><svg class="closePop" xmlns="http://www.w3.org/2000/svg"  viewBox="0 -960 960 960" ><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z" /></svg></a>
+    <div class="info__box__pop" id="popupAstma" >
+      <img class="pop__img hide-on-mobile"src="image/cnordic-nordic-WIBJXeFmr6A-unsplash.jpg" alt="man med inhaler">
+        <h2 class="header__text pop__header">Astma</h2>
+      <p class="body__text pop__text">Flera studier visar att risken för astma ökar vid långtidsexponering av PM2.5. Detta Blir extra tydligt hos barn som exponerats för höga halter sedan tidig ålder.Studier påvisar också en ökad risk att barn utvecklar astma om modern exponeras under graviditeten</p>
+      <a onclick="hidePop('popupAstma')"><svg class="close__pop" xmlns="http://www.w3.org/2000/svg"  viewBox="0 -960 960 960" ><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z" /></svg></a>
     </div>
-    <div class="infoBoxPop" id="popupLuftvag" >
-      <img class="popImg hide-on-mobile" src="image\kenny-eliason-MEbT27ZrtdE-unsplash.jpg" alt="Modell av ett hjärta">
-      <h2 class="header__text popHeader">Stroke</h2>
-      <p class="body__text popText">PM2.5 exponering kan öka risken för att drabbas av hjärtinfarkt, Risken ökar för alla åldrar redan vid kortitids exponering och fotsätter att öka vid långtidsexponering. Det finns ocskså belägg för att flera hjärtsjukdommar kan påvärkas av PM2.5 så som hjärtsvikt och ischemtisk hjärtsjukdom.  </p>
-      <a onclick="hidePop('popupLuftvag')"><svg class="closePop" xmlns="http://www.w3.org/2000/svg"  viewBox="0 -960 960 960"  fill="#e3e3e3"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z" /></svg></a>
+    <div class="info__box__pop" id="popupLuftvag" >
+      <img class="pop__img hide-on-mobile" src="image\kenny-eliason-MEbT27ZrtdE-unsplash.jpg" alt="Modell av ett hjärta">
+      <h2 class="header__text pop__header">Stroke</h2>
+      <p class="body__text pop__text">PM2.5 exponering kan öka risken för att drabbas av hjärtinfarkt, Risken ökar för alla åldrar redan vid kortitids exponering och fotsätter att öka vid långtidsexponering. Det finns ocskså belägg för att flera hjärtsjukdommar kan påvärkas av PM2.5 så som hjärtsvikt och ischemtisk hjärtsjukdom.  </p>
+      <a onclick="hidePop('popupLuftvag')"><svg class="close__pop" xmlns="http://www.w3.org/2000/svg"  viewBox="0 -960 960 960"  fill="#e3e3e3"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z" /></svg></a>
     </div>
-    <div class="infoBoxPop" id="popupBronkit" >
-      <img class="popImg hide-on-mobile"src="image\towfiqu-barbhuiya--jthScuVWT0-unsplash.jpg" alt="Sjkuk man"><h2 class="header__text popHeader">Bronkit</h2>
-      <p class="body__text popText">En av det sjukdommar man kan drabbas av vid långtidsexponering av PM2.5 är kronisk bronkit, en luftvägs inflammation med hosta och andfåddhet som symptom. Det finns starkast kopplingar mellan PM2.5 och kronisk bronkit bland unga vuxna som utvecklar sjukdommen efter att exponerats som barn. Akut bronkit är däremot vanligare bland barn, 
-      <a onclick="hidePop('popupBronkit')"><svg class="closePop" xmlns="http://www.w3.org/2000/svg"  viewBox="0 -960 960 960"  fill="#e3e3e3"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z" /></svg></a>
+    <div class="info__box__pop" id="popupBronkit" >
+      <img class="pop__img hide-on-mobile"src="image\towfiqu-barbhuiya--jthScuVWT0-unsplash.jpg" alt="Sjkuk man">
+      <h2 class="header__text pop__header">Bronkit</h2>
+      <p class="body__text pop__text">En av det sjukdommar man kan drabbas av vid långtidsexponering av PM2.5 är kronisk bronkit, en luftvägs inflammation med hosta och andfåddhet som symptom. Det finns starkast kopplingar mellan PM2.5 och kronisk bronkit bland unga vuxna som utvecklar sjukdommen efter att exponerats som barn. Akut bronkit är däremot vanligare bland barn, 
+      <a onclick="hidePop('popupBronkit')"><svg class="close__pop" xmlns="http://www.w3.org/2000/svg"  viewBox="0 -960 960 960"  fill="#e3e3e3"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z" /></svg></a>
     </div>
-    <div class="infoBoxPop" id="popupMortalitet" >
-      <img class="popImg hide-on-mobile"src="image\christophe-maertens-3cObQnVR78A-unsplash.jpg" alt="Gravstenar">
-      <a onclick="hidePop('popupMortalitet')"><svg class="closePop" xmlns="http://www.w3.org/2000/svg"  viewBox="0 -960 960 960"  fill="#e3e3e3"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z" /></svg></a>
-      <h2 class="header__text popHeader">Mortalitet</h2>
-      <p class="body__text popText">Det finns starka samband mellan högt korttids intag av Pm2.5 och förtids dödsfall. Exakt hur farligt det är varierar beroende på vilken av partiklarna under PM2.5 paraplyet det är du utsätsför, störts risk är så kallad "oorganisk kol" samt "black carbon" eller svart kol som det heter på svenska 
+    <div class="info__box__pop" id="popupMortalitet" >
+      <img class="pop__img hide-on-mobile"src="image\christophe-maertens-3cObQnVR78A-unsplash.jpg" alt="Gravstenar">
+      <a onclick="hidePop('popupMortalitet')"><svg class="close__pop" xmlns="http://www.w3.org/2000/svg"  viewBox="0 -960 960 960"  fill="#e3e3e3"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z" /></svg></a>
+      <h2 class="header__text pop__header">Mortalitet</h2>
+      <p class="body__text pop__text">Det finns starka samband mellan högt korttids intag av Pm2.5 och förtids dödsfall. Exakt hur farligt det är varierar beroende på vilken av partiklarna under PM2.5 paraplyet det är du utsätsför, störts risk är så kallad "oorganisk kol" samt "black carbon" eller svart kol som det heter på svenska 
         Det finns också liknande samband vid långtidsexponering men även där är exakt vilken sorts PM2.5 partikel du exponeras av viktig. 
       </p>
     </div>
