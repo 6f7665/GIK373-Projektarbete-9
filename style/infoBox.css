@@ -2,8 +2,8 @@
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: space-around;
-  row-gap: 2rem;
+  justify-content: center;
+  gap: 2rem;
   padding: 2rem;
   width: 100%;
 }
@@ -23,7 +23,7 @@
 .info__box {
   position: relative;
   text-align: center;
-  height: 20rem;
+  height: 25rem;
   width: 25rem;
   float: left;
   cursor: pointer;
@@ -137,15 +137,13 @@
     width: 60vw;
     top: 25vh;
   }
-  .info__box {
-    width: 40rem;
-  }
   .info__box__container{
     display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
+    flex-wrap: nowrap;
+    justify-content: center;
+    gap: 2rem;
   }
-    .pop__text {
+  .pop__text {
     width: 60%;
     height: 100%;
     margin-left: 2rem;
