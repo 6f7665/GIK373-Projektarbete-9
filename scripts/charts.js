@@ -533,10 +533,16 @@ function printMap() {
   const EastSigma = Math.sqrt(calculateSumOfArray(EastDiff2) / EastDiff2.length);
   //console.log(EastSigma);
   const T = (EastMed - WestMed) / ((EastMed - WestMed) / Math.sqrt((EastSigma/EastDiff2.length) + (WestSigma/WestDiff2.length)) * Math.sqrt(1/EastDiff2.length + 1/WestDiff2.length) );
-  console.log(EastDiff2.length + WestDiff2.length - 2);
+  const FD = EastDiff2.length + WestDiff2.length - 2;
   console.log(T);
   try {
     document.getElementById('LegendMax').textContent=`${bmax}`;
+  } catch (error) {
+    console.log(id,error);
+  }
+  try {
+    document.getElementById('TID').textContent=`${T}`;
+    document.getElementById('FDID').textContent=`${FD}`;
   } catch (error) {
     console.log(id,error);
   }
