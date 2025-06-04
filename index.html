@@ -133,7 +133,7 @@
     <div class="background__gray">
       <section id="europe" class="content">
         <h2 class="header__text">Hur ser det ut i andra EU länder?</h2>
-         <p class="body__text">Luften i Sverige berörs också av vindar som för med sig PM2.5 och andra föroreningar från närliggande länder. Nedan finns en graf för att se PM2.5 värdena samt dödsfall till följd av PM2.5 i andra Europeiska länder </p>
+        <p class="body__text">Luften i Sverige berörs också av vindar som för med sig PM2.5 och andra föroreningar från närliggande länder. Nedan finns en graf för att se PM2.5 värdena samt dödsfall till följd av PM2.5 i andra Europeiska länder </p>
         <div class="visual__container">
           <canvas id="EurostatCanvas" class="visual__information"></canvas>
           <p>Detta diagram är skapat med hjälp av datat från <a href="https://ec.europa.eu/eurostat/databrowser/view/sdg_11_52/default/table?lang=en">eurostat</a> samt <a href="https://open-meteo.com/">Open-meteo</a></p>
@@ -143,6 +143,10 @@
         <div class="visual__container">
           <div id="europeMapContainer" class="visual__information"></div>
           <p>Detta diagram är skapat med hjälp av datat från <a href="https://ec.europa.eu/eurostat/databrowser/view/sdg_11_52/default/table?lang=en">eurostat</a></p>
+        </div>
+        <div>
+          <h2 class="header__text">Skillnad mellan öst och väst</h2>
+          <p class="body__text">T-test skapades för att se skillnaden mellan Öst- och Västeuropa. På ett tvåsidig t-test får man t-värdet: <span id="TID"></span> <br> Antalet frihetsgrader ur testet är: <span id="FDID"></span>. Med dessa siffror kan man säga att Östeuropa har högre dödsfall av PM2.5</p>
         </div>
       </section>
     </div>
