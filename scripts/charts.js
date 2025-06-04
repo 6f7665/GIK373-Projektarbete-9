@@ -469,7 +469,7 @@ function printSwedenChart() {
           beginAtZero: true,
           type: 'linear',
           position: 'left',
-          //max: 400,
+          max: 400,
           ticks: { stepSize: 100, fontSize: ChartFontSize}
         }
       },
