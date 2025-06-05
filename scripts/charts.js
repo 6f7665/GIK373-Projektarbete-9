@@ -1,3 +1,5 @@
+//Grupp 9: Oscar Vestlund, Joel Sandbäck, Porsche Thichan
+
 let apiData = [
   {
     url: 'https://sdb.socialstyrelsen.se/api/v1/sv/dodsorsaker_manad/resultat/kon/3/region/00/diagnos/1005,1006', //1006 = Dammlunga, 1005 = Kroniska sjukdomar i nedre luftvägarna
@@ -6,8 +8,6 @@ let apiData = [
     dataString: ''
   },
   {
-    //url: 'https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/sdg_11_52/?format=JSON&lang=en&freq=A&airpol=PM2_5&indic_he=PMD&unit=NR&geo=BE&geo=BG&geo=CZ&geo=DK&geo=DE&geo=EE&geo=IE&geo=EL&geo=ES&geo=FR&geo=HR&geo=IT&geo=CY&geo=LV&geo=LT&geo=LU&geo=HU&geo=MT&geo=NL&geo=AT&geo=PL&geo=PT&geo=RO&geo=SI&geo=SK&geo=FI&geo=SE&geo=IS&geo=LI&geo=NO&geo=CH&geo=BA&geo=ME&geo=MK&geo=AL&geo=RS&geo=XK&time=2005&time=2007&time=2008&time=2009&time=2010&time=2011&time=2012&time=2013&time=2014&time=2015&time=2016&time=2017&time=2018&time=2019&time=2020&time=2021&time=2022',
-    //url: 'https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/sdg_11_52/?format=JSON&lang=en&freq=A',
     url: 'https://ec.europa.eu/eurostat/api/dissemination/sdmx/3.0/data/dataflow/ESTAT/sdg_11_52/1.0/*.*.*.*.*?c[freq]=A&c[airpol]=PM2_5&c[indic_he]=PMD&c[unit]=RT&c[geo]=BE,BG,CZ,DK,DE,EE,IE,EL,ES,FR,HR,IT,CY,LV,LT,LU,HU,MT,NL,AT,PL,PT,RO,SI,SK,FI,SE,IS,LI,NO,CH,UK,BA,ME,MK,AL,RS,XK&c[TIME_PERIOD]=2005,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018,2019,2020,2021,2022&compress=false&format=json&lang=en',
     options: {method: 'GET'},
     downloadStatus: '',
@@ -300,12 +300,6 @@ function printEurostatChart() {
   } else {
     Max = (parseInt(PM25Max / 2) + 1 );
   }
-  /*const b = calculateLinearRegression(Years, YearDeaths);
-  console.log(b);
-  let Trend = [];
-  for (let i = 0; i < Years.length; i++) {
-    Trend.push(b[0] + (b[1] * parseInt(Years[i])));
-  }*/
   EurostatChart.destroy(); //remove old chart
   EurostatChart = new Chart(document.getElementById("EurostatCanvas"), {
     data: {
@@ -387,7 +381,6 @@ function printEurostatChart() {
 function updateEurostatChart() {
   printEurostatChart();
 }
-
 
 let SwedenChart = new Chart(document.getElementById("SwedenCanvas"));
 function printSwedenChart() {
@@ -712,57 +705,6 @@ function prepareCharts() {
   EurostatCanvas.insertAdjacentElement("beforebegin", SelectionLabel); //insert the label for the selectioninput
   EurostatCanvas.insertAdjacentElement("beforebegin", SelectionInput); //insert the selectioninput
 }
-
-    /*data: {
-      labels: ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],
-      datasets: [{
-        type: 'line',
-        label: 'Dödsfall av lungcancer och KOL',
-        data: DeathRateDataSweden['MonthDeathAvg'],
-        yAxisID: 'Deaths',
-        borderColor: '#ffbe0a',
-        backgroundColor: '#ffbe0a',
-      },{
-        type: 'line',
-        label: 'PM2.5 i Stockholm',
-        data: OpenmeteoData[]['MonthlyAvarage'],
-        yAxisID: 'PM2_5',
-        borderColor: '#0a3fff',
-        backgroundColor: '#0a3fff',
-      },]
-    },
-    options: {
-      scales: {
-        PM2_5: {
-          title: { text: 'µg/m³', display: true },
-          beginAtZero: true,
-          type: 'linear',
-          position: 'right',
-          min: 6,
-          max: 11,
-          ticks: { stepSize: 1}
-        },
-        Deaths: {
-          title: { text: 'antal dödsfall', display: true },
-          beginAtZero: true,
-          type: 'linear',
-          position: 'left',
-          min: 200,
-          max: 325,
-          ticks: { stepSize: 25}
-        }
-      },
-      plugins: {
-        legend: {
-          display: true
-        }
-      }
-    }
-  });*/
-
-/*
-  let PercentageChart = new Chart(PercentageCanvas, {
-  PercentageChart.update();*/
 
 fetchApiData().then(() => {
   prepareData();
