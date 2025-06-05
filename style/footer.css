@@ -1,3 +1,4 @@
+/*Grupp 9: Oscar Vestlund, Joel Sandbäck, Porsche Thichan*/
 footer {
     background-color: var(--deepBlue);
     font-family: "Sansation", sans-serif;
@@ -10,8 +11,6 @@ footer {
         "fcontent1 fcontent2";
     grid-template-columns: 50% 50%;
     grid-template-rows: 15% 85%;
-
-
 
     .footer__heading {
         width: 100%;

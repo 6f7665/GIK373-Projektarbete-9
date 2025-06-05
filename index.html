@@ -1,3 +1,4 @@
+<!--Grupp 9: Oscar Vestlund, Joel Sandbäck, Porsche Thichan-->
 <!DOCTYPE html>
 <html lang="sv">
 <head>
@@ -28,8 +29,10 @@
 
 </head>
 <body>
+  <!--header section-->
   <header>
     <nav class="nav__container">
+      <!--This is the sidebar that is uses only for mobile viewport(799px and below)-->
       <ul class="sidebar">
         <li class="hide-on-desktop"><a href="#sweden">Sverige</a></li>
         <li class="hide-on-desktop"><a href="#europe">Europa</a></li>
@@ -37,6 +40,7 @@
         <li class="hide-on-desktop"><a href="#future">Framtiden</a></li>
         <li class="hide-on-desktop"><a href="#references">Källor</a></li>
       </ul>
+      <!--This is the navbar. On mobile viewport only the hamburger menu is visible-->
       <ul>
         <li><a href="#">Clean Air</a></li>
         <li class="hide-on-mobile"><a href="#sweden">Sverige</a></li>
@@ -48,6 +52,8 @@
       </ul>
     </nav>
   </header>
+
+  <!--Hero section-->
   <div class="hero">
     <span class="hero__text hide-on-desktop">Clean Air</span>
     <span class="hero__text hide-on-mobile">Clean Air</span>
@@ -59,7 +65,9 @@
       <div class="scroll__button hero__secondary__button"><a href="#europe">Europa</a></div>
     </div>
   </div>
+
   <main>
+    <!--Intro section-->
     <section class="content">
       <h2 class="header__text">Frisk luft</h2>
       <p class="body__text">
@@ -69,14 +77,9 @@
       <p class="body__text">
         Frisk luft kan också återfinnas som komponent i flera av de globala målen för hållbar utveckling som till exempel:
       </p>
-      <!--Frisk luft kan också återfinnas som komponent i flera av de globala målen för hållbar utveckling som till exempel
-      "11.6 Minska städers miljöpåverkan"<button class="body__text" popovertarget="ref_mal11"><a popovertarget="ref_mal11">(Globala målen, 2025)</a></button> 
-      15.5 Skydda den biologiska mångfalden och naturliga livsmiljöer"<button class="body__text" popovertarget="ref_mal15"><a popovertarget="ref_mal15">(Globala målen, 2025)</a></button>
-      "3.4 Minska antalet dödsfall till följd av icke smittsamma sjukdomar och främja mental hälsa"<button class="body__text" popovertarget="ref_mal3"><a popovertarget="ref_mal3">"(Globala målen, 2025)</a></button>
-      <h2 class="header__text">PM2,5 en introduktion</h2>
-      <p class="body__text">PM2,5 är förkortningen av "partikelmassa 2.5 mikrometer" vilket är små partiklar som släpps ut i luften av framför allt förbränning, vägslitage samt slitage på däck och bromsar. Dessa partiklar är skadliga för vår hälsa och kan leda till ett flertal sjukdommar och även dödsfall. </p>-->
     </section>
     <section>
+      <!--These are the global goals images-->
       <div class="sgd__list">
         <div class="sgd__list__item"><img class="sgd__img mal3Img" src="image\Mal3.jpg" alt="Global målen: mål 3"><div class="sgd__text"><h4>Mål 3 : Delmål 4</h4> <p class="body__text">Detta delmål handlar om att förhindra sjukdomsfall. Genom att t.ex minska föroreningar i luften </p></div></div>
         <div class="sgd__list__item"><img class="sgd__img mal11Img" src="image\Mal11.jpg" alt="Global målen: mål 3"> <div class="sgd__text"><h4>Mål 11 : Delmål 6</h4><p class="body__text">Detta delmål handlar om städers miljöpåverkan, det har ett särskilt fokus på luftkvalitet </p></div></div>
@@ -88,6 +91,7 @@
         <h2 class="header__text">Hälsoeffekter</h2>
         <p class="body__text"> Enligt <button class="body__text" popovertarget="ref_2"><a>David Pui m.fl. (2014)</a></button> stiger risken för hälsoproblem med cirka 1,5% per 10 µg/m³. <button class="body__text" popovertarget="ref_1"><a>Anna Oudin och Bertil Forsberg</a></button> menar även att en minskning på 1 µg/m³ skulle betyda att antalet fall av KOL och barnastma bland annat skulle minska med 2%, respektive 3%.</p>
       </section>
+      <!--Below are infoboxes that shows a popup when pressed. The popup is written lower down in this document-->
       <div class="info__box__container">
         <a class="info__box" onclick="showPop('popupAstma')">
           <img class="info__boximg"src="image/cnordic-nordic-WIBJXeFmr6A-unsplash.jpg" alt="man med inhaler">
@@ -118,6 +122,8 @@
         </div>
       </section>
     </div>
+
+    <!--Sweden section-->
     <section id="sweden" class="content">
       <h2 class="header__text">Partiklar i Sverige</h2>
       <p class="body__text">I Sverige är årsmedelvärdet för PM2.5 relativt lågt jämfört med resten av Europa.
@@ -129,6 +135,8 @@
         <p>Detta diagram är skapat med hjälp av datat från <a href="https://ec.europa.eu/eurostat/databrowser/view/sdg_11_52/default/table?lang=en">eurostat</a>, <a href="https://open-meteo.com/">Open-meteo</a> och <a href="https://www.socialstyrelsen.se/">Socialstylrelsen</a></p>
       </div>
     </section>
+
+    <!--Europe section-->
     <div class="background__gray">
       <section id="europe" class="content">
         <h2 class="header__text">Hur ser det ut i andra EU länder?</h2>
@@ -149,6 +157,8 @@
         </div>
       </section>
     </div>
+
+    <!--World map section-->
     <section id="world" class="content">
       <h2 class="header__text">Live världskarta av PM2,5 </h1>
       <p class="body__text">Denna interaktiva karta visar aktuella PM 2.5-mätvärden över hela världen med hjälp av över 400 källor från Aqicn:s API. Mätvärdena uppdateras var 15:e till 60:e minut beroende på trafiken hos våra leverantörer.</p>
@@ -156,6 +166,8 @@
         <div id="liveMapPm25" class="visual__information"></div>
       </div>
     </section>
+
+    <!--Future section-->
     <div class="background__gray">
       <section id="future" class="content">
         <h2 class="header__text">Framtiden</h2>
@@ -165,6 +177,8 @@
         <p class="body__text">Du kan själv bidra till att hålla vår luft ren. Nästa gång du ska resa kan du överväga tåg eller lokaltrafik för att minska avgasutsläpp och i vissa fall vägslitage. Du kan också göra skillnad när du är i affären genom att handla av lokala producenter för att bidra till minskad transport, du kan också välja miljömärkta varor. Eller duger kanske den varma tröjan istället för en brasa sensommar kvällen i sommarstugan. </p>
       </section>
     </div>
+
+    <!--references section-->
     <section id="references" class="content">
       <h2 class="header__text">Källor</h2>
       <p class="body__text">Pui, D. Y. H., Chen, S. C., & Zuo, Z. L. (2014). <i>PM2.5 in China: Measurements, sources, visibility and health effects, and mitigation.</i> Particuology, 13(1), 1–26. <a href="https://doi.org/10.1016/j.partic.2013.11.001">https://doi.org/10.1016/j.partic.2013.11.001</a></p>
@@ -173,8 +187,9 @@
       <p class="body__text">Sveriges Miljömål. (31 mars 2025). <i>Frisk Luft</i> <a href="https://www.sverigesmiljomal.se/miljomalen/frisk-luft/">https://www.sverigesmiljomal.se/miljomalen/frisk-luft/</a></p>
       <p class="body__text">Globala Målen (2025). <i>Globala målen</i> <a href="https://globalamalen.se/om-globala-malen/">https://globalamalen.se/om-globala-malen/</a></p> 
       <p class="body__text">Sveriges Miljömål <i>Sveriges miljömål: Utsläpp av partiklar (PM 2,5) till luft</i> <a href="https://sverigesmiljomal.se/miljomalen/frisk-luft/partikelutslapp-av-pm25/"></a>https://sverigesmiljomal.se/miljomalen/frisk-luft/partikelutslapp-av-pm25/</p>
-    
     </section>
+
+    <!--These is for the reference box taht appears when users click on the references in texts-->
     <ol class="references">
       <li id="ref_1" popover>
         <p class=""><cite><a href="https://www.diva-portal.org/smash/get/diva2:1658046/FULLTEXT01.pdf">Hälsovinster med att uppnå miljömålet frisk luft</a></cite>, av Anna oudin </p>
@@ -204,6 +219,7 @@
       </li>
     </ol>
 
+    <!--These info_box_pop below is for the popup when you click on the infobox in the site-->
     <div class="info__box__pop" id="popupAstma" >
       <img class="pop__img hide-on-mobile"src="image/cnordic-nordic-WIBJXeFmr6A-unsplash.jpg" alt="man med inhaler">
         <h2 class="header__text pop__header">Astma</h2>
@@ -231,6 +247,8 @@
       </p>
     </div>
   </main>
+
+  <!--footer section-->
   <footer>
     <h2 class="footer__heading">Clean Air</h2>
     <div class="footer__content">
@@ -242,12 +260,10 @@
       </ul>
     </div>
   </footer>
-  <!--<script src="scripts/navbar.js"></script>-->
+
+  <!--Scripts-->
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.9/dist/chart.umd.min.js"></script>
   <script src="scripts/charts.js"></script>
-  <!--<script src="scripts/sdbYearly.js"></script>
-  <script src="scripts/sdbStats.js"></script>-->
-  <!--<script src="scripts/euroStats.js"></script>-->
   <script src="scripts/qgiStats.js"></script>
   <script src="scripts/hamburgerMenu.js"></script>
   <script src="scripts/infoBox.js"></script>

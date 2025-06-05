@@ -1,3 +1,4 @@
+/*Grupp 9: Oscar Vestlund, Joel Sandbäck, Porsche Thichan*/
 header {
     height: auto;
     width: 100%;
@@ -25,11 +26,13 @@ nav ul {
         font-size: 12pt;
     }
 
+    /*This is for the Clean Air on the header*/
     li:first-child {
         margin-right: auto;
         font-size: 18pt;
     }
-
+    
+    /*Make it so that the some specific buttons have the same color on hover*/
     li:first-child a:hover {
         background-color: var(--deepBlue);
     }
@@ -58,6 +61,7 @@ nav ul {
     }
 }
 
+/*This is for the sidebar that slides in when the hamburger menu is pressed*/
 .sidebar {
     height: auto;
     width: 50vw;
@@ -119,6 +123,7 @@ nav ul {
         display: none;
     }
 
+/*Keyframe for the sidebar*/
 @keyframes move-down {
     from {
         right: -52vw;
@@ -129,11 +134,7 @@ nav ul {
     }
 }
 
-@media only screen and (min-width: 500px){
-    .sidebar {
-    }
-}
-
+/*This makes it so that some element appears or dissappear when the screen sizes is 800px or above*/
 @media only screen and (min-width: 800px){
     .hide-on-mobile {
         display: flex;
