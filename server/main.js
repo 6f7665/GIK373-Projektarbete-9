@@ -224,11 +224,6 @@ function init() {
 					console.log("Processing openmeteo data...")
 					OpenMeteoFetchTime = Date.now();
 					prepareOpenMeteoData(data); //update loaded data
-					try {
-						filesystem.mkdirSync('data');
-					} catch (fs_error) {
-						console.log(fs_error);
-					}
 					console.log("Storing backup...")
 					filesystem.writeFileSync('data/open_meteo.json', JSON.stringify(OpenMeteoData)); //store data to file
 					resolve();
