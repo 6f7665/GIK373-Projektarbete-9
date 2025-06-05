@@ -1,3 +1,4 @@
+//Grupp 9: Oscar Vestlund, Joel Sandbäck, Porsche Thichan
 var aqiMap = L.map('liveMapPm25').setView([53.83029146974107, 9.957592944564151], 5);
 
 L.tileLayer('https://api.maptiler.com/maps/basic-v2/256/{z}/{x}/{y}@2x.png?key=eGeFyLanxor3Gycw7nWl', {

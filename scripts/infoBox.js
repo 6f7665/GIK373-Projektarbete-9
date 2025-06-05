@@ -1,3 +1,4 @@
+//Grupp 9: Oscar Vestlund, Joel Sandbäck, Porsche Thichan
 $ = function(id) {
   return document.getElementById(id);
 }
