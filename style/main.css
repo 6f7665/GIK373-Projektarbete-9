@@ -1,3 +1,4 @@
+/*Grupp 9: Oscar Vestlund, Joel Sandbäck, Porsche Thichan*/
 :root {
 	font: 10px Arial, sans-serif;
 }
@@ -78,7 +79,7 @@ p:last-child {
     }
 }
 
-
+/*liveMapPm25 is for the live map element*/
 #liveMapPm25 {
 	height: 50vh;
     width: 100%;

@@ -1,3 +1,4 @@
+/*Grupp 9: Oscar Vestlund, Joel Sandbäck, Porsche Thichan*/
 .visual__container {
     position: relative;
     background-color: inherit;
@@ -14,7 +15,7 @@
 .visual__container:last-of-type {
     margin-bottom: 0;
 }
-
+/*styling for the actual bar*/
 .progress{
     background-color: inherit;
     position: absolute;

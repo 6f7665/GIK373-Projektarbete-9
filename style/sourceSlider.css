@@ -1,3 +1,4 @@
+/*Grupp 9: Oscar Vestlund, Joel Sandbäck, Porsche Thichan*/
 .references {
   clip-path: inset(50%);
   height: 1px;
@@ -38,7 +39,7 @@ height: 1rem;
     font-size: 18px;
   }
 
-
+ /*styles the popover when it is opened*/
   &:popover-open {
     z-index: 1;
     position: fixed;
@@ -53,8 +54,6 @@ height: 1rem;
     background: var(--background);
     box-shadow: 0 10px 9px -10px black, 0px 2px 5px rgb(54, 54, 54);
     animation: sliderAnim 0.2s;
-
- 
     max-block-size: 50vh;
     overflow: auto;
 

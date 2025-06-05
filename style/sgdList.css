@@ -1,4 +1,4 @@
-
+/*Grupp 9: Oscar Vestlund, Joel Sandbäck, Porsche Thichan*/
 .sgd__list {
     display: flex;
     flex-direction: column;
@@ -8,7 +8,7 @@
     margin-bottom: 6rem;
     padding: 0 2rem 2rem 2rem;
 }
-
+/*styles the items in the list and their components*/
 .sgd__list__item {
     display: flex;
     flex-direction: row;
